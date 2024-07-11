@@ -57,6 +57,7 @@ const frameData = [
 export const Env = (props) => {
 
   const [selectedFrame, setSelectedFrame] = useState(null);
+
   const curveRef = useRef();
 
   const curve = useMemo(() => new THREE.CatmullRomCurve3([...positions.map(vector => new THREE.Vector3(vector.x, vector.y, vector.z * 1.5))], false, 'centripetal'), []);
@@ -69,9 +70,8 @@ export const Env = (props) => {
   return (
     <Canvas {...props}>
       <ambientLight intensity={2} />
-      <PerspectiveCamera makeDefault near={0.01} />
+      {/* <PerspectiveCamera makeDefault near={0.01}/> */}
       <Rig selectedFrame={selectedFrame} />
-
       {/* <OrbitControls enableZoom={true} /> */}
       <line ref={curveRef} geometry={lineGeometry}>
         <lineBasicMaterial color="white" />
@@ -92,39 +92,38 @@ export const Env = (props) => {
       {frameData.map((frame, index) => (
         <Frame
           key={index}
-          id={index}
+          idx={index}
           bg={frame.bg}
           position={frame.cardPosition}
           rotation={frame.cardRotation}
-          setScene={setSelectedFrame}
+          selectedFrame={selectedFrame}
+          onClick={() => {
+            setSelectedFrame(`scene-${index}`);
+          }}
         >
-          <PerspectiveCamera makeDefault position={frame.camPosition} />
+          {/* <PerspectiveCamera makeDefault near={0.01} position={[0,0,10]}/>
+          <OrbitControls enabled={selectedFrame} /> */}
           <ambientLight intensity={0.5} />
           <Gltf src={frame.src} scale={frame.modelScale} position={frame.modelPosition} />
         </Frame>
       ))}
       <ScrollControls pages={5} damping={0.3}>
-        <PaperPlane curve={curve} />
-
+        <PaperPlane curve={curve} selectedFrame={selectedFrame} />
       </ScrollControls>
     </Canvas>
   );
 };
 
-function Rig({ selectedFrame, position = new THREE.Vector3(0, 0, 2), focus = new THREE.Vector3(0, 0, 0) }) {
-  const { controls, scene } = useThree();
-
+const Rig = ({ selectedFrame, position = new THREE.Vector3(0, 0, 2), focus = new THREE.Vector3(0, 0, 0) }) => {
+  const { controls, scene } = useThree()
   useEffect(() => {
-    if (selectedFrame) {
-      const active = scene.getObjectByName(selectedFrame);
-      if (active) {
-        console.log(scene)
-        active.parent.localToWorld(position.set(0, 0.5, 2));
-        active.parent.localToWorld(focus.set(0, 0, -2))
-      }
-      controls?.setLookAt(...position.toArray(), ...focus.toArray(), true);
+    const active = scene.getObjectByName(selectedFrame)
+    if (active) {
+      console.log(active.parent)
+      active.parent.localToWorld(position.set(0, 0, 0.5))
+      active.parent.localToWorld(focus.set(0, 0, -3))
     }
-  });
-
-  return <CameraControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />;
+    controls?.setLookAt(...position.toArray(), ...focus.toArray(), true)
+  })
+  return <CameraControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} enabled={selectedFrame} />
 }

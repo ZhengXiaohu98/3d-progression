@@ -3,7 +3,7 @@ import { useGLTF, Float, useScroll } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef } from "react";
 
-export const PaperPlane = ({ curve }) => {
+export const PaperPlane = ({ curve, selectedFrame }) => {
 
 
 
@@ -29,8 +29,10 @@ export const PaperPlane = ({ curve }) => {
         const angle = Math.acos(up.dot(tangent));
         planeRef.current.quaternion.setFromAxisAngle(axis, angle);
 
-        camera.position.copy(point.clone().add(new THREE.Vector3(0.5, 1.5, 2.5)));
-        camera.lookAt(point.clone().add(tangent));
+        if (!selectedFrame) {
+          camera.position.copy(point.clone().add(new THREE.Vector3(0.5, 1.5, 2.5)));
+          camera.lookAt(point.clone().add(tangent));
+        }
       }
     }
   });
