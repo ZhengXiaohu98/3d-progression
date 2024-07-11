@@ -55,7 +55,7 @@ export const Env = (props) => {
       </Bounds>
       <ScrollControls pages={5} damping={0.3}>
         <PaperPlane curve={curve} />
-        <DonutScene />
+        {/* <DonutScene /> */}
       </ScrollControls>
     </Canvas>
   );
