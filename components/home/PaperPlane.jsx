@@ -29,10 +29,10 @@ export const PaperPlane = ({ curve, selectedFrame }) => {
         const angle = Math.acos(up.dot(tangent));
         planeRef.current.quaternion.setFromAxisAngle(axis, angle);
 
-        if (!selectedFrame) {
-          camera.position.copy(point.clone().add(new THREE.Vector3(0.5, 1.5, 2.5)));
-          camera.lookAt(point.clone().add(tangent));
-        }
+        // if (!selectedFrame) {
+        //   camera.position.copy(point.clone().add(new THREE.Vector3(0.5, 1.5, 2.5)));
+        //   camera.lookAt(point.clone().add(tangent));
+        // }
       }
     }
   });
@@ -40,7 +40,7 @@ export const PaperPlane = ({ curve, selectedFrame }) => {
   return (
     <>
       <Float rotationIntensity={0} floatingRange={[-0.08, 0.08]} speed={6}>
-        <group ref={planeRef} position={[0, 0.4, 5]} scale={0.1} rotation={[-Math.PI / 2, 0, Math.PI]}>
+        <group ref={planeRef} position={[0, 0.4, 5]} scale={0.1} rotation={[-Math.PI / 2, 0, Math.PI]} name="plane">
           {Object.entries(nodes).map(([key, node]) =>
             node.isMesh ? (
               <mesh key={key} geometry={node.geometry} material={materials[node.material.name]} />

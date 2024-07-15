@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Gltf, OrbitControls, PerspectiveCamera, ScrollControls, Clouds, Cloud, Bounds, CameraControls } from "@react-three/drei";
+import { Gltf, OrbitControls, PerspectiveCamera, ScrollControls, Clouds, Cloud, Bounds, CameraControls, useScroll } from "@react-three/drei";
 import * as THREE from "three";
 import { useMemo, useRef, useState, useEffect } from "react";
 import { PaperPlane } from "./PaperPlane";
@@ -54,9 +54,11 @@ const frameData = [
   }
 ]
 
-export const Env = (props) => {
+export const Env = ({ selectedFrame, setSelectedFrame, ...props }) => {
 
-  const [selectedFrame, setSelectedFrame] = useState(null);
+  const mainCameraRef = useRef(null);
+
+  const cameraRefs = useRef([]);
 
   const curveRef = useRef();
 
@@ -70,9 +72,8 @@ export const Env = (props) => {
   return (
     <Canvas {...props}>
       <ambientLight intensity={2} />
-      {/* <PerspectiveCamera makeDefault near={0.01}/> */}
-      <Rig selectedFrame={selectedFrame} />
-      {/* <OrbitControls enableZoom={true} /> */}
+      {/* <axesHelper args={[100]} /> */}
+      <PerspectiveCamera makeDefault near={0.01} ref={mainCameraRef} />
       <line ref={curveRef} geometry={lineGeometry}>
         <lineBasicMaterial color="white" />
       </line>
@@ -98,32 +99,63 @@ export const Env = (props) => {
           rotation={frame.cardRotation}
           selectedFrame={selectedFrame}
           onClick={() => {
-            setSelectedFrame(`scene-${index}`);
+            setSelectedFrame(`scene-${index}`)
           }}
         >
-          {/* <PerspectiveCamera makeDefault near={0.01} position={[0,0,10]}/>
-          <OrbitControls enabled={selectedFrame} /> */}
-          <ambientLight intensity={0.5} />
+          <PerspectiveCamera ref={(el) => (cameraRefs.current[index] = el)} makeDefault near={0.01} position={frame.camPosition} />
+          <OrbitControls enabled={selectedFrame == `scene-${index}`} />
+          <ambientLight intensity={3} color="red" />
           <Gltf src={frame.src} scale={frame.modelScale} position={frame.modelPosition} />
         </Frame>
       ))}
       <ScrollControls pages={5} damping={0.3}>
+        <Rig selectedFrame={selectedFrame} curve={curve} />
         <PaperPlane curve={curve} selectedFrame={selectedFrame} />
       </ScrollControls>
     </Canvas>
   );
 };
 
-const Rig = ({ selectedFrame, position = new THREE.Vector3(0, 0, 2), focus = new THREE.Vector3(0, 0, 0) }) => {
-  const { controls, scene } = useThree()
-  useEffect(() => {
-    const active = scene.getObjectByName(selectedFrame)
-    if (active) {
-      console.log(active.parent)
-      active.parent.localToWorld(position.set(0, 0, 0.5))
-      active.parent.localToWorld(focus.set(0, 0, -3))
+const Rig = ({ selectedFrame, position = new THREE.Vector3(0, 0, 0.5), focus = new THREE.Vector3(0, 0, -3), curve }) => {
+  const cameraControls = useRef(null);
+  const scroll = useScroll();
+  const { camera, scene } = useThree()
+
+
+  useFrame(() => {
+    if (selectedFrame) {
+      return;
     }
-    controls?.setLookAt(...position.toArray(), ...focus.toArray(), true)
+
+    const scrollOffset = scroll.offset;
+    const point = curve.getPoint(scrollOffset);
+    const tangent = curve.getTangent(scrollOffset);
+    point.y += 0.4;
+
+    cameraControls?.current.setLookAt(...point.clone().add(new THREE.Vector3(0.5, 1.5, 2.5)).toArray(), ...point.clone().add(tangent).toArray())
+  });
+
+  useEffect(() => {
+    const active = scene.getObjectByName(selectedFrame);
+
+    if (active) {
+      active.parent.localToWorld(position);
+      active.parent.localToWorld(focus);
+      cameraControls?.current.setLookAt(...position.toArray(), ...focus.toArray(), true)
+    }
+
   })
-  return <CameraControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} enabled={selectedFrame} />
+  return <CameraControls ref={cameraControls}
+    touches={{
+      one: 0,
+      two: 0,
+      three: 0,
+    }}
+    mouseButtons={{
+      left: 0,
+      middle: 0,
+      right: 0,
+      wheel: 0,
+    }}
+  />
 }
