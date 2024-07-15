@@ -14,7 +14,7 @@ const Frame = ({ idx, bg, selectedFrame, width = 1.61803398875, height = 1, chil
   const [hovered, hover] = useState(false);
   useCursor(hovered)
 
-  useFrame((state, dt) => easing.damp(portal.current, 'blend', selectedFrame == `scene-${idx}` ? 1 : 0, 0.2, dt))
+  // useFrame((state, dt) => easing.damp(portal.current, 'blend', selectedFrame == `scene-${idx}` ? 1 : 0, 0.2, dt))
 
 
   return (
@@ -22,13 +22,15 @@ const Frame = ({ idx, bg, selectedFrame, width = 1.61803398875, height = 1, chil
       <group {...props}>
         <mesh
           name={`scene-${idx}`}
-          onPointerOver={(e) => hover(true)}
+          onPointerOver={(e) => {hover(selectedFrame != `scene-${idx}`)}}
           onPointerOut={() => hover(false)}>
           <roundedPlaneGeometry args={[width, height, 0.05]} />
-          <MeshPortalMaterial  ref={portal} events={selectedFrame == `scene-${idx}`} side={THREE.DoubleSide}>
-            <color attach="background" args={[bg]} />
-            {children}
-          </MeshPortalMaterial>
+          <meshBasicMaterial>
+            <RenderTexture attach="map" blend={selectedFrame == `scene-${idx}`} ref={portal} side={THREE.DoubleSide} eventPriority={selectedFrame == `scene-${idx}`}>
+              <color attach="background" args={[bg]} />
+              {children}
+            </RenderTexture>
+          </meshBasicMaterial>
         </mesh>
       </group>
     </Float>
