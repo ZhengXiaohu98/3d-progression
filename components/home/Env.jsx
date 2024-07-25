@@ -1,9 +1,10 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Gltf, OrbitControls, PerspectiveCamera, ScrollControls, Clouds, Cloud, Bounds, CameraControls, useScroll, AdaptiveDpr, Box } from "@react-three/drei";
+import { Gltf, OrbitControls, PerspectiveCamera, ScrollControls, Clouds, Cloud, Bounds, CameraControls, useScroll, AdaptiveDpr, Text, Center } from "@react-three/drei";
 import * as THREE from "three";
 import { useMemo, useRef, useState, useEffect } from "react";
 import { PaperPlane } from "./PaperPlane";
 import Frame from "./scene/Frame";
+import { StartBtn } from "./StartBtn";
 
 const positions = [
   new THREE.Vector3(0, 0, 5),
@@ -77,9 +78,7 @@ export const Env = ({ selectedFrame, setSelectedFrame, ...props }) => {
     <Canvas {...props}>
       <ambientLight intensity={2} />
       {/* <axesHelper args={[100]} /> */}
-      <mesh position={[0, 3, 22]} onClick={() => { setStarted(true) }}>
-        <Box />
-      </mesh>
+      <StartBtn setStarted={setStarted}/>
       <PerspectiveCamera makeDefault near={0.01} ref={mainCameraRef} position={[0, 3, 25]} />
       <line ref={curveRef} geometry={lineGeometry}>
         <lineBasicMaterial color="white" />
@@ -116,8 +115,8 @@ export const Env = ({ selectedFrame, setSelectedFrame, ...props }) => {
           <Gltf src={frame.src} scale={frame.modelScale} position={frame.modelPosition} rotation={frame.modelRotation} />
         </Frame>
       ))}
-      <ScrollControls pages={started ? 5 : 0} damping={0.3} enabled={started}>
-        <Rig started={started} selectedFrame={selectedFrame} curve={curve} />
+      <ScrollControls pages={started == 3 ? 5 : 0} damping={0.3} enabled={started == 3}>
+        <Rig started={started} setStarted={setStarted} selectedFrame={selectedFrame} curve={curve} />
         <PaperPlane curve={curve} selectedFrame={selectedFrame} />
       </ScrollControls>
       <AdaptiveDpr pixelated />
@@ -125,14 +124,37 @@ export const Env = ({ selectedFrame, setSelectedFrame, ...props }) => {
   );
 };
 
-const Rig = ({ started, selectedFrame, position = new THREE.Vector3(0, 0, 0.5), focus = new THREE.Vector3(0, 0, -3), curve }) => {
+const Rig = ({ started, setStarted, selectedFrame, position = new THREE.Vector3(0, 0, 0.5), focus = new THREE.Vector3(0, 0, -3), curve }) => {
   const cameraControls = useRef(null);
   const scroll = useScroll();
-  const { scene } = useThree()
+  const { scene } = useThree();
 
-  let firstCameraMove = true;
+  useEffect(() => {
+    if (started != 1) {
+      return;
+    }
+    const moveToStart = async () => {
+      const point = curve.getPoint(0);
+      const tangent = curve.getTangent(0);
+      point.y += 0.4;
+
+      await cameraControls?.current.setLookAt(
+        ...point.clone().add(new THREE.Vector3(0, 1.5, 2.5)).toArray(),
+        ...point.clone().add(tangent).toArray(),
+        true
+      );
+      setStarted(2);
+      setTimeout(() => {
+        setStarted(3);
+      }, 100);
+    };
+
+    moveToStart();
+
+  }, [started, curve, setStarted]);
+
   useFrame(() => {
-    if (!started || selectedFrame) {
+    if (started < 2 || selectedFrame) {
       return;
     }
 
@@ -140,8 +162,8 @@ const Rig = ({ started, selectedFrame, position = new THREE.Vector3(0, 0, 0.5), 
     const point = curve.getPoint(scrollOffset);
     const tangent = curve.getTangent(scrollOffset);
     point.y += 0.4;
+    cameraControls?.current.setLookAt(...point.clone().add(new THREE.Vector3(0, 1.5, 2.5)).toArray(), ...point.clone().add(tangent).toArray(), false);
 
-    cameraControls?.current.setLookAt(...point.clone().add(new THREE.Vector3(0, 1.5, 2.5)).toArray(), ...point.clone().add(tangent).toArray(), firstCameraMove);
   });
 
   useEffect(() => {
@@ -153,7 +175,7 @@ const Rig = ({ started, selectedFrame, position = new THREE.Vector3(0, 0, 0.5), 
       cameraControls?.current.setLookAt(...position.toArray(), ...focus.toArray(), true)
     }
 
-  })
+  });
   return <CameraControls ref={cameraControls}
     mouseButtons={{
       wheel: 0,
