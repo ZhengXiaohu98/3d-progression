@@ -133,8 +133,9 @@ const Page = ({ number, curPage, setCurPage, opened, front, back, ...props }) =>
       );
 
     let targetRotation = curPage > number ? -Math.PI / 2 : Math.PI / 2;
-    targetRotation += degToRad(number * 0.8);
-
+    if (0 < curPage && curPage < pages.length) {
+      targetRotation += degToRad(number * 0.8);
+    }
 
     if (lastOpened.current !== opened) {
       turnedAt.current = 0;
