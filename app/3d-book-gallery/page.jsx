@@ -118,7 +118,7 @@ const LandingPage = () => {
               })
             }}
           >
-            ZXH & JJJ
+            ZXH & JJJs
           </div>
           {
             pages.map((cur, i) => (
