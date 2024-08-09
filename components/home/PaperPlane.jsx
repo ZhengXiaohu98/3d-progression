@@ -1,5 +1,5 @@
 import { useFrame } from "@react-three/fiber";
-import { useGLTF, Float, useScroll } from "@react-three/drei";
+import { useGLTF, Float, useScroll, Trail, } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef } from "react";
 
@@ -29,6 +29,8 @@ export const PaperPlane = ({ curve, selectedFrame }) => {
         const angle = Math.acos(up.dot(tangent));
         planeRef.current.quaternion.setFromAxisAngle(axis, angle);
 
+        // methods before using camera control to make the camera follow the plane ↓↓↓
+
         // if (!selectedFrame) {
         //   camera.position.copy(point.clone().add(new THREE.Vector3(0.5, 1.5, 2.5)));
         //   camera.lookAt(point.clone().add(tangent));
@@ -40,6 +42,7 @@ export const PaperPlane = ({ curve, selectedFrame }) => {
   return (
     <>
       <Float rotationIntensity={0} floatingRange={[-0.08, 0.08]} speed={6}>
+
         <group ref={planeRef} position={[0, 0.4, 5]} scale={0.1} rotation={[-Math.PI / 2, 0, Math.PI]} name="plane">
           {Object.entries(nodes).map(([key, node]) =>
             node.isMesh ? (
@@ -47,6 +50,7 @@ export const PaperPlane = ({ curve, selectedFrame }) => {
             ) : null
           )}
         </group>
+
       </Float>
     </>
   );

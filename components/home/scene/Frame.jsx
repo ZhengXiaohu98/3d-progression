@@ -22,11 +22,11 @@ const Frame = ({ idx, bg, selectedFrame, width = 1.61803398875, height = 1, chil
       <group {...props}>
         <mesh
           name={`scene-${idx}`}
-          onPointerOver={(e) => {hover(selectedFrame != `scene-${idx}`)}}
+          onPointerOver={(e) => { hover(selectedFrame != `scene-${idx}`) }}
           onPointerOut={() => hover(false)}>
           <roundedPlaneGeometry args={[width, height, 0.05]} />
           <meshBasicMaterial>
-            <RenderTexture attach="map" blend={selectedFrame == `scene-${idx}`} ref={portal} side={THREE.DoubleSide} eventPriority={selectedFrame == `scene-${idx}`}>
+            <RenderTexture attach="map" ref={portal} side={THREE.DoubleSide} >
               <color attach="background" args={[bg]} />
               {children}
             </RenderTexture>
