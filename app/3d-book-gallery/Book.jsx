@@ -12,7 +12,7 @@ const INSIDE_CURVE_STRENGTH = 0.3;
 const OUTSIDE_CURVE_STRENGTH = 0.01;
 const TURNING_CURVE_STRENGTH = 0.09;
 
-const EMISSIVE_COLOR = "#0069ea";
+const EMISSIVE_COLOR = "pink";
 
 const PAGE_WIDTH = 1.28;
 const PAGE_HEIGHT = 1.71; // 4:3 aspect ratio
