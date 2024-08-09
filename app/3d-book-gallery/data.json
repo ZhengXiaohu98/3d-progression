@@ -1,0 +1,19 @@
+{
+  "pages": [
+    {
+      "front": "/images/3d-book/page1.png",
+      "back": "/images/3d-book/page3.png",
+      "pagination": "What is FineBI"
+    },
+    {
+      "front": "/images/3d-book/page4.png",
+      "back": "/images/3d-book/page5.png",
+      "pagination": "Features"
+    },
+    {
+      "front": "/images/3d-book/page6.png",
+      "back": "/images/3d-book/page2.png",
+      "pagination": "WHO WE ARE"
+    }
+  ]
+}
