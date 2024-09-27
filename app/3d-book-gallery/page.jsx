@@ -64,8 +64,6 @@ const LandingPage = () => {
               enableZoom={false}
               minAzimuthAngle={-Math.PI / 4}
               maxAzimuthAngle={Math.PI / 4}
-            // minPolarAngle={Math.PI / 6}
-            // maxPolarAngle={Math.PI / 3}
             />
             <Environment preset="studio" environmentIntensity={0.2} />
             <directionalLight
@@ -82,7 +80,7 @@ const LandingPage = () => {
               attenuation={3}
               anglePower={5}
               color="#FFF9C4"
-              position={[0, 3, 0]}
+              position={[0, 3.5, 0]}
               castShadow={false}
             />
             <mesh position-y={-1.5} rotation-x={-Math.PI / 2} receiveShadow>
@@ -94,23 +92,23 @@ const LandingPage = () => {
 
         {/* Background Text START */}
         <div className="text-box absolute top-1/2 -translate-y-1/2 left-0 bg-transparent gap-8 px-8 w-max -z-10">
-          <h1 className="shrink-0 text-white text-8xl rotate-2">
-            ZXH🐅 & JJJ🐒: <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px white", }}>4月10日</span>{' '}
-            <span className="text-5xl">故事的开始💕💕💕</span>
-          </h1>
+          <h2 className="shrink-0 text-[#232323] text-8xl rotate-2">
+            3D Book Gallery - <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px #232323", }}>by Xiaohu</span>{' '}
+            <span className="text-6xl">June 27, 2024</span>
+          </h2>
         </div>
         <div className="text-box absolute top-1/2 -translate-y-1/2 left-0 bg-transparent gap-8 px-8 w-max -z-10">
-          <h1 className="shrink-0 text-white text-8xl rotate-2">
-            ZXH🐅 & JJJ🐒: <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px white", }}>4月10日</span>{' '}
-            <span className="text-5xl">故事的开始 💕💕💕</span>
-          </h1>
+          <h2 className="shrink-0 text-[#232323] text-8xl rotate-2">
+            3D Book Gallery - <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px #232323", }}>by Xiaohu</span>{' '}
+            <span className="text-6xl">June 27, 2024</span>
+          </h2>
         </div>
         {/* Background Text END */}
 
         {/* Pagination START */}
         <div className='absolute z-50 sm:bottom-4 md:bottom-10 lg:bottom-20 w-full flex flex-row justify-center items-center flex-wrap sm:gap-x-2 md:gap-x-4 sm:gap-y-1 md:gap-y-3 lg:px-20 md:px-10 sm:px-4'>
           <div
-            className={`hover:cursor-pointer transition md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded-lg ${activePage == 0 ? 'bg-blue-400/80 text-blue-50' : 'hover:bg-indigo-900/10 bg-indigo-900/60  text-indigo-100 hover:border hover:border-white hover:border-dashed hover:-translate-y-1'} `}
+            className={`hover:cursor-pointer transition md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded-lg ${activePage == 0 ? 'bg-white text-[#232323] font-bold' : 'hover:bg-indigo-900/10 bg-transparent text-indigo-100 hover:border hover:border-white hover:border-dashed hover:-translate-y-1'} `}
             onClick={() => {
               window.scrollTo({
                 top: 0,
@@ -118,13 +116,13 @@ const LandingPage = () => {
               })
             }}
           >
-            ZXH & JJJs
+            Cover
           </div>
           {
             pages.map((cur, i) => (
               <div
                 key={i}
-                className={`hover:cursor-pointer transition md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded-lg ${activePage == i + 1 ? 'bg-blue-400/80 text-blue-50' : 'hover:bg-indigo-900/10 bg-indigo-900/60  text-indigo-100 hover:border hover:border-white hover:border-dashed hover:-translate-y-1'} `}
+                className={`hover:cursor-pointer transition md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded-lg ${activePage == i + 1 ? 'bg-white text-[#232323] font-bold' : 'hover:bg-indigo-900/10 bg-transparent text-indigo-100 hover:border hover:border-white hover:border-dashed hover:-translate-y-1'} `}
                 onClick={() => {
                   const scrollPosition = document.documentElement.scrollHeight * (i + 1) / (pages.length + 1);
                   window.scrollTo({

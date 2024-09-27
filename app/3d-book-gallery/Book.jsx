@@ -11,7 +11,7 @@ const EASING_FAC_FOLD = 0.3;
 const INSIDE_CURVE_STRENGTH = 0.3;
 const OUTSIDE_CURVE_STRENGTH = 0.01;
 const TURNING_CURVE_STRENGTH = 0.09;
-const EMISSIVE_COLOR = "pink";
+const EMISSIVE_COLOR = "white";
 
 
 const PAGE_WIDTH = 1.28;
@@ -97,14 +97,14 @@ const Page = ({ number, curPage, setCurPage, opened, front, back, ...props }) =>
     new THREE.MeshStandardMaterial({
       color: "#f1f3f3",
       map: frontPicture,
-      roughness: 0.15,
+      roughness: 0.3,
       emissive: EMISSIVE_COLOR,
       emissiveIntensity: 0
     }),
     new THREE.MeshStandardMaterial({
       color: "#f1f3f3",
       map: backPicture,
-      roughness: 0.15,
+      roughness: 0.3,
       emissive: EMISSIVE_COLOR,
       emissiveIntensity: 0
     }),
