@@ -1,69 +1,29 @@
 {
   "pages": [
     {
-      "front": "/images/jjj/img1.jpg",
-      "back": "/images/jjj/img2.jpg",
-      "pagination": "鼋头渚小岛"
+      "front": "/images/3d-book-gallery/img1.jpg",
+      "back": "/images/3d-book-gallery/img2.jpg",
+      "pagination": "Page1"
     },
     {
-      "front": "/images/jjj/img3.jpg",
-      "back": "/images/jjj/img4.jpg",
-      "pagination": "蠢蠢的合照"
+      "front": "/images/3d-book-gallery/img3.jpg",
+      "back": "/images/3d-book-gallery/img4.jpg",
+      "pagination": "Page2"
     },
     {
-      "front": "/images/jjj/img5.jpg",
-      "back": "/images/jjj/img6.jpg",
-      "pagination": "大美女和大帅哥"
+      "front": "/images/3d-book-gallery/img5.jpg",
+      "back": "/images/3d-book-gallery/img6.jpg",
+      "pagination": "Page3"
     },
     {
-      "front": "/images/jjj/img7.png",
-      "back": "/images/jjj/img8.jpg",
-      "pagination": "陶艺💕"
+      "front": "/images/3d-book-gallery/img7.jpg",
+      "back": "/images/3d-book-gallery/img8.jpg",
+      "pagination": "Page4"
     },
     {
-      "front": "/images/jjj/img9.jpg",
-      "back": "/images/jjj/img10.jpg",
-      "pagination": "蠡湖"
-    },
-    {
-      "front": "/images/jjj/img11.jpg",
-      "back": "/images/jjj/img12.jpg",
-      "pagination": "南长街"
-    },
-    {
-      "front": "/images/jjj/img13.jpg",
-      "back": "/images/jjj/img14.jpg",
-      "pagination": "蠡湖湖边🛶"
-    },
-    {
-      "front": "/images/jjj/img15.jpg",
-      "back": "/images/jjj/img16.jpg",
-      "pagination": "KTV女歌神"
-    },
-    {
-      "front": "/images/jjj/img17.jpg",
-      "back": "/images/jjj/img18.jpg",
-      "pagination": "荟聚🎈"
-    },
-    {
-      "front": "/images/jjj/img19.jpg",
-      "back": "/images/jjj/img20.jpg",
-      "pagination": "谁这么漂亮？"
-    },
-    {
-      "front": "/images/jjj/img21.jpg",
-      "back": "/images/jjj/img22.jpg",
-      "pagination": "粉色女郎？"
-    },
-    {
-      "front": "/images/jjj/img23.jpg",
-      "back": "/images/jjj/img24.jpg",
-      "pagination": "偷吃冰淇淋"
-    },
-    {
-      "front": "/images/jjj/img25.jpg",
-      "back": "/images/jjj/img26.jpg",
-      "pagination": "未完待续..."
+      "front": "/images/3d-book-gallery/img9.jpg",
+      "back": "/images/3d-book-gallery/img10.jpg",
+      "pagination": "Page5"
     }
   ]
 }

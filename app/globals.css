@@ -22,9 +22,9 @@ body {
   }
 }
 
-
-/* Scroll bar style */
 * {
+  margin: 0;
+  padding: 0;
   scrollbar-width: thin;
   scrollbar-color: #888 #eee;
 }
@@ -46,5 +46,5 @@ body {
 }
 
 .bg-radial-gradient {
-  background: radial-gradient(#f84eea, #232323 80%);
+  background: radial-gradient(#fdfdfd, #232323 80%);
 }

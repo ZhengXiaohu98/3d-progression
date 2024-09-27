@@ -4,8 +4,8 @@ import "./globals.css";
 const edu_tas = Edu_TAS_Beginner({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "The 3D filght",
-  description: "A flight of the 3D world created by Xiaohu."
+  title: "Xiaohu | Explore the World of 3D Graphics",
+  description: "My website showcases a variety of projects that highlight the beauty and potential of 3D graphics in the web space. I hope you all enjoy this!"
 };
 
 export default function RootLayout({ children }) {
