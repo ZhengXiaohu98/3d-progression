@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        misans: ["misans"]
+      },
       screens: {
         sm: '370px',
         md: '768px',
@@ -18,6 +21,17 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+    },
+  },
+  theme: {
+    container: {
+      center: true,
+      width: {
+        DEFAULT: '1234px',
+        sm: '370px',
+        lg: '1234px',
+        xl: '1456px',
+      }
     },
   },
   plugins: [],

@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { useMemo, useRef, useState } from "react";
 import { pages } from "./data.json";
-import * as THREE from 'three'
+import * as THREE from "three"
 import { degToRad } from "three/src/math/MathUtils.js";
 
 const EASING_FAC = 0.5;
