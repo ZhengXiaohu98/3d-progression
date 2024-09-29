@@ -2,9 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const Header = () => {
+
+  const navigations = [
+    {
+      "nav": "Home",
+      "url": "#"
+    },
+    {
+      "nav": "Projects",
+      "url": "#"
+    },
+    {
+      "nav": "Experience",
+      "url": "#"
+    },
+    {
+      "nav": "Contact",
+      "url": "#"
+    }
+  ]
   return (
-    <header>
-      <div className="mx-auto max-w-[1536px] w-full h-[64px] flex items-center justify-between ">
+    <header className="fixed top-0 left-0 w-full border-b border-[#333333] bg-black/75 z-[50] backdrop-blur-md">
+      <div className="container h-[64px] flex items-center justify-between">
         <div className="flex items-center gap-20">
           <Link href="/">
             <div className="flex items-center">
@@ -15,24 +34,16 @@ export const Header = () => {
               <p className="text-white text-2xl font-bold italic">XiaoHu</p>
             </div>
           </Link>
-          <div className="flex items-center text-[#888] gap-10">
-            <Link href="#" className="px-6 py-3 text-sm hover:text-white group transition duration-300">
-              <div className="flex items-center gap-2">
-                <svg className="w-6 h-6 text-gray-800 dark:text-[#888] group-hover:text-white transition duration-300 scale-50 translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:scale-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
-                </svg>
-                <p>Home</p>
-              </div>
-            </Link>
-            <Link href="#" className="px-6 py-3 text-sm hover:text-white transition duration-300">Projects</Link>
-            <Link href="#" className="px-6 py-3 text-sm hover:text-white transition duration-300">Experience</Link>
-            <Link href="#" className="px-6 py-3 text-sm hover:text-white transition duration-300">Contact</Link>
+          <div className="flex items-center text-[#888] gap-6">
+            {
+              navigations.map((navigation) => (
+                <Link key={navigation.nav} href={navigation.url} className="relative inline-block px-6 py-3 text-base transition hover:text-white group overflow-hidden">
+                  <p className="relative tracking-wide">{navigation.nav}</p>
+                  <span className="absolute left-1/2 -translate-x-1/2 bottom-0 transition-all group-hover:scale-x-100 scale-x-0 w-[80%] h-[1px] rounded-full bg-white origin-center"></span>
+                </Link>
+              ))
+            }
           </div>
-          <Link href="#">
-            <div className="">
-
-            </div>
-          </Link>
         </div>
       </div>
     </header>

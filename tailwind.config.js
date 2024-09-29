@@ -6,6 +6,27 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      center: true,
+      screens: {
+        DEFAULT: '1234px',
+        sm: '370px',
+        md: '740px',
+        lg: '1200px',
+        xl: '1400px',
+      }
+    },
+    transitionDuration: {
+      DEFAULT: '300ms',
+      75: '75ms',
+      100: '100ms',
+      150: '150ms',
+      200: '200ms',
+      300: '300ms',
+      500: '500ms',
+      700: '700ms',
+      1000: '1000ms',
+    },
     extend: {
       fontFamily: {
         misans: ["misans"]
@@ -21,17 +42,6 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-    },
-  },
-  theme: {
-    container: {
-      center: true,
-      width: {
-        DEFAULT: '1234px',
-        sm: '370px',
-        lg: '1234px',
-        xl: '1456px',
-      }
     },
   },
   plugins: [],
