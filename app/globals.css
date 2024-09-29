@@ -16,6 +16,16 @@ body {
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
+@layer base {
+  @font-face {
+    font-family: 'misans';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url(/fonts/MiSans_Latin_VF.ttf) format('woftruetypef2');
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -43,8 +53,4 @@ body {
     linear-gradient(currentColor 0 0) bottom/67% 58%;
   background-repeat: no-repeat;
   position: relative;
-}
-
-.bg-radial-gradient {
-  background: radial-gradient(#fdfdfd, #232323 80%);
 }

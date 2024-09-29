@@ -1,7 +1,4 @@
-import { Edu_TAS_Beginner } from "next/font/google";
 import "./globals.css";
-
-const edu_tas = Edu_TAS_Beginner({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Xiaohu | Explore the World of 3D Graphics",
@@ -11,7 +8,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={edu_tas.className}>{children}</body>
+      <body className="font-misans">{children}</body>
     </html>
   );
 }
