@@ -108,7 +108,7 @@ const LandingPage = () => {
         {/* Pagination START */}
         <div className="absolute z-50 sm:bottom-4 md:bottom-10 lg:bottom-20 w-full flex flex-row justify-center items-center flex-wrap sm:gap-x-2 md:gap-x-4 sm:gap-y-1 md:gap-y-3 lg:px-20 md:px-10 sm:px-4">
           <div
-            className={`hover:cursor-pointer transition md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded-lg ${activePage == 0 ? "bg-white text-[#232323] font-bold" : "hover:bg-indigo-900/10 bg-transparent text-indigo-100 hover:border hover:border-white hover:border-dashed hover:-translate-y-1"} `}
+            className={`hover:cursor-pointer transition md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded-lg ${activePage == 0 ? "bg-white text-[#232323] font-bold" : "hover:bg-indigo-900/10 bg-transparent text-indigo-100 hover:border hover:border-white hover:-translate-y-1"} `}
             onClick={() => {
               window.scrollTo({
                 top: 0,
@@ -122,7 +122,7 @@ const LandingPage = () => {
             pages.map((cur, i) => (
               <div
                 key={i}
-                className={`hover:cursor-pointer transition md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded-lg ${activePage == i + 1 ? "bg-white text-[#232323] font-bold" : "hover:bg-indigo-900/10 bg-transparent text-indigo-100 hover:border hover:border-white hover:border-dashed hover:-translate-y-1"} `}
+                className={`hover:cursor-pointer transition md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded-lg ${activePage == i + 1 ? "bg-white text-[#232323] font-bold" : "hover:bg-indigo-900/10 bg-transparent text-indigo-100 hover:border hover:border-white hover:-translate-y-1"} `}
                 onClick={() => {
                   const scrollPosition = document.documentElement.scrollHeight * (i + 1) / (pages.length + 1);
                   window.scrollTo({

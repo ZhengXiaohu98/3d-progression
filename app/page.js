@@ -1,6 +1,7 @@
 "use client";
 import { Header } from "@/components/home/header";
 import { Suspense } from "react";
+import { experience } from "./data.json";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -45,6 +46,7 @@ export default function Home() {
   return (
     <Suspense>
       <Header />
+      {/* Home */}
       <section className="relative">
         <div className="container flex flex-col items-center sm:pt-24 md:pt-32 lg:pt-40">
           <div className="transition-all relative sm:max-w-[360px] md:max-w-[700px] lg:max-w-[1100px] xl:max-w-[1200px] border border-[#333] rounded-md flex lg:flex-row md:flex-col items-center justify-between sm:p-4 md:p-10 lg:gap-20">
@@ -67,6 +69,29 @@ export default function Home() {
             </div>
             <Image src="/images/home/xiaohu.jpg" width={1888} height={2165} alt="Xiaohu Zheng" className="h-auto lg:w-72 rounded-md lg:block sm:hidden" />
           </div>
+        </div>
+      </section>
+      {/* Experience */}
+      <section className="bg-gradient-to-b from-black to-[#111111]">
+        <div className="container flex flex-col items-center lg:pt-20">
+          <h2 className="text-3xl font-bold tracking-wide">Experience</h2>
+          <div className="mt-16 w-full sm:max-w-[360px] md:max-w-[700px] lg:max-w-[1100px] xl:max-w-[1200px] flex justify-center gap-20 lg:h-[360px] ">
+            {
+              experience.map((info) => (
+                <div key={info.company} className="w-[340px] even:mt-auto">
+                  <p className="text-xl font-bold text-[#ededed]">{info.company}</p>
+                  <p className="text-sm text-[#ededed] italic">{info.timeline}</p>
+                  <p className="text-sm mt-2 text-[#ededed]">{info.description}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+      <section className="bg-gradient-to-t from-black to-[#111111]">
+        <div className="container flex flex-col items-center lg:pt-20">
+          <h2 className="text-3xl font-bold tracking-wide">Project</h2>
+          
         </div>
       </section>
     </Suspense>
