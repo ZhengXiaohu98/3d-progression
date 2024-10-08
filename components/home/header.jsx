@@ -6,19 +6,19 @@ export const Header = () => {
   const navigations = [
     {
       "nav": "Home",
-      "url": "#"
+      "url": "#about"
     },
     {
       "nav": "Projects",
-      "url": "#"
+      "url": "project"
     },
     {
       "nav": "Experience",
-      "url": "#"
+      "url": "#career"
     },
     {
       "nav": "Contact",
-      "url": "#"
+      "url": "#contact"
     }
   ]
   return (

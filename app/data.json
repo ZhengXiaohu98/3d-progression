@@ -1,0 +1,51 @@
+{
+  "experience": [
+    {
+      "company": "Unadat - Software Engineering Intern",
+      "timeline": "June 2022 - August 2022",
+      "description": "Collaborated with the UI team to understand customer needs and objectives, developing new website features while efficiently addressing and resolving existing bugs to enhance overall website performance."
+    },
+    {
+      "company": "Google - SPS Program",
+      "timeline": "June 2022 - August 2022",
+      "description": "Developed a personal portfolio website and successfully completed team projects in collaboration with Google mentors and team members. Acquired proficiency in Java backend development, Git version control, and various Google APIs such as Google Maps, Google Translate, and CloudStore."
+    },
+    {
+      "company": "Fanruan Software - Frontend Engineer",
+      "timeline": "February 2023 - Current",
+      "description": "Utilized Next.js to assist the company in migrating and upgrading its official website, implementing internationalization, optimizing SEO, and improving overall website performance."
+    }
+  ],
+  "projects": [
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    },
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    },
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    },
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    },
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    },
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    }
+  ]
+}

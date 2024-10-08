@@ -37,6 +37,7 @@ body {
   padding: 0;
   scrollbar-width: thin;
   scrollbar-color: #888 #eee;
+  scroll-behavior: smooth;
 }
 
 /* Cloud */
