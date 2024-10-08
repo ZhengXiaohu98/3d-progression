@@ -15,5 +15,37 @@
       "timeline": "February 2023 - Current",
       "description": "Utilized Next.js to assist the company in migrating and upgrading its official website, implementing internationalization, optimizing SEO, and improving overall website performance."
     }
+  ],
+  "projects": [
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    },
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    },
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    },
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    },
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    },
+    {
+      "name": "Book Gallery",
+      "tags": ["3D", "three.js", "skinMesh"],
+      "url": "/3d-book-gallery"
+    }
   ]
 }

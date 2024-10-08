@@ -1,10 +1,9 @@
 "use client";
 import { useState, useEffect, Suspense } from "react"
 import { Canvas } from "@react-three/fiber"
-import { Environment, OrbitControls, Float, SpotLight } from "@react-three/drei";
+import { Environment, OrbitControls, Float, SpotLight, useProgress } from "@react-three/drei";
 import { Book } from "./Book";
 import { pages } from "./data.json";
-import { SuspenseLoader } from "@/components/loader/SuspenseLoader";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -49,8 +48,8 @@ const LandingPage = () => {
 
   return (
     <div className="overflow-x-hidden">
-      <div className="fixed top-0 left-0 h-screen w-screen select-none" style={{background: "radial-gradient(#fdfdfd, #232323 80%)"}}>
-        <Suspense fallback={<SuspenseLoader />}>
+      <div className="fixed top-0 left-0 h-screen w-screen select-none" style={{ background: "radial-gradient(#fdfdfd, #232323 80%)" }}>
+        <Suspense fallback={<ProgressLoader />}>
           <Canvas shadows camera={{ position: [-0.5, 1, 3], fov: 45 }}>
             <Float
               rotation-x={Math.PI / 30}
@@ -93,20 +92,20 @@ const LandingPage = () => {
         {/* Background Text START */}
         <div className="text-box absolute top-1/2 -translate-y-1/2 left-0 bg-transparent gap-8 px-8 w-max -z-10">
           <h2 className="shrink-0 text-[#232323] text-8xl rotate-2">
-            3D Book Gallery - <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px #232323", }}>by Xiaohu</span>{" "}
+            Book Gallery - <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px #232323", }}>by Xiaohu</span>{" "}
             <span className="text-6xl">June 27, 2024</span>
           </h2>
         </div>
         <div className="text-box absolute top-1/2 -translate-y-1/2 left-0 bg-transparent gap-8 px-8 w-max -z-10">
           <h2 className="shrink-0 text-[#232323] text-8xl rotate-2">
-            3D Book Gallery - <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px #232323", }}>by Xiaohu</span>{" "}
+            Book Gallery - <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px #232323", }}>by Xiaohu</span>{" "}
             <span className="text-6xl">June 27, 2024</span>
           </h2>
         </div>
         {/* Background Text END */}
 
         {/* Pagination START */}
-        <div className="absolute z-50 sm:bottom-4 md:bottom-10 lg:bottom-20 w-full flex flex-row justify-center items-center flex-wrap sm:gap-x-2 md:gap-x-4 sm:gap-y-1 md:gap-y-3 lg:px-20 md:px-10 sm:px-4">
+        <div className="absolute z-50 sm:bottom-4 md:bottom-10 lg:bottom-12 xl:bottom-20 w-full flex flex-row justify-center items-center flex-wrap sm:gap-x-2 md:gap-x-4 sm:gap-y-1 md:gap-y-3 lg:px-20 md:px-10 sm:px-4">
           <div
             className={`hover:cursor-pointer transition md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded-lg ${activePage == 0 ? "bg-white text-[#232323] font-bold" : "hover:bg-indigo-900/10 bg-transparent text-indigo-100 hover:border hover:border-white hover:-translate-y-1"} `}
             onClick={() => {
@@ -144,8 +143,18 @@ const LandingPage = () => {
         pages.map((_, i) => <div key={i} className="h-screen" />)
       }
     </div>
-
   )
 }
 
 export default LandingPage;
+
+
+const ProgressLoader = () => {
+  const { progress } = useProgress();
+
+  return (
+    <div className="w-screen h-screen flex flex-col justify-center items-center bg-black/70">
+      <div className="lg:mt-6 sm:mt-4 font-bold lg:text-3xl md:text-2xl sm:text-xl text-white">In Progress: {Math.trunc(progress)}%</div>
+    </div>
+  )
+}
