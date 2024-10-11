@@ -2,20 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
-}
-
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-}
-
 @layer base {
   @font-face {
     font-family: 'misans';
@@ -38,20 +24,4 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #888 #eee;
   scroll-behavior: smooth;
-}
-
-/* Cloud */
-.cloud {
-  width: 66px;
-  height: 40px;
-  color: #f1f1f1;
-  --c: radial-gradient(farthest-side, currentColor 96%, #0000);
-  background:
-    var(--c) 100% 100% /30% 60%,
-    var(--c) 70% 0 /50% 100%,
-    var(--c) 0 100% /36% 68%,
-    var(--c) 27% 18% /26% 40%,
-    linear-gradient(currentColor 0 0) bottom/67% 58%;
-  background-repeat: no-repeat;
-  position: relative;
 }

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,12 +10,18 @@ module.exports = {
     container: {
       center: true,
       screens: {
-        DEFAULT: '1234px',
+        DEFAULT: '1200px',
         sm: '370px',
         md: '740px',
         lg: '1200px',
         xl: '1400px',
-      }
+      },
+      padding: {
+        DEFAULT: '1rem',
+        sm: '0.5rem',
+        md: '2rem',
+        lg: '3rem'
+      },
     },
     transitionDuration: {
       DEFAULT: '300ms',
@@ -32,10 +39,11 @@ module.exports = {
         misans: ["misans"]
       },
       screens: {
+        DEFAULT: '1200px',
         sm: '370px',
-        md: '768px',
+        md: '740px',
         lg: '1200px',
-        xl: '1440px',
+        xl: '1400px',
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
