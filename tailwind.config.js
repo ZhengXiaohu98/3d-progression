@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,33 +10,66 @@ module.exports = {
     container: {
       center: true,
       screens: {
-        DEFAULT: '1234px',
-        sm: '370px',
-        md: '740px',
-        lg: '1200px',
-        xl: '1400px',
-      }
+        DEFAULT: "1200px",
+        sm: "370px",
+        md: "740px",
+        lg: "1200px",
+        xl: "1400px",
+      },
+      padding: {
+        DEFAULT: "1rem",
+        sm: "0.5rem",
+        md: "2rem",
+        lg: "3rem"
+      },
     },
     transitionDuration: {
-      DEFAULT: '300ms',
-      75: '75ms',
-      100: '100ms',
-      150: '150ms',
-      200: '200ms',
-      300: '300ms',
-      500: '500ms',
-      700: '700ms',
-      1000: '1000ms',
+      DEFAULT: "300ms",
+      75: "75ms",
+      100: "100ms",
+      150: "150ms",
+      200: "200ms",
+      300: "300ms",
+      500: "500ms",
+      700: "700ms",
+      1000: "1000ms",
+    },
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      white: "#ffffff",
+      black: "#000000",
+      gray: {
+        "dark": "#4d4d4d",
+        "light": "#aaaaaa"
+      },
+      smoke: {
+        "base": "#737373",
+      },
+      accent: {
+        "dark": "#121212",
+        "white": "#ededed",
+        "300": "#333333",
+        "500": "#555555",
+        "900": "#999999"
+      },
+      orange: {
+        "base": "#c2410c"
+      },
+      purple: {
+        "base": "#7e22c7",
+      }
     },
     extend: {
       fontFamily: {
         misans: ["misans"]
       },
       screens: {
-        sm: '370px',
-        md: '768px',
-        lg: '1200px',
-        xl: '1440px',
+        DEFAULT: "1200px",
+        sm: "370px",
+        md: "740px",
+        lg: "1200px",
+        xl: "1400px",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
