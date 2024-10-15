@@ -62,7 +62,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        misans: ["misans"]
+        misans: ["misans"],
+        afacad: ["afacad"],
       },
       screens: {
         DEFAULT: "1200px",

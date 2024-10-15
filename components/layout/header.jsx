@@ -1,8 +1,9 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import ThemeSwitch from "./ThemeSwitch";
+import ThemeSwitch from "../general/ThemeSwitch";
 
 export const Header = () => {
 
@@ -11,8 +12,8 @@ export const Header = () => {
       opacity: 0,
       y: 30,
       ease: "power2.inOut",
-      duration: 0.8
-    })
+      duration: 0.8,
+    });
   });
 
   const navigations = [

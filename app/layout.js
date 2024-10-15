@@ -1,5 +1,6 @@
 import "./globals.css";
 import { ThemeProviders } from "./theme-provider";
+import { Header } from "@/components/layout/header";
 
 export const metadata = {
   title: "Xiaohu | Explore the World of 3D Graphics",
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className="font-misans">
         <ThemeProviders>
+          <Header />
           {children}
         </ThemeProviders>
       </body>
