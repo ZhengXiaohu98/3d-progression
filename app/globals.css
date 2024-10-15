@@ -3,12 +3,21 @@
 @tailwind utilities;
 
 @layer base {
+  /* fonts */
   @font-face {
-    font-family: 'misans';
+    font-family: "misans";
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
-    src: url(/fonts/MiSans_Latin_VF.ttf) format('woftruetypef2');
+    src: url(/fonts/MiSans_Latin_VF.ttf) format("woftruetypef2");
+  }
+
+  @font-face {
+    font-family: "afacad";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url(/fonts/AfacadFlux-VariableFont_slnt_wght.ttf) format("woftruetypef2");
   }
 }
 

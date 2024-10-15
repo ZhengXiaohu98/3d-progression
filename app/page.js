@@ -1,7 +1,6 @@
 "use client";
-import { Header } from "@/components/general/header";
+import ProjectCard from "@/components/page/PorjectCard";
 import React, { useEffect, useRef, useState } from 'react';
-import { experience, projects } from "./data.json";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
@@ -23,6 +22,39 @@ const convertToSpanText = (originalText, breakWord = "") => {
 }
 
 export default function Home() {
+
+  const experience = [
+    {
+      "company": "Unadat - Software Engineering Intern",
+      "timeline": "June 2021 - August 2021",
+      "description": "Collaborated with the UI team to develop new features and resolve bugs, improving website performance and meeting customer needs."
+    },
+    {
+      "company": "Google - SPS Program",
+      "timeline": "June 2022 - August 2022",
+      "description": "Developed a personal portfolio and completed team projects with Google mentors, gaining proficiency in Java backend, Git, and Google APIs like Maps, Translate, and CloudStore."
+    },
+    {
+      "company": "Fanruan Software - Frontend Engineer",
+      "timeline": "February 2023 - Current",
+      "description": "Used Next.js to migrate and upgrade the official website, implementing internationalization, optimizing SEO, and enhancing performance."
+    }
+  ];
+
+  const projectData = [
+    {
+      "name": "Book Gallery",
+      "description": "A website featuring a 3D book that showcases images in an interactive and immersive way.",
+      "img": "/images/home/3d-book-preview.webp",
+      "url": "/projects/book-gallery"
+    },
+    {
+      "name": "Book Gallery",
+      "description": "A website featuring a 3D book that showcases images in an interactive and immersive way.",
+      "img": "/images/home/3d-book-preview.webp",
+      "url": "#"
+    }
+  ]
 
   useGSAP(() => {
 
@@ -75,8 +107,7 @@ export default function Home() {
     });
 
     gsap.from("#logo", {
-      filter: "blur(20px)",
-      rotate: -90,
+      filter: "blur(40px)",
       scale: 0,
       duration: 0.8,
       ease: "back",
@@ -98,7 +129,6 @@ export default function Home() {
 
   return (
     <>
-      <Header />
       {/* Home */}
       <section
         className="relative"
@@ -117,12 +147,12 @@ export default function Home() {
               <p className="intro-text text-smoke-base dark:text-accent-900 tracking-wide text-sm font-mono">{"Exploring the ocean of code"}</p>
             </div>
             <div className="sm:hidden md:flex flex-col items-center gap-10">
-              <div id="logo" className="relative origin-bottom">
+              <div id="logo" className="relative">
                 <Image src="/logo_original_1024.png" width={100} height={100} alt="logo_xh" className="rounded-3xl" />
                 <div className="absolute inset-0 -z-10 bg-gradient-to-bl from-orange-base to-purple-base opacity-50 blur-xl" />
               </div>
               <div className="md:scale-100 sm:scale-75">
-                <p id="focus-text" className="text-2xl font-bold tracking-widest italic h-8">
+                <p id="focus-text" className="text-2xl font-bold tracking-widest italic h-8 font-afacad">
                   {convertToSpanText("Stay Focus!")}
                 </p>
                 <svg viewBox="0 0 140 7" width="140" height="7" xmlns="http://www.w3.org/2000/svg">
@@ -136,13 +166,28 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Project Section */}
+      <section className="relative">
+        <div className="container flex flex-col items-center sm:pt-12 md:pt-16 lg:pt-24">
+          <h2 className="text-3xl tracking-wider text-center font-bold">Cool Projects</h2>
+          <div className="lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6 flex lg:flex-row sm:flex-col transition-all justify-between gap-6">
+            <ProjectCard data={projectData[0]} />
+            <ProjectCard data={projectData[1]} />
+          </div>
+          <Link href="/projects">
+            <div className="md:mt-10 sm:mt-6 text-sm px-4 py-2 rounded-lg border dark:border-accent-300 border-accent-white transition duration-150 relative overflow-hidden dark:hover:bg-gray-dark/50 hover:bg-accent-white/50">
+              Explore more
+            </div>
+          </Link>
+        </div>
+      </section>
       {/* About me Section */}
       <section className="relative">
         <div className="container flex flex-col items-center sm:pt-12 md:pt-16 lg:pt-24">
           <h2 className="text-3xl tracking-wider text-center font-bold">About me</h2>
           <div className="flex lg:flex-row sm:flex-col transition-all justify-between gap-6 lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6">
             {/* left */}
-            <ul className="flex flex-col sm:gap-4 md:gap-8 flex-1 ">
+            <ul className="flex flex-col sm:gap-4 md:gap-8 flex-1 select-none">
               {experience.map((exp) => (
                 <li key={exp.name} className="p-4 w-full flex flex-col gap-1.5 rounded-xl dark:shadow-inner dark:shadow-white/[0.05] shadow-md shadow-black/[0.05]">
                   <div className="flex items-center gap-2 dark:text-accent-white text-accent-300">
@@ -168,7 +213,7 @@ export default function Home() {
             {/* right */}
             <div className="flex flex-col sm:gap-4 md:gap-8 flex-1 lg:w-1/2">
               <div className="relative p-4 grow flex flex-col gap-4 rounded-xl dark:shadow-inner dark:shadow-white/[0.05] shadow-md shadow-black/[0.05] overflow-hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-full h-full absolute left-10 top-0" viewBox="0 0 640 800">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-full h-full absolute left-10 top-0 pointer-events-none" viewBox="0 0 640 800">
                   <circle className="info-circle" r="24.5" cx="157" cy="39" stroke-width="2" stroke="#c2410c" fill="none" opacity="0.33"></circle>
                   <circle className="info-circle" r="22.5" cx="516" cy="48" stroke-width="2" stroke="#7e22c7" fill="none" opacity="0.39"></circle>
                   <circle className="info-circle" r="21" cx="46" cy="225" stroke-width="2" stroke="#c2410c" fill="none" opacity="0.23"></circle>
@@ -212,14 +257,6 @@ export default function Home() {
                     </Link>
                   </li>
                   <li className="flex gap-2 items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 512 512">
-                      <path fill="currentColor" d="M440.917,67.925H71.083C31.827,67.925,0,99.752,0,139.008v233.984c0,39.256,31.827,71.083,71.083,71.083   h369.834c39.255,0,71.083-31.827,71.083-71.083V139.008C512,99.752,480.172,67.925,440.917,67.925z M178.166,321.72l-99.54,84.92   c-7.021,5.992-17.576,5.159-23.567-1.869c-5.992-7.021-5.159-17.576,1.87-23.567l99.54-84.92c7.02-5.992,17.574-5.159,23.566,1.87   C186.027,305.174,185.194,315.729,178.166,321.72z M256,289.436c-13.314-0.033-26.22-4.457-36.31-13.183l0.008,0.008l-0.032-0.024   c0.008,0.008,0.017,0.008,0.024,0.016L66.962,143.694c-6.98-6.058-7.723-16.612-1.674-23.583c6.057-6.98,16.612-7.723,23.582-1.674   l152.771,132.592c3.265,2.906,8.645,5.004,14.359,4.971c5.706,0.017,10.995-2.024,14.44-5.028l0.074-0.065l152.615-132.469   c6.971-6.049,17.526-5.306,23.583,1.674c6.048,6.97,5.306,17.525-1.674,23.583l-152.77,132.599   C282.211,284.929,269.322,289.419,256,289.436z M456.948,404.771c-5.992,7.028-16.547,7.861-23.566,1.869l-99.54-84.92   c-7.028-5.992-7.861-16.546-1.869-23.566c5.991-7.029,16.546-7.861,23.566-1.87l99.54,84.92   C462.107,387.195,462.94,397.75,456.948,404.771z" />
-                    </svg>
-                    <Link href="mailto:zxh635148320@gmail.com">
-                      zxh635148320@gmail.com
-                    </Link>
-                  </li>
-                  <li className="flex gap-2 items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="-51.45 -69.25 445.9 415.5">
                       <g fill="currentColor" fill-rule="evenodd">
                         <path d="M274 167c-7.778 0-14-6.222-14-14s6.222-14 14-14 14 6.222 14 14c0 7.389-6.222 14-14 14m-69 0c-7.778 0-14-6.222-14-14s6.222-14 14-14 14 6.222 14 14c0 7.389-6.222 14-14 14m102.39 78.581C329.216 229.871 343 206.5 343 180.827 343 133.316 297.052 95 240 95s-103 38.316-103 85.827c0 47.512 45.948 85.828 103 85.828 11.87 0 22.974-1.533 33.695-4.598.766-.383 1.915-.383 3.063-.383 1.915 0 3.83.766 5.361 1.532l22.591 13.028c.766.383 1.149.766 1.915.766a3.433 3.433 0 003.446-3.448c0-.767-.383-1.533-.383-2.683 0-.383-3.063-10.728-4.595-17.242-.383-.766-.383-1.532-.383-2.299-.383-2.682.766-4.597 2.68-5.747" />
@@ -229,6 +266,14 @@ export default function Home() {
                     <p>
                       wechat: zxh635148320
                     </p>
+                  </li>
+                  <li className="flex gap-2 items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 512 512">
+                      <path fill="currentColor" d="M440.917,67.925H71.083C31.827,67.925,0,99.752,0,139.008v233.984c0,39.256,31.827,71.083,71.083,71.083   h369.834c39.255,0,71.083-31.827,71.083-71.083V139.008C512,99.752,480.172,67.925,440.917,67.925z M178.166,321.72l-99.54,84.92   c-7.021,5.992-17.576,5.159-23.567-1.869c-5.992-7.021-5.159-17.576,1.87-23.567l99.54-84.92c7.02-5.992,17.574-5.159,23.566,1.87   C186.027,305.174,185.194,315.729,178.166,321.72z M256,289.436c-13.314-0.033-26.22-4.457-36.31-13.183l0.008,0.008l-0.032-0.024   c0.008,0.008,0.017,0.008,0.024,0.016L66.962,143.694c-6.98-6.058-7.723-16.612-1.674-23.583c6.057-6.98,16.612-7.723,23.582-1.674   l152.771,132.592c3.265,2.906,8.645,5.004,14.359,4.971c5.706,0.017,10.995-2.024,14.44-5.028l0.074-0.065l152.615-132.469   c6.971-6.049,17.526-5.306,23.583,1.674c6.048,6.97,5.306,17.525-1.674,23.583l-152.77,132.599   C282.211,284.929,269.322,289.419,256,289.436z M456.948,404.771c-5.992,7.028-16.547,7.861-23.566,1.869l-99.54-84.92   c-7.028-5.992-7.861-16.546-1.869-23.566c5.991-7.029,16.546-7.861,23.566-1.87l99.54,84.92   C462.107,387.195,462.94,397.75,456.948,404.771z" />
+                    </svg>
+                    <Link href="mailto:zxh635148320@gmail.com">
+                      zxh635148320@gmail.com
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -358,6 +403,11 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <Link href="/about">
+            <div className="md:mt-10 sm:mt-6 text-sm px-4 py-2 rounded-lg border dark:border-accent-300 border-accent-white transition duration-150 relative overflow-hidden dark:hover:bg-gray-dark/50 hover:bg-accent-white/50">
+              Know more
+            </div>
+          </Link>
         </div>
       </section>
     </>
