@@ -19,7 +19,7 @@ export const PaperPlane = ({ curve }) => {
       const tangent = curve.getTangent(scrollOffset);
 
       if (planeRef.current) {
-        point.y += 0.4;
+        point.y += .8;
         planeRef.current.position.copy(point);
 
         const up = new THREE.Vector3(0, -1, 0);
@@ -39,7 +39,12 @@ export const PaperPlane = ({ curve }) => {
         <group ref={planeRef} position={[0, 0.4, 5]} scale={0.1} rotation={[-Math.PI / 2, 0, Math.PI]}>
           {Object.entries(nodes).map(([key, node]) =>
             node.isMesh ? (
-              <mesh key={key} geometry={node.geometry} material={materials[node.material.name]} />
+              <mesh
+                key={key}
+                geometry={node.geometry}
+                material={materials[node.material.name]}
+              >
+              </mesh>
             ) : null
           )}
         </group>

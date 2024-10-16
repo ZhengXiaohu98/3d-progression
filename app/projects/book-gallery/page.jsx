@@ -50,7 +50,7 @@ const BookGallery = () => {
 
   return (
     <div className="overflow-x-hidden">
-      <div className="fixed top-0 left-0 h-screen w-screen select-none transition-all" style={{ background: theme === "dark" ? "radial-gradient(#fdfdfd, #232323 80%)" : "radial-gradient(#ffffff, #ededed 80%)" }}>
+      <div className="fixed top-0 left-0 h-screen w-screen select-none transition-all" style={{ background: theme === "dark" ? "radial-gradient(#fdfdfd, #232323 80%)" : "radial-gradient(#ffffff, #fdfdfd 80%)" }}>
         <Suspense fallback={<ProgressLoader />}>
           <Canvas shadows camera={{ position: [-0.5, 1, 3], fov: 45 }}>
             <Float
