@@ -49,10 +49,10 @@ export default function Home() {
       "url": "/projects/book-gallery"
     },
     {
-      "name": "Book Gallery",
-      "description": "A website featuring a 3D book that showcases images in an interactive and immersive way.",
-      "img": "/images/home/3d-book-preview.webp",
-      "url": "#"
+      "name": "Paper Plane",
+      "description": "A website featuring a 3D paper airplane that glides along a custom path, and showing a dynamic introduction.",
+      "img": "/images/home/3d-plane-preview.webp",
+      "url": "/projects/paper-plane"
     }
   ]
 
@@ -169,7 +169,7 @@ export default function Home() {
       {/* Project Section */}
       <section className="relative">
         <div className="container flex flex-col items-center sm:pt-12 md:pt-16 lg:pt-24">
-          <h2 className="text-3xl tracking-wider text-center font-bold">Cool Projects</h2>
+          <h2 className="text-3xl tracking-wider text-center font-bold">Projects</h2>
           <div className="lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6 flex lg:flex-row sm:flex-col transition-all justify-between gap-6">
             <ProjectCard data={projectData[0]} />
             <ProjectCard data={projectData[1]} />
