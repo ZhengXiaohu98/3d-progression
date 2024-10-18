@@ -14,21 +14,25 @@ export const PaperPlane = ({ curve }) => {
   useFrame(({ camera }) => {
 
     if (curve) {
-      const scrollOffset = scroll.offset;
-      const point = curve.getPoint(scrollOffset);
-      const tangent = curve.getTangent(scrollOffset);
-
-      if (planeRef.current) {
-        point.y += .8;
-        planeRef.current.position.copy(point);
-
-        const up = new THREE.Vector3(0, -1, 0);
-        const axis = new THREE.Vector3().crossVectors(up, tangent).normalize();
-        const angle = Math.acos(up.dot(tangent));
-        planeRef.current.quaternion.setFromAxisAngle(axis, angle);
-
-        camera.position.copy(point.clone().add(new THREE.Vector3(0.5, 1.5, 2.5)));
-        camera.lookAt(point.clone().add(tangent));
+      try {
+        const scrollOffset = scroll.offset;
+        const point = curve.getPoint(scrollOffset);
+        const tangent = curve.getTangent(scrollOffset);
+  
+        if (planeRef.current) {
+          point.y += .8;
+          planeRef.current.position.copy(point);
+  
+          const up = new THREE.Vector3(0, -1, 0);
+          const axis = new THREE.Vector3().crossVectors(up, tangent).normalize();
+          const angle = Math.acos(up.dot(tangent));
+          planeRef.current.quaternion.setFromAxisAngle(axis, angle);
+  
+          camera.position.copy(point.clone().add(new THREE.Vector3(0.5, 1.5, 2.5)));
+          camera.lookAt(point.clone().add(tangent));
+        }
+      } catch (err) {
+        console.log(err);
       }
     }
   });

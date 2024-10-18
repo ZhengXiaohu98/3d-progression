@@ -4,9 +4,9 @@ import Link from "next/link";
 const ProjectCard = ({ data }) => {
   return (
     <Link href={data.url}>
-      <div className="p-4 flex-1 flex flex-col gap-1.5 rounded-xl dark:shadow-inner dark:shadow-white/[0.05] shadow-md shadow-black/[0.05] relative select-none group hover:translate-z-1">
-        <div className="w-full relative flex flex-col items-center px-16 py-4">
-          <div className="rounded-lg relative" >
+      <div className="p-4 flex-1 flex flex-col sm:gap-2 md:gap-1.5 rounded-xl dark:shadow-inner dark:shadow-white/[0.05] shadow-md shadow-black/[0.05] relative select-none group hover:translate-z-1">
+        <div className="w-full relative flex flex-col items-center lg:px-16 md:px-8 sm:px-2 lg:py-4 md:py-2 sm:py-1">
+          <div className="rounded-lg relative " >
             <div className="absolute inset-0 bg-gradient-to-bl from-orange-base to-purple-base opacity-50 blur-xl" />
             <Image src={data.img} width={500} height={348} className="w-full scale-105 rounded-xl relative z-[1]" alt="3d-book-gallery" />
           </div>

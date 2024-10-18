@@ -96,10 +96,6 @@ export default function PlaneTrip() {
           </EffectComposer>
         </Canvas>
       </Suspense>
-      <div className="md:block sm:hidden fixed left-0 top-0 w-full h-[320px]" style={{
-        background:
-          "radial-gradient(ellipse 20% 50% at 40% 10%, #c2410c77, transparent), radial-gradient(ellipse 30% 60% at 45% 0%, #7e22c755, transparent)"
-      }} />
     </main>
   );
 }

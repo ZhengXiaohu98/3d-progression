@@ -64,6 +64,7 @@ module.exports = {
       fontFamily: {
         misans: ["misans"],
         afacad: ["afacad"],
+        petrona: ["petrona"],
       },
       screens: {
         DEFAULT: "1200px",
@@ -79,5 +80,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography')
+  ],
 };

@@ -1,6 +1,6 @@
 "use client";
-import ProjectCard from "@/components/page/PorjectCard";
-import React, { useEffect, useRef, useState } from 'react';
+import ProjectCard from "@/components/page/project/PorjectCard";
+import React from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
@@ -46,13 +46,13 @@ export default function Home() {
       "name": "Book Gallery",
       "description": "A website featuring a 3D book that showcases images in an interactive and immersive way.",
       "img": "/images/home/3d-book-preview.webp",
-      "url": "/projects/book-gallery"
+      "url": "/project/book-gallery"
     },
     {
       "name": "Paper Plane",
       "description": "A website featuring a 3D paper airplane that glides along a custom path, and showing a dynamic introduction.",
       "img": "/images/home/3d-plane-preview.webp",
-      "url": "/projects/paper-plane"
+      "url": "/project/paper-plane"
     }
   ]
 
@@ -130,13 +130,7 @@ export default function Home() {
   return (
     <>
       {/* Home */}
-      <section
-        className="relative"
-        style={{
-          background:
-            "radial-gradient(ellipse 20% 50% at 40% 10%, #c2410c77, transparent), radial-gradient(ellipse 30% 60% at 45% 0%, #7e22c755, transparent)"
-        }}
-      >
+      <section className="relative">
         <div className="container flex flex-col items-center sm:pt-24 md:pt-32 lg:pt-40" >
           <div className="flex justify-between lg:w-[1024px]">
             <div className="flex flex-col sm:gap-3 md:gap-4">
@@ -165,9 +159,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
       {/* Project Section */}
-      <section className="relative">
+      < section className="relative" >
         <div className="container flex flex-col items-center sm:pt-12 md:pt-16 lg:pt-24">
           <h2 className="text-3xl tracking-wider text-center font-bold">Projects</h2>
           <div className="lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6 flex lg:flex-row sm:flex-col transition-all justify-between gap-6">
@@ -180,9 +174,9 @@ export default function Home() {
             </div>
           </Link>
         </div>
-      </section>
+      </section >
       {/* About me Section */}
-      <section className="relative">
+      < section className="relative" >
         <div className="container flex flex-col items-center sm:pt-12 md:pt-16 lg:pt-24">
           <h2 className="text-3xl tracking-wider text-center font-bold">About me</h2>
           <div className="flex lg:flex-row sm:flex-col transition-all justify-between gap-6 lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6">
@@ -409,7 +403,7 @@ export default function Home() {
             </div>
           </Link>
         </div>
-      </section>
+      </section >
     </>
   );
 }
