@@ -244,7 +244,7 @@ export const Overlay = () => {
         </Section>
         <Section right opacity={sectionOpacityArr[5]}>
           <p className="font-semibold text-3xl">
-            Contact me
+            Reach out to me
           </p>
           <ul className="mt-6 flex flex-col gap-2 dark:text-accent-white text-accent-300 text-lg">
             <li className="flex gap-2 items-center">
