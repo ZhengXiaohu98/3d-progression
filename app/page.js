@@ -46,13 +46,13 @@ export default function Home() {
       "name": "Book Gallery",
       "description": "A website featuring a 3D book that showcases images in an interactive and immersive way.",
       "img": "/images/home/3d-book-preview.webp",
-      "url": "/projects/book-gallery"
+      "url": "/project/book-gallery"
     },
     {
       "name": "Paper Plane",
       "description": "A website featuring a 3D paper airplane that glides along a custom path, and showing a dynamic introduction.",
       "img": "/images/home/3d-plane-preview.webp",
-      "url": "/projects/paper-plane"
+      "url": "/project/paper-plane"
     }
   ]
 
