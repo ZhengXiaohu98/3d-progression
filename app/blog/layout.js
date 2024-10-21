@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+const BlogAnimations = dynamic(() => import("./animations"));
 
 export const metadata = {
   title: "Blog | Xiaohu",
@@ -10,6 +12,7 @@ export default function BlogLayout({ children }) {
       <div className="container lg:w-[1024px] md:w-[700px] sm:w-full md:py-40 sm:py-32">
         {children}
       </div>
+      <BlogAnimations />
     </section>
   );
 }

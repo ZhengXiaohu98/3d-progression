@@ -9,10 +9,10 @@ export const Header = () => {
 
   useGSAP(() => {
     gsap.from("#header", {
-      opacity: 0,
-      y: 30,
-      ease: "power2.inOut",
-      duration: 0.8,
+      filter: "blur(4px)",
+      scale: 0.98,
+      ease: "back",
+      duration: 0.5
     });
   });
 

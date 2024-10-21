@@ -38,9 +38,7 @@ export default function BlogLayout({ children }) {
     <>
       <BlogHeader data={headerData} />
       <div className="flex lg:gap-7">
-        <article
-          className="sm:prose-sm md:prose lg:prose-lg prose-neutral dark:prose-invert sm:max-w-[360px] md:max-w-full prose-p:tracking-[0.1px] prose-p:text-accent-300 dark:prose-p:text-[#cbcbcb] prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-orange-base/90 
-          prose-ul::tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] dark:prose-code:bg-gray-dark/50 prose-code:bg-gray-light/25 prose-code:px-1 prose-code:py-px prose-code:rounded-sm">
+        <article className="blog-item">
           {children}
         </article >
         <div className="w-full">

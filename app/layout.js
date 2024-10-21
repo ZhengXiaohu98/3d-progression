@@ -1,4 +1,5 @@
 import "./globals.css";
+import "prism-themes/themes/prism-vsc-dark-plus.css";
 import { ThemeProviders } from "./theme-provider";
 import { Header } from "@/components/layout/header";
 

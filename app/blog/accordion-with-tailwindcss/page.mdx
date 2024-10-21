@@ -1,0 +1,52 @@
+import ExampleOne from "./ExampleOne.jsx";
+import ExampleTwo from "./ExampleTwo.jsx";
+import BlogTip from "@/components/page/blog/Tip";
+
+`Accordion` components are commonly found on web pages, and a good implementation usually requires the use of JavaScript. This article will demonstrate how to create an accordion component using only CSS with Tailwind's selectors.
+
+<h2 id="implementation-idea">Implementation Idea</h2>
+
+
+To implement a component, we first need to understand the challenging aspects of building it and what JavaScript typically does in this scenario. A commonly used accordion component often relies on a variable to represent the current state of the accordion(opened/closed). The challenge lies in how to represent and track this state using only CSS. The answer lies in using the `input` element!
+
+To retrieve the state of the `input`, it is common to use JavaScript. However, we can use Tailwind's provided selector, `group`, to achieve this. Here’s an example:
+
+```jsx
+<div className="group">
+    <div className="group bg-orange-base group-has-[:checked]:bg-purple-base w-full h-6" />
+    <input type="checkbox" /> Check to see the change
+</div>
+```
+<br /> 
+<ExampleOne />
+
+<h2 id="tricks">Tricks</h2>
+
+The challenging aspect of implementing an accordion is that we can't determine the height of the dropdown content in advance, making it difficult to set a fixed height. So how can we achieve this with CSS? The answer is to utilize the properties of CSS Grid!
+
+By using CSS Grid, we can allow the accordion content to expand and collapse naturally based on its content without needing to specify a fixed height. Here’s a simple example:
+```html
+<div className="group">
+    <div className="peer p-2 w-fit border relative rounded-lg">
+        Click to show collapse
+        <input type="checkbox" className="absolute inset-0 opacity-0" />
+    </div>
+    <div className="grid grid-rows-[0fr] peer-has-[:checked]:grid-rows-[1fr] transition-all">
+        <ul className="overflow-hidden">
+            <li>Item1</li>
+            <li>Item2</li>
+            <li>Item3</li>
+        </ul>
+    </div>
+</div>
+```
+<br /> 
+<ExampleTwo />
+
+<BlogTip text="1. Overflow Hidden for Collapsible Items: For the child elements within the collapsible item, you must apply the `overflow-hidden` style. Otherwise, when the accordion is closed, the content might overflow and appear outside the container."/>
+<br /> 
+<BlogTip text="2. Scope of Input: The `input` element’s influence is limited to its parent, so we need to separate the trigger button and the accordion content container. This ensures that the input can still trigger the accordion content correctly."/>
+
+<h2 id="conclusion">Conclusion</h2>
+
+Pesonally, using the grid property to implement an accordion component is an elegant solution. With the help of Tailwind CSS, we can easily encapsulate our own accordion component. While this article is brief, I hope it can still be helpful to you.

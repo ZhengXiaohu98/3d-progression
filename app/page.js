@@ -1,13 +1,10 @@
-"use client";
 import ProjectCard from "@/components/page/project/PorjectCard";
 import React from 'react';
 import Image from "next/image";
 import Link from "next/link";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import Marquee from "react-fast-marquee";
-import { ScrollTrigger, MotionPathPlugin, TextPlugin } from "gsap/all";
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, TextPlugin);
+import dynamic from "next/dynamic";
+const HomeAnimations = dynamic(() => import("./animations"));
 
 const convertToSpanText = (originalText, breakWord = "") => {
   return (
@@ -54,81 +51,11 @@ export default function Home() {
       "img": "/images/home/3d-plane-preview.webp",
       "url": "/project/paper-plane"
     }
-  ]
-
-  useGSAP(() => {
-
-    // drawing anim (Stay Focus!)
-    const drawingTl = gsap.timeline({ repeat: -1, repeatDelay: 2, ease: "power1.inOut" });
-    const wavePath = document.getElementById("wave-path");
-    const waveLength = wavePath.getTotalLength();
-
-    drawingTl.fromTo(wavePath, {
-      strokeDasharray: waveLength,
-      strokeDashoffset: waveLength,
-    }, {
-      strokeDasharray: waveLength,
-      strokeDashoffset: 0,
-      duration: 4,
-    })
-      .to("#pen", {
-        duration: 4,
-        motionPath: {
-          path: "#wave-path",
-          align: "#wave-path",
-          alignOrigin: [0, 0.95],
-        }
-      }, "<").
-      from("#focus-text span", {
-        duration: 4,
-        opacity: 0,
-        stagger: 0.2
-      }, "<")
-      .to("#pen", {
-        opacity: 0,
-        duration: 0.2
-      });
-
-    // gradient text anim
-    gsap.to(".gradient-text", {
-      backgroundPosition: "-200% 0%",
-      duration: 2,
-      ease: "linear",
-      repeat: -1,
-    });
-
-    // intro anim
-    gsap.from(".intro-text", {
-      opacity: 0,
-      duration: 0.8,
-      y: 40,
-      ease: "power1.inOut",
-      stagger: 0.2
-    });
-
-    gsap.from("#logo", {
-      filter: "blur(40px)",
-      scale: 0,
-      duration: 0.8,
-      ease: "back",
-    });
-
-
-    gsap.utils.toArray(".info-circle").forEach((circle) => {
-      gsap.to(circle, {
-        x: gsap.utils.random(-150, 100),
-        y: gsap.utils.random(-100, 100),
-        duration: gsap.utils.random(3, 6),
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut",
-      });
-    });
-
-  }, []);
+  ];
 
   return (
     <>
+      <HomeAnimations />
       {/* Home */}
       <section className="relative">
         <div className="container flex flex-col items-center sm:pt-24 md:pt-32 lg:pt-40" >
@@ -161,7 +88,7 @@ export default function Home() {
         </div>
       </section >
       {/* Project Section */}
-      < section className="relative" >
+      <section className="enter-sec relative" >
         <div className="container flex flex-col items-center sm:pt-12 md:pt-16 lg:pt-24">
           <h2 className="text-3xl tracking-wider text-center font-bold">Projects</h2>
           <div className="lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6 flex lg:flex-row sm:flex-col transition-all justify-between gap-6">
@@ -176,7 +103,7 @@ export default function Home() {
         </div>
       </section >
       {/* About me Section */}
-      < section className="relative" >
+      < section className="enter-sec relative" >
         <div className="container flex flex-col items-center sm:pt-12 md:pt-16 lg:pt-24">
           <h2 className="text-3xl tracking-wider text-center font-bold">About me</h2>
           <div className="flex lg:flex-row sm:flex-col transition-all justify-between gap-6 lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6">

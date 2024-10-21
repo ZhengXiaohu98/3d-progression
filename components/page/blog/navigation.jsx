@@ -20,7 +20,7 @@ const Navigation = ({ data }) => {
   return (
     <>
       {/* large viewport */}
-      <div className="sm:hidden lg:block w-[272px] sticky !top-36 shrink-0 pl-4 py-2 ">
+      <div className="sm:hidden lg:block w-[252px] sticky !top-36 shrink-0 pl-4 py-2 ">
         <p className="font-semibold text-lg dark:text-accent-white text-accent-dark">Table of Contents</p>
         <ul className="flex flex-col mt-4 gap-2 dark:text-accent-900 text-accent-300">
           {
