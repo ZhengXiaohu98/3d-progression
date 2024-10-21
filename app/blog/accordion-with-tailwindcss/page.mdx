@@ -1,11 +1,15 @@
 import ExampleOne from "./ExampleOne.jsx";
 import ExampleTwo from "./ExampleTwo.jsx";
-import BlogTip from "@/components/page/blog/Tip";
+import {BlogTip} from "@/components/page/blog/index";
+
+export const metadata = {
+  title: "Create Accordion with Tailwind css with NO Javascript! | Xiaohu",
+  description: "Learn how to build a fully functional accordion using only Tailwind CSS, with NO JavaScript! This guide will walk you through creating an interactive, responsive accordion component that's lightweight and easy to implement."
+};
 
 `Accordion` components are commonly found on web pages, and a good implementation usually requires the use of JavaScript. This article will demonstrate how to create an accordion component using only CSS with Tailwind's selectors.
 
-<h2 id="implementation-idea">Implementation Idea</h2>
-
+## Implementation Idea
 
 To implement a component, we first need to understand the challenging aspects of building it and what JavaScript typically does in this scenario. A commonly used accordion component often relies on a variable to represent the current state of the accordion(opened/closed). The challenge lies in how to represent and track this state using only CSS. The answer lies in using the `input` element!
 
@@ -20,7 +24,7 @@ To retrieve the state of the `input`, it is common to use JavaScript. However, w
 <br /> 
 <ExampleOne />
 
-<h2 id="tricks">Tricks</h2>
+## Tricks
 
 The challenging aspect of implementing an accordion is that we can't determine the height of the dropdown content in advance, making it difficult to set a fixed height. So how can we achieve this with CSS? The answer is to utilize the properties of CSS Grid!
 
@@ -47,6 +51,6 @@ By using CSS Grid, we can allow the accordion content to expand and collapse nat
 <br /> 
 <BlogTip text="2. Scope of Input: The `input` element’s influence is limited to its parent, so we need to separate the trigger button and the accordion content container. This ensures that the input can still trigger the accordion content correctly."/>
 
-<h2 id="conclusion">Conclusion</h2>
+## Conclusion
 
 Pesonally, using the grid property to implement an accordion component is an elegant solution. With the help of Tailwind CSS, we can easily encapsulate our own accordion component. While this article is brief, I hope it can still be helpful to you.

@@ -1,4 +1,4 @@
-const BlogTip = ({ text }) => {
+export const BlogTip = ({ text }) => {
   return (
     <div className="flex sm:p-2 md:p-3 gap-2 rounded-lg border dark:border-orange-base/30 dark:bg-orange-base/10 border-purple-base/15 bg-purple-base/5 tracking-wide">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" className="lg:w-8 lg:h-6 sm:w-6 sm:h-6 animate-pulse shrink-0 md:mt-0.5">
@@ -12,5 +12,3 @@ const BlogTip = ({ text }) => {
     </div>
   )
 }
-
-export default BlogTip;

@@ -1,10 +1,32 @@
-import ProjectCard from "@/components/page/project/PorjectCard";
-import React from 'react';
+import { ProjectCard } from "@/components/page/project/PorjectCard";
+import { BlogCard } from "@/components/page/blog/index";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import dynamic from "next/dynamic";
+import { blogData } from "./blog/data.json";
 const HomeAnimations = dynamic(() => import("./animations"));
+
+const NUM_OF_BLOGS = blogData.length;
+
+const experience = [
+  {
+    "company": "Unadat - Software Engineering Intern",
+    "timeline": "June 2021 - August 2021",
+    "description": "Collaborated with the UI team to develop new features and resolve bugs, improving website performance and meeting customer needs."
+  },
+  {
+    "company": "Google - SPS Program",
+    "timeline": "June 2022 - August 2022",
+    "description": "Developed a personal portfolio and completed team projects with Google mentors, gaining proficiency in Java backend, Git, and Google APIs like Maps, Translate, and CloudStore."
+  },
+  {
+    "company": "Fanruan Software - Frontend Engineer",
+    "timeline": "February 2023 - Current",
+    "description": "Used Next.js to migrate and upgrade the official website, implementing internationalization, optimizing SEO, and enhancing performance."
+  }
+];
 
 const convertToSpanText = (originalText, breakWord = "") => {
   return (
@@ -19,24 +41,6 @@ const convertToSpanText = (originalText, breakWord = "") => {
 }
 
 export default function Home() {
-
-  const experience = [
-    {
-      "company": "Unadat - Software Engineering Intern",
-      "timeline": "June 2021 - August 2021",
-      "description": "Collaborated with the UI team to develop new features and resolve bugs, improving website performance and meeting customer needs."
-    },
-    {
-      "company": "Google - SPS Program",
-      "timeline": "June 2022 - August 2022",
-      "description": "Developed a personal portfolio and completed team projects with Google mentors, gaining proficiency in Java backend, Git, and Google APIs like Maps, Translate, and CloudStore."
-    },
-    {
-      "company": "Fanruan Software - Frontend Engineer",
-      "timeline": "February 2023 - Current",
-      "description": "Used Next.js to migrate and upgrade the official website, implementing internationalization, optimizing SEO, and enhancing performance."
-    }
-  ];
 
   const projectData = [
     {
@@ -61,7 +65,7 @@ export default function Home() {
         <div className="container flex flex-col items-center sm:pt-24 md:pt-32 lg:pt-40" >
           <div className="flex justify-between lg:w-[1024px]">
             <div className="flex flex-col sm:gap-3 md:gap-4">
-              <h1 className="intro-text font-semibold md:text-3xl md:leading-relaxed sm:text-2xl sm:leading-normal tracking-wider max-w-[500px] bg-clip-text text-transparent bg-gradient-to-b dark:from-white dark:to-white/80 from-black to-black/80">
+              <h1 className="text-accent-dark dark:text-accent-white intro-text font-semibold md:text-3xl md:leading-relaxed sm:text-2xl sm:leading-normal tracking-wider max-w-[500px] bg-clip-text text-transparent bg-gradient-to-b dark:from-white dark:to-white/80 from-black to-black/80">
                 {"I'm Xiaohu, a Web Developer building "}
                 <span className="dark:from-[#c2410c77] dark:via-[#7e22c755] dark:to-[#c2410c77] from-orange-base via-purple-base to-orange-base bg-clip-text text-transparent bg-gradient-to-l gradient-text bg-[length:200%_100%]">{"creative engaging 3D"}</span> {"websites."}
               </h1>
@@ -72,15 +76,15 @@ export default function Home() {
                 <Image src="/logo_original_1024.png" width={100} height={100} alt="logo_xh" className="rounded-3xl" />
                 <div className="absolute inset-0 -z-10 bg-gradient-to-bl from-orange-base to-purple-base opacity-50 blur-xl" />
               </div>
-              <div className="md:scale-100 sm:scale-75">
+              <div className="md:scale-100 sm:scale-75 text-accent-dark dark:text-accent-white">
                 <p id="focus-text" className="text-2xl font-bold tracking-widest italic h-8 font-afacad">
                   {convertToSpanText("Stay Focus!")}
                 </p>
                 <svg viewBox="0 0 140 7" width="140" height="7" xmlns="http://www.w3.org/2000/svg">
-                  <path id="wave-path" d="M0 3.5 C 10 0, 30 7, 40 3.5 S 70 0, 80 3.5 S 110 7, 120 3.5 S 140 0, 140 3.5" fill="none" stroke="currentColor" stroke-width="1" />
+                  <path id="wave-path" d="M0 3.5 C 10 0, 30 7, 40 3.5 S 70 0, 80 3.5 S 110 7, 120 3.5 S 140 0, 140 3.5" fill="none" stroke="currentColor" strokeWidth="1" />
                 </svg>
                 <svg id="pen" class="w-8 h-8 dark:text-white rotate-[115deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke-width="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />
+                  <path strokeWidth="1" stroke="currentColor" strokeLinecap="round" stroke-linejoin="round" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />
                 </svg>
               </div>
             </div>
@@ -90,7 +94,7 @@ export default function Home() {
       {/* Project Section */}
       <section className="enter-sec relative" >
         <div className="container flex flex-col items-center sm:pt-12 md:pt-16 lg:pt-24">
-          <h2 className="text-3xl tracking-wider text-center font-bold">Projects</h2>
+          <h2 className="text-3xl tracking-wider text-center font-bold text-accent-dark dark:text-accent-white">Projects</h2>
           <div className="lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6 flex lg:flex-row sm:flex-col transition-all justify-between gap-6">
             <ProjectCard data={projectData[0]} />
             <ProjectCard data={projectData[1]} />
@@ -103,9 +107,9 @@ export default function Home() {
         </div>
       </section >
       {/* About me Section */}
-      < section className="enter-sec relative" >
+      <section className="enter-sec relative" >
         <div className="container flex flex-col items-center sm:pt-12 md:pt-16 lg:pt-24">
-          <h2 className="text-3xl tracking-wider text-center font-bold">About me</h2>
+          <h2 className="text-3xl tracking-wider text-center font-bold text-accent-dark dark:text-accent-white">About me</h2>
           <div className="flex lg:flex-row sm:flex-col transition-all justify-between gap-6 lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6">
             {/* left */}
             <ul className="flex flex-col sm:gap-4 md:gap-8 flex-1 select-none">
@@ -114,9 +118,9 @@ export default function Home() {
                   <div className="flex items-center gap-2 dark:text-accent-white text-accent-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-4 h-4">
                       <g clip-path="url(#clip0_429_11075)">
-                        <path d="M5.63606 18.3639C9.15077 21.8786 14.8493 21.8786 18.364 18.3639C21.8787 14.8492 21.8787 9.1507 18.364 5.63598C14.8493 2.12126 9.15077 2.12126 5.63606 5.63598C3.87757 7.39447 2.99889 9.6996 3.00002 12.0044L3 13.9999" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M1 11.9999L3 13.9999L5 11.9999" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M11 7.99994L11 12.9999L16 12.9999" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M5.63606 18.3639C9.15077 21.8786 14.8493 21.8786 18.364 18.3639C21.8787 14.8492 21.8787 9.1507 18.364 5.63598C14.8493 2.12126 9.15077 2.12126 5.63606 5.63598C3.87757 7.39447 2.99889 9.6996 3.00002 12.0044L3 13.9999" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" stroke-linejoin="round" />
+                        <path d="M1 11.9999L3 13.9999L5 11.9999" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" stroke-linejoin="round" />
+                        <path d="M11 7.99994L11 12.9999L16 12.9999" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" stroke-linejoin="round" />
                       </g>
                       <defs>
                         <clipPath id="clip0_429_11075">
@@ -135,24 +139,24 @@ export default function Home() {
             <div className="flex flex-col sm:gap-4 md:gap-8 flex-1 lg:w-1/2">
               <div className="relative p-4 grow flex flex-col gap-4 rounded-xl dark:shadow-inner dark:shadow-white/[0.05] shadow-md shadow-black/[0.05] overflow-hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-full h-full absolute left-10 top-0 pointer-events-none" viewBox="0 0 640 800">
-                  <circle className="info-circle" r="24.5" cx="157" cy="39" stroke-width="2" stroke="#c2410c" fill="none" opacity="0.33"></circle>
-                  <circle className="info-circle" r="22.5" cx="516" cy="48" stroke-width="2" stroke="#7e22c7" fill="none" opacity="0.39"></circle>
-                  <circle className="info-circle" r="21" cx="46" cy="225" stroke-width="2" stroke="#c2410c" fill="none" opacity="0.23"></circle>
-                  <circle className="info-circle" r="24.5" cx="259" cy="677" stroke-width="2" stroke="#7e22c7" fill="none" opacity="0.70"></circle>
-                  <circle className="info-circle" r="22.5" cx="595" cy="297" stroke-width="2" stroke="#c2410c" fill="none" opacity="0.80"></circle>
-                  <circle className="info-circle" r="32" cx="392" cy="316" stroke-width="2" stroke="#7e22c7" fill="none" opacity="0.65"></circle>
-                  <circle className="info-circle" r="25" cx="575" cy="757" stroke-width="2" stroke="#c2410c" fill="none" opacity="0.86"></circle>
-                  <circle className="info-circle" r="33.5" cx="379" cy="676" stroke-width="2" stroke="#7e22c7" fill="none" opacity="0.76"></circle>
-                  <circle className="info-circle" r="31.5" cx="488" cy="507" stroke-width="2" stroke="#c2410c" fill="none" opacity="0.11"></circle>
-                  <circle className="info-circle" r="21.5" cx="40" cy="135" stroke-width="2" stroke="#7e22c7" fill="none" opacity="0.10"></circle>
-                  <circle className="info-circle" r="20" cx="431" cy="48" stroke-width="2" stroke="#c2410c" fill="none" opacity="0.76"></circle>
-                  <circle className="info-circle" r="18.5" cx="128" cy="560" stroke-width="2" stroke="#7e22c7" fill="none" opacity="0.93"></circle>
+                  <circle className="info-circle" r="24.5" cx="157" cy="39" strokeWidth="2" stroke="#c2410c" fill="none" opacity="0.33"></circle>
+                  <circle className="info-circle" r="22.5" cx="516" cy="48" strokeWidth="2" stroke="#7e22c7" fill="none" opacity="0.39"></circle>
+                  <circle className="info-circle" r="21" cx="46" cy="225" strokeWidth="2" stroke="#c2410c" fill="none" opacity="0.23"></circle>
+                  <circle className="info-circle" r="24.5" cx="259" cy="677" strokeWidth="2" stroke="#7e22c7" fill="none" opacity="0.70"></circle>
+                  <circle className="info-circle" r="22.5" cx="595" cy="297" strokeWidth="2" stroke="#c2410c" fill="none" opacity="0.80"></circle>
+                  <circle className="info-circle" r="32" cx="392" cy="316" strokeWidth="2" stroke="#7e22c7" fill="none" opacity="0.65"></circle>
+                  <circle className="info-circle" r="25" cx="575" cy="757" strokeWidth="2" stroke="#c2410c" fill="none" opacity="0.86"></circle>
+                  <circle className="info-circle" r="33.5" cx="379" cy="676" strokeWidth="2" stroke="#7e22c7" fill="none" opacity="0.76"></circle>
+                  <circle className="info-circle" r="31.5" cx="488" cy="507" strokeWidth="2" stroke="#c2410c" fill="none" opacity="0.11"></circle>
+                  <circle className="info-circle" r="21.5" cx="40" cy="135" strokeWidth="2" stroke="#7e22c7" fill="none" opacity="0.10"></circle>
+                  <circle className="info-circle" r="20" cx="431" cy="48" strokeWidth="2" stroke="#c2410c" fill="none" opacity="0.76"></circle>
+                  <circle className="info-circle" r="18.5" cx="128" cy="560" strokeWidth="2" stroke="#7e22c7" fill="none" opacity="0.93"></circle>
                 </svg>
                 <div className="flex items-center gap-2 text-sm dark:text-accent-white text-accent-300">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 -mt-0.5" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 17V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    <path d="M12 17V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                     <circle cx="1" cy="1" r="1" transform="matrix(1 0 0 -1 11 9)" fill="currentColor" />
-                    <path d="M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C21.5093 4.43821 21.8356 5.80655 21.9449 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    <path d="M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C21.5093 4.43821 21.8356 5.80655 21.9449 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                   <p>Info</p>
                 </div>
@@ -209,7 +213,7 @@ export default function Home() {
                   <Marquee speed={30} pauseOnHover={true} className="w-full">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 mx-3" viewBox="-1 0 20 20" >
                       <title>html</title>
-                      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
                         <g id="Dribbble-Light-Preview" transform="translate(-61.000000, -7639.000000)" fill="currentColor">
                           <g id="icons" transform="translate(56.000000, 160.000000)">
                             <path d="M19.4350881,7485 L19.4279481,7485 L10.8119794,7485 L11.0180201,7487 L19.2300674,7487 C19.109707,7488.752 18.7455658,7492.464 18.6119454,7494.153 L13.99949,7495.451 L13.99949,7495.455 L13.98929,7495.46 L9.37377458,7493.836 L9.05757353,7490 L11.3199411,7490 L11.4800816,7492.063 L13.99337,7493 L13.99949,7493 L16.5086984,7492.1 L16.7667592,7489 L8.95659319,7489 C8.91885306,7488.599 8.43333144,7483.392 8.34867116,7483 L19.6370488,7483 C19.5738086,7483.66 19.5095484,7484.338 19.4350881,7485 L19.4350881,7485 Z M5,7479 L6.63812546,7497.148 L13.98929,7499 L21.3598345,7497.111 L23,7479 L5,7479 Z" id="html-[#124]">
@@ -259,9 +263,9 @@ export default function Home() {
                     </svg>
                   </Marquee>
                   <Marquee direction="right" speed={30} pauseOnHover={true}>
-                    <svg class="w-10 h-10 mx-3" fill="none" stroke-linecap="square" stroke-miterlimit="10" version="1.1" viewBox="0 0 226.77 226.77" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-10 h-10 mx-3" fill="none" strokeLinecap="square" stroke-miterlimit="10" version="1.1" viewBox="0 0 226.77 226.77" xmlns="http://www.w3.org/2000/svg">
                       <title>Three.js</title>
-                      <g transform="translate(8.964 4.2527)" fill-rule="evenodd" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="round" stroke-width="6">
+                      <g transform="translate(8.964 4.2527)" fill-rule="evenodd" stroke="currentColor" strokeLinecap="butt" stroke-linejoin="round" strokeWidth="6">
                         <path d="m63.02 200.61-43.213-174.94 173.23 49.874z" />
                         <path d="m106.39 50.612 21.591 87.496-86.567-24.945z" />
                         <path d="m84.91 125.03-10.724-43.465 43.008 12.346z" />
@@ -272,7 +276,7 @@ export default function Home() {
                     </svg>
                     <svg class="w-10 h-10 mx-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <title>Figma</title>
-                      <path d="M12 3H9C7.34315 3 6 4.34315 6 6C6 7.65685 7.34315 9 9 9M12 3V9M12 3H15C16.6569 3 18 4.34315 18 6C18 7.65685 16.6569 9 15 9M12 9H9M12 9H15M12 9V15M9 9C7.34315 9 6 10.3431 6 12C6 13.6569 7.34315 15 9 15M15 9C16.6569 9 18 10.3431 18 12C18 13.6569 16.6569 15 15 15C13.3431 15 12 13.6569 12 12C12 10.3431 13.3431 9 15 9ZM12 15H9M12 15V18C12 19.6569 10.6569 21 9 21C7.34315 21 6 19.6569 6 18C6 16.3431 7.34315 15 9 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M12 3H9C7.34315 3 6 4.34315 6 6C6 7.65685 7.34315 9 9 9M12 3V9M12 3H15C16.6569 3 18 4.34315 18 6C18 7.65685 16.6569 9 15 9M12 9H9M12 9H15M12 9V15M9 9C7.34315 9 6 10.3431 6 12C6 13.6569 7.34315 15 9 15M15 9C16.6569 9 18 10.3431 18 12C18 13.6569 16.6569 15 15 15C13.3431 15 12 13.6569 12 12C12 10.3431 13.3431 9 15 9ZM12 15H9M12 15V18C12 19.6569 10.6569 21 9 21C7.34315 21 6 19.6569 6 18C6 16.3431 7.34315 15 9 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round" />
                     </svg>
                     <svg class="w-10 h-10 mx-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
                       <title>Node.js</title>
@@ -310,7 +314,7 @@ export default function Home() {
                     </svg>
                     <svg class="w-10 h-10 mx-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                       <title>python</title>
-                      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
                         <g id="Dribbble-Light-Preview" transform="translate(-340.000000, -7599.000000)" fill="currentColor">
                           <g id="icons" transform="translate(56.000000, 160.000000)">
                             <path d="M296.744,7457.45798 C296.262,7457.45798 295.872,7457.06594 295.872,7456.58142 C295.872,7456.0969 296.262,7455.70587 296.744,7455.70587 C297.226,7455.70587 297.616,7456.0969 297.616,7456.58142 C297.616,7457.06594 297.226,7457.45798 296.744,7457.45798 M294.072,7459 C299.15,7459 298.833,7456.78649 298.833,7456.78649 L298.827,7454.49357 L293.982,7454.49357 L293.982,7453.80499 L300.751,7453.80499 C300.751,7453.80499 304,7454.17591 304,7449.02614 C304,7443.87636 301.165,7444.0583 301.165,7444.0583 L299.472,7444.0583 L299.472,7446.44873 C299.472,7446.44873 299.563,7449.29855 296.682,7449.29855 L291.876,7449.29855 C291.876,7449.29855 289.176,7449.25533 289.176,7451.9222 L289.176,7456.33112 C289.176,7456.33112 288.766,7459 294.072,7459 M291.257,7440.54202 C291.739,7440.54202 292.128,7440.93406 292.128,7441.41858 C292.128,7441.9031 291.739,7442.29413 291.257,7442.29413 C290.775,7442.29413 290.385,7441.9031 290.385,7441.41858 C290.385,7440.93406 290.775,7440.54202 291.257,7440.54202 M293.928,7439 C288.851,7439 289.168,7441.21351 289.168,7441.21351 L289.174,7443.50643 L294.019,7443.50643 L294.019,7444.19501 L287.249,7444.19501 C287.249,7444.19501 284,7443.82409 284,7448.97386 C284,7454.12364 286.836,7453.9417 286.836,7453.9417 L288.528,7453.9417 L288.528,7451.55127 C288.528,7451.55127 288.437,7448.70145 291.319,7448.70145 L296.124,7448.70145 C296.124,7448.70145 298.824,7448.74467 298.824,7446.0778 L298.824,7441.66888 C298.824,7441.66888 299.234,7439 293.928,7439" id="python-[#127]">
@@ -327,6 +331,21 @@ export default function Home() {
           <Link href="/about">
             <div className="md:mt-10 sm:mt-6 text-sm px-4 py-2 rounded-lg border dark:border-accent-300 border-accent-white transition duration-150 relative overflow-hidden dark:hover:bg-gray-dark/50 hover:bg-accent-white/50">
               Know more
+            </div>
+          </Link>
+        </div>
+      </section >
+      {/* Recent Articles */}
+      <section className="enter-sec relative" >
+        <div className="container flex flex-col items-center sm:pt-12 md:pt-16 lg:pt-24">
+          <h2 className="text-3xl tracking-wider text-center font-bold text-accent-dark dark:text-accent-white">Recent Articles</h2>
+          <div className="lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6 flex lg:flex-row sm:flex-col transition-all justify-between gap-6">
+            <BlogCard data={blogData[NUM_OF_BLOGS - 2]} />
+            <BlogCard data={blogData[NUM_OF_BLOGS - 1]} />
+          </div>
+          <Link href="/blog">
+            <div className="md:mt-10 sm:mt-6 text-sm px-4 py-2 rounded-lg border dark:border-accent-300 border-accent-white transition duration-150 relative overflow-hidden dark:hover:bg-gray-dark/50 hover:bg-accent-white/50">
+              Read more
             </div>
           </Link>
         </div>

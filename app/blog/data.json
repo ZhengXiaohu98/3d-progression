@@ -1,0 +1,29 @@
+{
+  "blogData": [
+    {},
+    {
+      "id": 1,
+      "title": "Next.js Create Smooth Theme Transition with Gsap",
+      "date": "October 18, 2024",
+      "img": {
+        "src": "/images/blog/smooth-theme-transition/banner.jpg",
+        "width": 832,
+        "height": 448,
+        "alt": "Smooth theme transition by xiaohu on October 18, 2024"
+      },
+      "url": "/blog/smooth-theme-transition"
+    },
+    {
+      "id": 2,
+      "title": "Create Accordion component with Tailwind css",
+      "date": "October 21, 2024",
+      "img": {
+        "src": "/images/blog/accordion-with-tailwindcss/banner.jpg",
+        "width": 832,
+        "height": 448,
+        "alt": "Create accordion with tailwind css with no Javascript by xiaohu on October 21, 2024"
+      },
+      "url": "/blog/accordion-with-tailwindcss"
+    }
+  ]
+}

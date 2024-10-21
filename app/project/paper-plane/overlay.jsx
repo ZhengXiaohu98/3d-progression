@@ -40,8 +40,8 @@ export const Overlay = () => {
         <Section right opacity={scrollOpacity}>
           <div className="w-20 flex flex-col items-center">
             <svg className="w-24 h-24 animate-bounce text-accent-300 dark:text-accent-900" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 10.8C5 8.18126 5 6.87188 5.58944 5.91001C5.91926 5.37178 6.37178 4.91926 6.91001 4.58944C7.87188 4 9.18126 4 11.8 4H12.2C14.8187 4 16.1281 4 17.09 4.58944C17.6282 4.91926 18.0807 5.37178 18.4106 5.91001C19 6.87188 19 8.18126 19 10.8V14C19 14.9288 19 15.3933 18.9487 15.7832C18.5942 18.4756 16.4756 20.5942 13.7832 20.9487C13.3933 21 12.9288 21 12 21V21C11.0712 21 10.6067 21 10.2168 20.9487C7.52444 20.5942 5.40579 18.4756 5.05133 15.7832C5 15.3933 5 14.9288 5 14V10.8Z" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round" />
-              <path d="M12 4V9" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M5 10.8C5 8.18126 5 6.87188 5.58944 5.91001C5.91926 5.37178 6.37178 4.91926 6.91001 4.58944C7.87188 4 9.18126 4 11.8 4H12.2C14.8187 4 16.1281 4 17.09 4.58944C17.6282 4.91926 18.0807 5.37178 18.4106 5.91001C19 6.87188 19 8.18126 19 10.8V14C19 14.9288 19 15.3933 18.9487 15.7832C18.5942 18.4756 16.4756 20.5942 13.7832 20.9487C13.3933 21 12.9288 21 12 21V21C11.0712 21 10.6067 21 10.2168 20.9487C7.52444 20.5942 5.40579 18.4756 5.05133 15.7832C5 15.3933 5 14.9288 5 14V10.8Z" stroke="currentColor" strokeWidth="0.5" stroke-linejoin="round" />
+              <path d="M12 4V9" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" stroke-linejoin="round" />
             </svg>
             <p className="text-2xl font-semibold italic whitespace-nowrap">scroll down</p>
           </div>
@@ -59,9 +59,9 @@ export const Overlay = () => {
             <div className="flex items-center gap-2 dark:text-accent-white text-accent-300">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-5 h-5">
                 <g clip-path="url(#clip0_429_11075)">
-                  <path d="M5.63606 18.3639C9.15077 21.8786 14.8493 21.8786 18.364 18.3639C21.8787 14.8492 21.8787 9.1507 18.364 5.63598C14.8493 2.12126 9.15077 2.12126 5.63606 5.63598C3.87757 7.39447 2.99889 9.6996 3.00002 12.0044L3 13.9999" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M1 11.9999L3 13.9999L5 11.9999" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M11 7.99994L11 12.9999L16 12.9999" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M5.63606 18.3639C9.15077 21.8786 14.8493 21.8786 18.364 18.3639C21.8787 14.8492 21.8787 9.1507 18.364 5.63598C14.8493 2.12126 9.15077 2.12126 5.63606 5.63598C3.87757 7.39447 2.99889 9.6996 3.00002 12.0044L3 13.9999" stroke="currentColor" strokeWidth="1" strokeLinecap="round" stroke-linejoin="round" />
+                  <path d="M1 11.9999L3 13.9999L5 11.9999" stroke="currentColor" strokeWidth="1" strokeLinecap="round" stroke-linejoin="round" />
+                  <path d="M11 7.99994L11 12.9999L16 12.9999" stroke="currentColor" strokeWidth="1" strokeLinecap="round" stroke-linejoin="round" />
                 </g>
                 <defs>
                   <clipPath id="clip0_429_11075">
@@ -81,9 +81,9 @@ export const Overlay = () => {
             <div className="flex items-center gap-2 dark:text-accent-white text-accent-300">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-5 h-5">
                 <g clip-path="url(#clip0_429_11075)">
-                  <path d="M5.63606 18.3639C9.15077 21.8786 14.8493 21.8786 18.364 18.3639C21.8787 14.8492 21.8787 9.1507 18.364 5.63598C14.8493 2.12126 9.15077 2.12126 5.63606 5.63598C3.87757 7.39447 2.99889 9.6996 3.00002 12.0044L3 13.9999" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M1 11.9999L3 13.9999L5 11.9999" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M11 7.99994L11 12.9999L16 12.9999" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M5.63606 18.3639C9.15077 21.8786 14.8493 21.8786 18.364 18.3639C21.8787 14.8492 21.8787 9.1507 18.364 5.63598C14.8493 2.12126 9.15077 2.12126 5.63606 5.63598C3.87757 7.39447 2.99889 9.6996 3.00002 12.0044L3 13.9999" stroke="currentColor" strokeWidth="1" strokeLinecap="round" stroke-linejoin="round" />
+                  <path d="M1 11.9999L3 13.9999L5 11.9999" stroke="currentColor" strokeWidth="1" strokeLinecap="round" stroke-linejoin="round" />
+                  <path d="M11 7.99994L11 12.9999L16 12.9999" stroke="currentColor" strokeWidth="1" strokeLinecap="round" stroke-linejoin="round" />
                 </g>
                 <defs>
                   <clipPath id="clip0_429_11075">
@@ -103,9 +103,9 @@ export const Overlay = () => {
             <div className="flex items-center gap-2 dark:text-accent-white text-accent-300">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-5 h-5">
                 <g clip-path="url(#clip0_429_11075)">
-                  <path d="M5.63606 18.3639C9.15077 21.8786 14.8493 21.8786 18.364 18.3639C21.8787 14.8492 21.8787 9.1507 18.364 5.63598C14.8493 2.12126 9.15077 2.12126 5.63606 5.63598C3.87757 7.39447 2.99889 9.6996 3.00002 12.0044L3 13.9999" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M1 11.9999L3 13.9999L5 11.9999" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M11 7.99994L11 12.9999L16 12.9999" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M5.63606 18.3639C9.15077 21.8786 14.8493 21.8786 18.364 18.3639C21.8787 14.8492 21.8787 9.1507 18.364 5.63598C14.8493 2.12126 9.15077 2.12126 5.63606 5.63598C3.87757 7.39447 2.99889 9.6996 3.00002 12.0044L3 13.9999" stroke="currentColor" strokeWidth="1" strokeLinecap="round" stroke-linejoin="round" />
+                  <path d="M1 11.9999L3 13.9999L5 11.9999" stroke="currentColor" strokeWidth="1" strokeLinecap="round" stroke-linejoin="round" />
+                  <path d="M11 7.99994L11 12.9999L16 12.9999" stroke="currentColor" strokeWidth="1" strokeLinecap="round" stroke-linejoin="round" />
                 </g>
                 <defs>
                   <clipPath id="clip0_429_11075">
@@ -128,7 +128,7 @@ export const Overlay = () => {
             <Marquee speed={30} pauseOnHover={true} className="w-full">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 mx-3" viewBox="-1 0 20 20" >
                 <title>html</title>
-                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
                   <g id="Dribbble-Light-Preview" transform="translate(-61.000000, -7639.000000)" fill="currentColor">
                     <g id="icons" transform="translate(56.000000, 160.000000)">
                       <path d="M19.4350881,7485 L19.4279481,7485 L10.8119794,7485 L11.0180201,7487 L19.2300674,7487 C19.109707,7488.752 18.7455658,7492.464 18.6119454,7494.153 L13.99949,7495.451 L13.99949,7495.455 L13.98929,7495.46 L9.37377458,7493.836 L9.05757353,7490 L11.3199411,7490 L11.4800816,7492.063 L13.99337,7493 L13.99949,7493 L16.5086984,7492.1 L16.7667592,7489 L8.95659319,7489 C8.91885306,7488.599 8.43333144,7483.392 8.34867116,7483 L19.6370488,7483 C19.5738086,7483.66 19.5095484,7484.338 19.4350881,7485 L19.4350881,7485 Z M5,7479 L6.63812546,7497.148 L13.98929,7499 L21.3598345,7497.111 L23,7479 L5,7479 Z" id="html-[#124]">
@@ -178,9 +178,9 @@ export const Overlay = () => {
               </svg>
             </Marquee>
             <Marquee direction="right" speed={30} pauseOnHover={true}>
-              <svg class="w-10 h-10 mx-3" fill="none" stroke-linecap="square" stroke-miterlimit="10" version="1.1" viewBox="0 0 226.77 226.77" xmlns="http://www.w3.org/2000/svg">
+              <svg class="w-10 h-10 mx-3" fill="none" strokeLinecap="square" stroke-miterlimit="10" version="1.1" viewBox="0 0 226.77 226.77" xmlns="http://www.w3.org/2000/svg">
                 <title>Three.js</title>
-                <g transform="translate(8.964 4.2527)" fill-rule="evenodd" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="round" stroke-width="6">
+                <g transform="translate(8.964 4.2527)" fill-rule="evenodd" stroke="currentColor" strokeLinecap="butt" stroke-linejoin="round" strokeWidth="6">
                   <path d="m63.02 200.61-43.213-174.94 173.23 49.874z" />
                   <path d="m106.39 50.612 21.591 87.496-86.567-24.945z" />
                   <path d="m84.91 125.03-10.724-43.465 43.008 12.346z" />
@@ -191,7 +191,7 @@ export const Overlay = () => {
               </svg>
               <svg class="w-10 h-10 mx-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <title>Figma</title>
-                <path d="M12 3H9C7.34315 3 6 4.34315 6 6C6 7.65685 7.34315 9 9 9M12 3V9M12 3H15C16.6569 3 18 4.34315 18 6C18 7.65685 16.6569 9 15 9M12 9H9M12 9H15M12 9V15M9 9C7.34315 9 6 10.3431 6 12C6 13.6569 7.34315 15 9 15M15 9C16.6569 9 18 10.3431 18 12C18 13.6569 16.6569 15 15 15C13.3431 15 12 13.6569 12 12C12 10.3431 13.3431 9 15 9ZM12 15H9M12 15V18C12 19.6569 10.6569 21 9 21C7.34315 21 6 19.6569 6 18C6 16.3431 7.34315 15 9 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12 3H9C7.34315 3 6 4.34315 6 6C6 7.65685 7.34315 9 9 9M12 3V9M12 3H15C16.6569 3 18 4.34315 18 6C18 7.65685 16.6569 9 15 9M12 9H9M12 9H15M12 9V15M9 9C7.34315 9 6 10.3431 6 12C6 13.6569 7.34315 15 9 15M15 9C16.6569 9 18 10.3431 18 12C18 13.6569 16.6569 15 15 15C13.3431 15 12 13.6569 12 12C12 10.3431 13.3431 9 15 9ZM12 15H9M12 15V18C12 19.6569 10.6569 21 9 21C7.34315 21 6 19.6569 6 18C6 16.3431 7.34315 15 9 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round" />
               </svg>
               <svg class="w-10 h-10 mx-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
                 <title>Node.js</title>
@@ -229,7 +229,7 @@ export const Overlay = () => {
               </svg>
               <svg class="w-10 h-10 mx-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                 <title>python</title>
-                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
                   <g id="Dribbble-Light-Preview" transform="translate(-340.000000, -7599.000000)" fill="currentColor">
                     <g id="icons" transform="translate(56.000000, 160.000000)">
                       <path d="M296.744,7457.45798 C296.262,7457.45798 295.872,7457.06594 295.872,7456.58142 C295.872,7456.0969 296.262,7455.70587 296.744,7455.70587 C297.226,7455.70587 297.616,7456.0969 297.616,7456.58142 C297.616,7457.06594 297.226,7457.45798 296.744,7457.45798 M294.072,7459 C299.15,7459 298.833,7456.78649 298.833,7456.78649 L298.827,7454.49357 L293.982,7454.49357 L293.982,7453.80499 L300.751,7453.80499 C300.751,7453.80499 304,7454.17591 304,7449.02614 C304,7443.87636 301.165,7444.0583 301.165,7444.0583 L299.472,7444.0583 L299.472,7446.44873 C299.472,7446.44873 299.563,7449.29855 296.682,7449.29855 L291.876,7449.29855 C291.876,7449.29855 289.176,7449.25533 289.176,7451.9222 L289.176,7456.33112 C289.176,7456.33112 288.766,7459 294.072,7459 M291.257,7440.54202 C291.739,7440.54202 292.128,7440.93406 292.128,7441.41858 C292.128,7441.9031 291.739,7442.29413 291.257,7442.29413 C290.775,7442.29413 290.385,7441.9031 290.385,7441.41858 C290.385,7440.93406 290.775,7440.54202 291.257,7440.54202 M293.928,7439 C288.851,7439 289.168,7441.21351 289.168,7441.21351 L289.174,7443.50643 L294.019,7443.50643 L294.019,7444.19501 L287.249,7444.19501 C287.249,7444.19501 284,7443.82409 284,7448.97386 C284,7454.12364 286.836,7453.9417 286.836,7453.9417 L288.528,7453.9417 L288.528,7451.55127 C288.528,7451.55127 288.437,7448.70145 291.319,7448.70145 L296.124,7448.70145 C296.124,7448.70145 298.824,7448.74467 298.824,7446.0778 L298.824,7441.66888 C298.824,7441.66888 299.234,7439 293.928,7439" id="python-[#127]">
