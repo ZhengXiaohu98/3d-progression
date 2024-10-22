@@ -1,5 +1,5 @@
 
-import { BlogHeader, Navigation } from "@/components/page/blog/index";
+import { BlogHeader, Navigation } from "@/components/page/blog";
 import { blogData } from "../data";
 
 const headerData = blogData[1];
