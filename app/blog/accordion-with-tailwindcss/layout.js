@@ -2,7 +2,7 @@
 import { BlogHeader, Navigation } from "@/components/page/blog/index";
 import { blogData } from "../data";
 
-const headerData = blogData[1];
+const headerData = blogData[2];
 
 export default function BlogLayout({ children }) {
   return (

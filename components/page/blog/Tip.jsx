@@ -1,7 +1,7 @@
-const BlogTip = ({ text }) => {
+export const BlogTip = ({ text }) => {
   return (
-    <div className="flex p-4 gap-4 rounded-lg border dark:border-orange-base/30 dark:bg-orange-base/10 border-purple-base/15 bg-purple-base/5 tracking-wider">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" className="w-10 h-10 -mt-1">
+    <div className="flex sm:p-2 md:p-3 gap-2 rounded-lg border dark:border-orange-base/30 dark:bg-orange-base/10 border-purple-base/15 bg-purple-base/5 tracking-wide">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" className="lg:w-8 lg:h-6 sm:w-6 sm:h-6 animate-pulse shrink-0 md:mt-0.5">
         <path d="M512 181.9c7.6 0 15.2 0.4 22.7 1.1v-48c0-4.8-4-8.8-8.8-8.8H498c-4.8 0-8.8 4-8.8 8.8v48c7.6-0.7 15.2-1.1 22.8-1.1zM578.5 844.6h-133c6.9 30.4 34.1 53.2 66.5 53.2s59.7-22.8 66.5-53.2z" fill="#FFBC00" />
         <path d="M595.2 814.6H428.8c-8.3 0-15 6.7-15 15 0 54.1 44 98.2 98.2 98.2s98.2-44 98.2-98.2c0-8.3-6.7-15-15-15z m-149.7 30h133c-6.9 30.4-34.1 53.2-66.5 53.2s-59.7-22.8-66.5-53.2z" fill="#46287C" />
         <path d="M700.4 454.6l-188.1 188h78.6l109.5-109.4zM469.9 642.6l230.5-230.5v-31c-0.4-93.3-84.7-169.2-188.4-169.2-103.9 0-188.4 76.2-188.4 169.8v260.9c0.8 0 1.6-0.1 2.4-0.1h143.9zM407.1 311c19.1 0 34.7 15.5 34.7 34.7 0 19.1-15.5 34.7-34.7 34.7s-34.7-15.5-34.7-34.7c0-19.2 15.5-34.7 34.7-34.7zM633.4 642.6H698c0.8 0 1.6 0 2.4 0.1v-67.1l-67 67zM698 672.6H326c-15.5 0-45.6 15.6-67.3 40.7-17.8 20.7-20.1 35.6-18.5 39.3 0.3 0.7 2.7 1.5 6.4 1.5h530.7c3.7 0 6-0.8 6.4-1.5 1.7-3.7-0.6-18.6-18.5-39.3-21.6-25.1-51.7-40.7-67.2-40.7z" fill="#FFBC00" />
@@ -12,5 +12,3 @@ const BlogTip = ({ text }) => {
     </div>
   )
 }
-
-export default BlogTip;

@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "mdx-components.js"  ],
+, "mdx-components.js", "components/page/blog/CodeBlock.jsx"  ],
   "exclude": [
     "node_modules"
   ]

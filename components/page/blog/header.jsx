@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const BlogHeader = ({ data }) => {
+export const BlogHeader = ({ data }) => {
 
   return (
     <section className="w-full flex flex-col items-center">
@@ -13,5 +13,3 @@ const BlogHeader = ({ data }) => {
     </section>
   )
 }
-
-export default BlogHeader;

@@ -1,26 +1,29 @@
-import Code from "@/components/page/blog/CodeBlock";
-import BlogTip from "@/components/page/blog/Tip";
+import { BlogTip } from "@/components/page/blog/index";
 import ThemeSwitcher from "./ThemeSwitcher";
 
+export const metadata = {
+  title: "Next.js Create Smooth Theme Transition with Gsap | Xiaohu",
+  description: "This post dives into implementing smooth transitions between light and dark themes using gsap. Learn how to create a seamless, visually appealing experience for users switching between themes on your website."
+};
 
 With more websites offering dark and light mode options, providing a theme transition can significantly enhance the user experience. In this article, I’ll walk you through how to implement smooth transitions when switching themes in Next.js, sharing some tips and approaches I've found effective.
 
-<h2 id="animation-library-used">Animation Library Used</h2>
+## Animation Library Used
 
 [GSAP](https://greensock.com/gsap) - The essence of animation is simply transitioning from one state to another. Once we know the starting and ending states of the object we want to animate, we can easily create the desired effect. This is why I love using GSAP to handle my animations and transitions—it simplifies the entire process.
 
-<h2 id="considerations">Considerations</h2>
+## Considerations
 
 To ensure the transition animation has the best possible visual effect, we don't want the effect to be as simple as just playing a CSS animation. Instead, we want our animation to be integrated seamlessly with the theme change itself. 
 
 For example, if we’re transitioning from a dark theme to a light theme, with the effect moving from left to right, the light theme would gradually enter from the left while the dark theme slowly fades out on the right.
 
-<h2 id="implementation">Implementation</h2>
+## Implementation
 
 To achieve the theme transition effect, we prepare two masking layers: one for transitioning from dark to light themes, and another for transitioning from light to dark.
 
-<Code 
-code={`<div
+```jsx
+<div
       id="black-trans-div"
       className="w-screen h-[120vh] fixed left-1/2 -top-10 -translate-x-1/2 bg-accent-dark pointer-events-none opacity-0"
       style={{
@@ -43,40 +46,37 @@ code={`<div
           maskPosition: "0 0",
           WebkitMaskPosition: "0 0",
       }}
-  />`} 
-language="html"
-title="Html"
-/>
+  />
+
+```
 
 We’ve created two fullscreen layers which both have a fixed position. These layers are used exclusively during transition animations. By default, their opacity is set to 0 to keep them hidden until a transition is played.
 <BlogTip text={"To ensure that these layers do not interfere with the functionality of the page, we also need to disable pointer events on them."}/>
 
 Next, we’ll use GSAP to create the animation process. By controlling the layers' opacity and other properties like the maskImage, we can smoothly transition them in and out of view during specific moments.
 
-<Code 
-code={`const playThemeTransAnim = (id) => {
-        gsap.killTweensOf(id);
+```javascript
+const playThemeTransAnim = (id) => {
+    gsap.killTweensOf(id);
 
-        const tl = gsap.timeline();
-        tl.set(id, {
-            opacity: 1,
-        }).to(id, {
-            maskImage: "linear-gradient(to right, black 0%, black 0%, transparent 0%, transparent 100%, black 100%, black 100%)",
-            WebkitMaskImage: "linear-gradient(to right, black 0%, black 0%, transparent 0%, transparent 100%, black 100%, black 100%)",
-            duration: 0.8,
-            ease: "power1.inOut"
-        }).set(id, {
-            maskImage: "linear-gradient(to right, black 0%, black 47%, transparent 47%, transparent 53%, black 53%, black 100%)",
-            WebkitMaskImage: "linear-gradient(to right, black 0%, black 47%, transparent 47%, transparent 53%, black 53%, black 100%)",
-            opacity: 0,
-        });
-}`} 
-language="javascript"
-title="Js"
-/>
+    const tl = gsap.timeline();
+    tl.set(id, {
+        opacity: 1,
+    }).to(id, {
+        maskImage: "linear-gradient(to right, black 0%, black 0%, transparent 0%, transparent 100%, black 100%, black 100%)",
+        WebkitMaskImage: "linear-gradient(to right, black 0%, black 0%, transparent 0%, transparent 100%, black 100%, black 100%)",
+        duration: 0.8,
+        ease: "power1.inOut"
+    }).set(id, {
+        maskImage: "linear-gradient(to right, black 0%, black 47%, transparent 47%, transparent 53%, black 53%, black 100%)",
+        WebkitMaskImage: "linear-gradient(to right, black 0%, black 47%, transparent 47%, transparent 53%, black 53%, black 100%)",
+        opacity: 0,
+    });
+}
+```
 
 We use a `timeline` to ensure the animations proceed in an orderly fashion. First, we reset the opacity of our mask layer, then control the `mask` property to create a fade-in effect from the center to the sides. Finally, we restore the original properties of the mask layer to ensure the animation works correctly for the next run.
 
-<h2 id="final-result">Final Result</h2>
+## Final Result
 <ThemeSwitcher />
 By changing the style of the `mask-image`, we can also achieve a transition from left to right, or even a radial expansion effect. However, this method has its drawbacks. It works well when your theme consists of a solid color, but in more complex gradient themes, it may not be an ideal solution.
