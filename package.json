@@ -18,6 +18,7 @@
     "@react-three/postprocessing": "^2.16.3",
     "@tailwindcss/typography": "^0.5.15",
     "@types/mdx": "^2.0.13",
+    "clsx": "^2.1.1",
     "gsap": "^3.12.5",
     "lamina": "^1.1.23",
     "maath": "^0.10.8",
@@ -28,6 +29,7 @@
     "react-dom": "^18",
     "react-fast-marquee": "^1.6.5",
     "rehype-prism-plus": "^2.0.0",
+    "tailwind-merge": "^2.5.4",
     "three": "^0.169.0"
   },
   "devDependencies": {

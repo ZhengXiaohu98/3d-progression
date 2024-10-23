@@ -94,13 +94,13 @@ const BookGallery = () => {
         {/* Background Text START */}
         <div className="text-box absolute top-1/2 -translate-y-1/2 left-0 bg-transparent gap-8 px-8 w-max -z-10">
           <h2 className="shrink-0 text-[#232323] text-8xl rotate-2">
-            Book Gallery - <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px #232323", }}>by Xiaohu</span>{" "}
+            Book Gallery - <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px #232323" }}>by Xiaohu</span>{" "}
             <span className="text-6xl">June 27, 2024</span>
           </h2>
         </div>
         <div className="text-box absolute top-1/2 -translate-y-1/2 left-0 bg-transparent gap-8 px-8 w-max -z-10">
           <h2 className="shrink-0 text-[#232323] text-8xl rotate-2">
-            Book Gallery - <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px #232323", }}>by Xiaohu</span>{" "}
+            Book Gallery - <span className="text-9xl italic text-transparent" style={{ WebkitTextStroke: "1px #232323" }}>by Xiaohu</span>{" "}
             <span className="text-6xl">June 27, 2024</span>
           </h2>
         </div>

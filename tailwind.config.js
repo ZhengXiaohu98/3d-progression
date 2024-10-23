@@ -62,9 +62,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        misans: ["misans"],
-        afacad: ["afacad"],
-        petrona: ["petrona"],
+        "petrona": ["petrona"],
+        "playwrite-gbs": ["playwritegbs"]
       },
       screens: {
         DEFAULT: "1200px",
