@@ -23,15 +23,15 @@ export const Header = () => {
     },
     {
       "nav": "Blog",
-      "url": "project"
+      "url": "/project"
     },
     {
       "nav": "About",
-      "url": "#about"
+      "url": "/about"
     },
     {
       "nav": "Contact",
-      "url": "#contact"
+      "url": "/contact"
     }
   ]
   return (

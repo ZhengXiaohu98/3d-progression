@@ -8,7 +8,7 @@ import Marquee from "react-fast-marquee";
 import dynamic from "next/dynamic";
 import { blogData } from "./blog/data.json";
 import { Footer } from "@/components/layout";
-const HomeAnimations = dynamic(() => import("./animations"));
+const HomeAnimations = dynamic(() => import("./animation.js"));
 
 const NUM_OF_BLOGS = blogData.length;
 
@@ -64,10 +64,10 @@ export default function Home() {
       <HomeAnimations />
       {/* Home */}
       <section className="relative">
-        <div className="container flex flex-col items-center sm:pt-24 md:pt-32 lg:pt-40" >
+        <div className="container flex flex-col items-center sm:pt-28 md:pt-32 lg:pt-40" >
           <div className="flex justify-between lg:w-[1024px]">
             <div className="flex flex-col sm:gap-3 md:gap-4">
-              <h1 className="text-accent-dark dark:text-accent-white intro-text font-semibold md:text-3xl md:leading-relaxed sm:text-2xl sm:leading-normal tracking-wider max-w-[500px] bg-clip-text text-transparent bg-gradient-to-b dark:from-white dark:to-white/80 from-black to-black/80">
+              <h1 className="text-accent-dark dark:text-accent-white intro-text font-semibold md:text-3xl md:leading-relaxed sm:text-2xl sm:leading-normal tracking-wide max-w-[500px] bg-clip-text text-transparent bg-gradient-to-b dark:from-white dark:to-white/80 from-black to-black/80">
                 {"I'm Xiaohu, a Web Developer building "}
                 <span className="dark:from-[#c2410c77] dark:via-[#7e22c755] dark:to-[#c2410c77] from-orange-base via-purple-base to-orange-base bg-clip-text text-transparent bg-gradient-to-l gradient-text bg-[length:200%_100%]">{"creative engaging 3D"}</span> {"websites."}
               </h1>
