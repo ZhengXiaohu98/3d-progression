@@ -1,7 +1,7 @@
 import "./globals.css";
 import "prism-themes/themes/prism-vsc-dark-plus.css";
 import { ThemeProviders } from "./theme-provider";
-import { Header, Footer } from "@/components/layout";
+import { Header } from "@/components/layout";
 
 export const metadata = {
   title: "Xiaohu | Explore the World of 3D Graphics",
@@ -15,7 +15,6 @@ export default function RootLayout({ children }) {
         <ThemeProviders>
           <Header />
           {children}
-          <Footer />
         </ThemeProviders>
       </body>
     </html>

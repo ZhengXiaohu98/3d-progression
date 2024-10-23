@@ -8,7 +8,7 @@ export const ProjectCard = ({ data }) => {
         <div className="w-full relative flex flex-col items-center lg:px-16 md:px-8 sm:px-2 lg:py-4 md:py-2 sm:py-1">
           <div className="rounded-lg relative " >
             <div className="absolute inset-0 bg-gradient-to-bl from-orange-base to-purple-base opacity-50 blur-xl" />
-            <Image src={data.img} width={500} height={348} className="w-full lg:h-[240px] md:h-[260px] scale-105 rounded-xl relative z-[1]" alt={data.name} />
+            <Image src={data.img} width={500} height={348} className="w-full lg:h-auto md:h-[260px] scale-105 rounded-xl relative z-[1]" alt={data.name} />
           </div>
         </div>
         <div className="flex items-center gap-2 dark:text-accent-white text-accent-300 lg:mt-0 md:mt-4 sm:mt-2">

@@ -7,6 +7,7 @@ import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import dynamic from "next/dynamic";
 import { blogData } from "./blog/data.json";
+import { Footer } from "@/components/layout";
 const HomeAnimations = dynamic(() => import("./animations"));
 
 const NUM_OF_BLOGS = blogData.length;
@@ -353,6 +354,7 @@ export default function Home() {
       </section >
       {/* Contact cta*/}
       <CTA />
+      <Footer />
     </>
   );
 }
