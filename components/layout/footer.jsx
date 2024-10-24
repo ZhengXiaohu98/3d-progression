@@ -9,8 +9,8 @@ export const Footer = () => {
           <svg xmlns="http://www.w3.org/2000/svg" className="md:w-8 md:h-8 sm:w-6 sm:h-6 -mt-1" viewBox="0 0 800 800">
             <defs>
               <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="lllove-grad">
-                <stop stop-color="hsl(353, 98%, 41%)" stopOpacity="1" offset="0%"></stop>
-                <stop stop-color="hsl(331, 87%, 61%)" stopOpacity="1" offset="100%"></stop>
+                <stop stopColor="hsl(353, 98%, 41%)" stopOpacity="1" offset="0%"></stop>
+                <stop stopColor="hsl(331, 87%, 61%)" stopOpacity="1" offset="100%"></stop>
               </linearGradient>
             </defs>
             <g fill="url(#lllove-grad)" strokeWidth="10" stroke="hsl(356, 77%, 40%)" id="heart">

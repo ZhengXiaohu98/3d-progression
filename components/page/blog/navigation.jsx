@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
+import { ArrowIcon } from "@/components/icon";
 
 const navToAnchor = (nav) => {
   return nav.replace(/\s+/g, "-").toLowerCase();
@@ -107,9 +108,7 @@ export const Navigation = () => {
         </ul>
         <hr className="my-3 rounded-full dark:text-accent-white text-accent-300" />
         <div className="flex items-center gap-2 dark:text-accent-white text-accent-300">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4" />
-          </svg>
+          <ArrowIcon className="rotate-180" />
           <Link href="/blog" className="font-semibold">Return to Blog</Link>
         </div>
       </div>

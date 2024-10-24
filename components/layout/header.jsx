@@ -56,8 +56,8 @@ export const Header = () => {
       <header id="header" className="fixed container lg:max-w-[1060px] md:max-w-[680px] sm:max-w top-5 left-1/2 -translate-x-1/2 z-[50] bg-white/20 dark:bg-black/20 backdrop-blur-md h-16 flex items-center justify-between rounded-xl shadow-md shadow-black/10 dark:shadow-white/10">
         <div className="flex items-center md:gap-10 lg:gap-20">
           <Link href="/">
-            <Image src="/logo_white.png" width={48} height={48} alt="logo_xh" className="dark:block hidden" />
-            <Image src="/logo_black.png" width={48} height={48} alt="logo_xh" className="dark:hidden" />
+            <Image src="/logo_white.png" width={48} height={48} alt="logo_xh" className="dark:block hidden" priority/>
+            <Image src="/logo_black.png" width={48} height={48} alt="logo_xh" className="dark:hidden" priority/>
           </Link>
           <div className="sm:hidden md:flex items-center dark:text-[#999] text-[#333] gap-6">
             {
