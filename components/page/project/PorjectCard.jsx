@@ -18,7 +18,7 @@ export const ProjectCard = ({ data }) => {
           <p className="md:text-xl sm:text-lg font-bold italic tracking-wide">{data.name}</p>
         </div>
         <p className="tracking-wide md:text-base sm:text-sm">{data.description}</p>
-        <div className="absolute inset-0 dark:bg-accent-dark/40 bg-accent-white/25 z-[5] flex items-center justify-center rounded-full scale-0 opacity-0 group-hover:opacity-100 group-hover:scale-100 group-hover:rounded-xl transition backdrop-blur-[2px]">
+        <div className="absolute inset-0 dark:bg-accent-dark/40 bg-accent-white/25 z-[5] sm:hidden lg:flex items-center justify-center rounded-full scale-0 opacity-0 group-hover:opacity-100 group-hover:scale-100 group-hover:rounded-xl transition backdrop-blur-[2px]">
           <svg className="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" strokeWidth="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
             <path stroke="currentColor" strokeWidth="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />

@@ -12,8 +12,8 @@ const playThemeTransAnim = (id) => {
   }).to(id, {
     maskImage: "linear-gradient(to right, black 0%, black 0%, transparent 0%, transparent 100%, black 100%, black 100%)",
     WebkitMaskImage: "linear-gradient(to right, black 0%, black 0%, transparent 0%, transparent 100%, black 100%, black 100%)",
-    duration: 0.8,
-    ease: "power1.inOut"
+    duration: 0.6,
+    ease: "power2.inOut"
   }).set(id, {
     maskImage: "linear-gradient(to right, black 0%, black 47%, transparent 47%, transparent 53%, black 53%, black 100%)",
     WebkitMaskImage: "linear-gradient(to right, black 0%, black 47%, transparent 47%, transparent 53%, black 53%, black 100%)",
@@ -21,7 +21,7 @@ const playThemeTransAnim = (id) => {
   });
 }
 
-const ThemeSwitch = () => {
+export const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false)
   const { setTheme, resolvedTheme } = useTheme()
 
@@ -93,5 +93,3 @@ const ThemeSwitch = () => {
     </div>
   )
 }
-
-export default ThemeSwitch;

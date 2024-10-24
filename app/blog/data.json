@@ -4,6 +4,7 @@
     {
       "id": 1,
       "title": "Next.js Create Smooth Theme Transition with Gsap",
+      "desdescription": "Learn how to create a seamless, visually appealing experience for users switching between themes on your website. This post dives into implementing smooth transitions between light and dark themes using gsap.",
       "date": "October 18, 2024",
       "img": {
         "src": "/images/blog/smooth-theme-transition/banner.jpg",
@@ -11,11 +12,16 @@
         "height": 448,
         "alt": "Smooth theme transition by xiaohu on October 18, 2024"
       },
-      "url": "/blog/smooth-theme-transition"
+      "url": "/blog/smooth-theme-transition",
+      "categories": [
+        "gsap",
+        "tailwind"
+      ]
     },
     {
       "id": 2,
-      "title": "Create Accordion component with Tailwind css",
+      "title": "Create Accordion Component with Tailwind Css",
+      "desdescription": "Learn how to build a fully functional accordion using only Tailwind CSS, with NO JavaScript! This guide will walk you through creating an interactive, responsive accordion component that's lightweight and easy to implement.",
       "date": "October 21, 2024",
       "img": {
         "src": "/images/blog/accordion-with-tailwindcss/banner.jpg",
@@ -23,7 +29,27 @@
         "height": 448,
         "alt": "Create accordion with tailwind css with no Javascript by xiaohu on October 21, 2024"
       },
-      "url": "/blog/accordion-with-tailwindcss"
+      "url": "/blog/accordion-with-tailwindcss",
+      "categories": [
+        "tailwind"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "How to Create an Animated Dashed Line with GSAP",
+      "desdescription": "Learn how to create a dynamic, animated dashed line using GSAP. This tutorial will guide you step-by-step in bringing your designs to life with smooth and eye-catching animations.",
+      "date": "October 24, 2024",
+      "img": {
+        "src": "/images/blog/animated-dashed-line-with-gsap/banner.jpeg",
+        "width": 1048,
+        "height": 704,
+        "alt": "Create Animated Dashed Line with GSAP & SVG by xiaohu on October 24, 2024"
+      },
+      "url": "/blog/animated-dashed-line-with-gsap",
+      "categories": [
+        "gsap",
+        "svg"
+      ]
     }
   ]
 }
