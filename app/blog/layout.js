@@ -22,7 +22,7 @@ export const metadata = {
 export default function BlogLayout({ children }) {
   return (
     <section className="font-petrona">
-      <div className="container lg:w-[1024px] md:w-[700px] sm:w-full md:py-40 sm:py-32">
+      <div className="container lg:w-[1024px] md:w-[700px] sm:w-full lg:pt-40 lg:pb-28 md:pt-32 md:pb-12 sm:pt-24 sm:pb-7">
         {children}
       </div>
       <Footer />

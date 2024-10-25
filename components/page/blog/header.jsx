@@ -4,8 +4,8 @@ export const BlogHeader = ({ data }) => {
 
   const categoryMap = {
     "svg": "Svg",
-    "gsap": "GSAP",
-    "tailwind": "Tailwind css",
+    "gsap": "Gsap",
+    "tailwind": "Tailwindcss",
     "three": "three.js"
   }
 

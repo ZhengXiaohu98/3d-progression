@@ -1,7 +1,7 @@
 export const Footer = () => {
 
   return (
-    <div className="relative sm:overflow-x-clip md:overflow-x-visible">
+    <div className="relative sm:overflow-x-clip lg:overflow-x-visible">
       <div className="absolute sm:scale-x-150 md:scale-100 sm:left-10 md:left-24 lg:left-0 bottom-0 w-full lg:h-[371px] md:h-[339px] sm:h-[236px] pointer-events-none blur-md" style={{ background: "radial-gradient(ellipse 20% 22% at 58% 95%, #c2410c77, transparent), radial-gradient(ellipse 25% 32% at 53% 100%, #7e22c755, transparent)" }} />
       <footer id="footer" className="font-playwrite-gbs sm:px-3 md:px-6 container lg:max-w-[1060px] md:max-w-[680px] sm:max-w sm:h-12 md:h-16 flex justify-between items-center">
         <div className="sm:text-xs md:text-sm flex items-center gap-1"><span className="sm:text-sm md:text-base">©</span> 2024 Xiaohu Zheng | <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="italic">CC BY 4.0</a></div>

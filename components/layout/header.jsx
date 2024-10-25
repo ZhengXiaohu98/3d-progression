@@ -53,7 +53,7 @@ export const Header = () => {
   return (
     <>
       <div id="header-light" className="absolute left-0 top-0 w-full lg:h-[371px] md:h-[339px] sm:h-[236px] pointer-events-none" style={{ background: "radial-gradient(ellipse 20% 50% at 40% -10%, #c2410c77, transparent), radial-gradient(ellipse 30% 60% at 45% -5%, #7e22c755, transparent)" }} />
-      <header id="header" className="fixed container lg:max-w-[1060px] md:max-w-[680px] sm:max-w top-5 left-1/2 -translate-x-1/2 z-[50] bg-white/20 dark:bg-black/20 backdrop-blur-md h-16 flex items-center justify-between rounded-xl shadow-md shadow-black/10 dark:shadow-white/10">
+      <header id="header" className="transition-all fixed container lg:max-w-[1060px] md:max-w-[680px] sm:max-w sm:top-3 md:top-4 lg:top-5 left-1/2 -translate-x-1/2 z-[50] bg-white/20 dark:bg-black/20 backdrop-blur-md sm:h-12 md:h-14 lg:h-16 flex items-center justify-between rounded-xl shadow-md shadow-black/10 dark:shadow-white/10">
         <div className="flex items-center md:gap-10 lg:gap-20">
           <Link href="/">
             <Image src="/logo_white.png" width={48} height={48} alt="logo_xh" className="dark:block hidden" priority/>
