@@ -1,0 +1,98 @@
+import { blogData } from "../data.json";
+import { ExampleOne } from "./AnimatedDashLine";
+import { BlogTip } from "@/components/page/blog";
+
+export const metadata = {
+  title: `${blogData[3].title} | Xiaohu`,
+  description: blogData[3].description,
+  openGraph: {
+    title: `${blogData[3].title} | Xiaohu`,
+    description: blogData[3].description,
+    images: [
+      {
+        url: blogData[3].img.src,
+        width: blogData[3].img.width,
+        height: blogData[3].img.height,
+      },
+    ],
+    type: "website",
+  },
+};
+
+<ExampleOne />
+
+Noticed the moving dashed line above? Doesn't it look intriguing? Well, it's not a GIF! Today, we’ll walk through how to create this kind of animation using only GSAP and SVG. Let's dive in!
+
+## Tools Used
+- [Line SVG Generator](https://www.fffuel.co/llline/): As someone who's not an artist, creating SVGs can be quite challenging. While it may seem simple to some, I still want to recommend this free SVG generator. It has been a huge help in simplifying the process of creating SVGs. In fact, I’ve used this tool in many parts of my website to generate SVGs effortlessly.
+- [GSAP](https://greensock.com/gsap) - GSAP is a powerful and flexible JavaScript library for creating high-performance animations. Whether you're working with DOM elements, SVGs, or even complex 3D scenes, GSAP makes it incredibly easy. If you're looking to add stunning animations to your website, I highly recommend giving GSAP a try!
+
+## Create Your Dashed SVG Line
+
+We’ll use the previously mentioned SVG generator to create a simple dashed line. You can make it as simple or as intricate as you'd like, depending on your design preferences. For my case, I’ll stick with the basic dashed line shown in the demo, as I just need it to replace a simple `<hr />` tag, it’s important that it doesn’t appear too flashy for me.
+
+This is what I have for my svg after the process:
+<svg xmlns="http://www.w3.org/2000/svg" className="w-full h-auto sm:my-6 md:my-8 lg:my-10" viewBox="0 0 700 50">
+  <path d="M3.1390135288238525,10.76233196258545C18.843049151897432,14.421524667739869,65.93721735239029,33.20179315090179,95.51569366455078,32.28699493408203C125.09416997671127,31.37219671726227,149.38117317199706,5.533632202148437,177.1300506591797,5.381165981292725C204.8789281463623,5.228699760437012,226.72644790649414,32.0000003027916,258.744384765625,31.390134811401367C290.7623216247558,30.78026932001114,333.75785064697266,0.4215246295928956,365.4708557128906,1.7937219142913818C397.1838607788086,3.165919198989868,416.4753268432617,39.004484436511994,445.2914733886719,39.461883544921875C474.10761993408204,39.919282653331756,506.3139181518555,4.636771450042724,534.9776000976562,4.484304904937744C563.6412820434571,4.331838359832764,587.6771551513672,38.869954240322116,613.9013671875,38.56502151489258C640.1255792236328,38.26008878946304,664.9955194091797,2.8430488872528077,689.2376708984375,2.6905829906463623C713.4798223876953,2.538117094039917,738.5112280273438,37.36323057413101,756.5022583007812,37.66816329956055C774.4932885742187,37.973096024990085,788.5112103271484,10.12556083202362,795.0672607421875,4.484304904937744" fill="none" strokeWidth="2" stroke="url(&quot;#SvgjsLinearGradient1005&quot;)" strokeLinecap="round" strokeDasharray="4 6" strokeOpacity="0.67">
+  </path>
+  <defs>
+    <linearGradient id="SvgjsLinearGradient1005" gradientTransform="rotate(249, 0.5, 0.5)">
+      <stop stopColor="hsl(37, 99%, 67%)" offset="0"></stop>
+      <stop stopColor="hsl(316, 73%, 52%)" offset="1"></stop>
+    </linearGradient>
+  </defs>
+</svg>
+```jsx
+<svg xmlns="http://www.w3.org/2000/svg" className="w-full h-auto sm:my-6 md:my-8 lg:my-10" viewBox="0 0 700 50">
+    <path className="hr" d="M3.1390135288238525,10.76233196258545C18.843049151897432,14.421524667739869,65.93721735239029,33.20179315090179,95.51569366455078,32.28699493408203C125.09416997671127,31.37219671726227,149.38117317199706,5.533632202148437,177.1300506591797,5.381165981292725C204.8789281463623,5.228699760437012,226.72644790649414,32.0000003027916,258.744384765625,31.390134811401367C290.7623216247558,30.78026932001114,333.75785064697266,0.4215246295928956,365.4708557128906,1.7937219142913818C397.1838607788086,3.165919198989868,416.4753268432617,39.004484436511994,445.2914733886719,39.461883544921875C474.10761993408204,39.919282653331756,506.3139181518555,4.636771450042724,534.9776000976562,4.484304904937744C563.6412820434571,4.331838359832764,587.6771551513672,38.869954240322116,613.9013671875,38.56502151489258C640.1255792236328,38.26008878946304,664.9955194091797,2.8430488872528077,689.2376708984375,2.6905829906463623C713.4798223876953,2.538117094039917,738.5112280273438,37.36323057413101,756.5022583007812,37.66816329956055C774.4932885742187,37.973096024990085,788.5112103271484,10.12556083202362,795.0672607421875,4.484304904937744" fill="none" strokeWidth="2" stroke="url(&quot;#SvgjsLinearGradient1005&quot;)" strokeLinecap="round" strokeDasharray="4 6" strokeOpacity="0.67">
+    </path>
+    <defs>
+        <linearGradient id="SvgjsLinearGradient1005" gradientTransform="rotate(249, 0.5, 0.5)">
+            <stop stopColor="hsl(37, 99%, 67%)" offset="0"></stop>
+            <stop stopColor="hsl(316, 73%, 52%)" offset="1"></stop>
+        </linearGradient>
+    </defs>
+</svg>
+```
+<br />
+<BlogTip text={"I added a class called `hr` for the svg path, so that we can animate it later!"} />
+
+## Make It Move!
+
+Animating the dashed line with GSAP is a simple process. All we need to do is animate the `stroke-dashoffset` property of the `<path>` element. If you're not familiar with how `dashoffset` works, you can read more about it [here](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset). We’ll use GSAP's `repeat` property to make the animation loop continuously.
+
+It sounds straightforward, right? But there’s a little catch. Try setting the `dashoffset` to match the length of your path, and set the animation duration to 1 second. Watch your animation closely. Do you notice a slight pause or stutter in the loop? My case:
+
+<ExampleOne offset={-4} duration={1}/>
+
+```jsx
+useGSAP(() => {
+    gsap.to(".hr", {
+        strokeDashoffset: -4,
+        duration: 1,
+        repeat: -1,
+    })
+}, []);
+```
+
+## Trick to Fix!
+
+At first, I struggled to find a way to make the animation appear smooth. However, by identifying what causes the issue, I found a simple solution. The problem arises from the animation duration is too small, so it repeats frequently. Thus, by setting a much longer duration for the animation, we can effectively smooth it out.
+
+However, this approach will slow down the line's movement speed. To compensate for this, we also need to increase the value of `dashoffset`. By doing so, we can achieve the desired effect!
+
+<ExampleOne />
+
+```jsx
+useGSAP(() => {
+    gsap.to(".hr", {
+        strokeDashoffset: -10000,
+        duration: 1000,
+        repeat: -1,
+    })
+}, []);
+```
+
+## Conclusion
+
+Using GSAP to manipulate the properties of an SVG path allows us to create many fun animations. For example, we can draw svg lines just like painting! I highly encourage you to give it a try — it's truly a lot of fun!

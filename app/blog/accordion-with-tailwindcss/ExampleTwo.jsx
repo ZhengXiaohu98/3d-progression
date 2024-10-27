@@ -5,7 +5,7 @@ const ExampleTwo = () => {
         Click to show collapse
         <input type="checkbox" className="absolute inset-0 opacity-0 cursor-pointer" />
       </div>
-      <div className="grid grid-rows-[0fr] peer-has-[:checked]:grid-rows-[1fr] transition-all">
+      <div className="grid grid-rows-[0fr] peer-has-[:checked]:grid-rows-[1fr] transition-all ease-in-out duration-500">
         <ul className="overflow-hidden">
           <li>Item1</li>
           <li>Item2</li>

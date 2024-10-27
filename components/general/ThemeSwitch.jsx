@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import Image from "next/image";
 import gsap from "gsap";
 
 const playThemeTransAnim = (id) => {
@@ -12,8 +11,8 @@ const playThemeTransAnim = (id) => {
   }).to(id, {
     maskImage: "linear-gradient(to right, black 0%, black 0%, transparent 0%, transparent 100%, black 100%, black 100%)",
     WebkitMaskImage: "linear-gradient(to right, black 0%, black 0%, transparent 0%, transparent 100%, black 100%, black 100%)",
-    duration: 0.8,
-    ease: "power1.inOut"
+    duration: 0.6,
+    ease: "power2.inOut"
   }).set(id, {
     maskImage: "linear-gradient(to right, black 0%, black 47%, transparent 47%, transparent 53%, black 53%, black 100%)",
     WebkitMaskImage: "linear-gradient(to right, black 0%, black 47%, transparent 47%, transparent 53%, black 53%, black 100%)",
@@ -21,22 +20,14 @@ const playThemeTransAnim = (id) => {
   });
 }
 
-const ThemeSwitch = () => {
+export const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false)
   const { setTheme, resolvedTheme } = useTheme()
 
   useEffect(() => setMounted(true), [])
 
   if (!mounted) return (
-    <Image
-      src="data:image/svg+xml;base64,PHN2ZyBzdHJva2U9IiNGRkZGRkYiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMCIgdmlld0JveD0iMCAwIDI0IDI0IiBoZWlnaHQ9IjIwMHB4IiB3aWR0aD0iMjAwcHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiB4PSIyIiB5PSIyIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjIiIHJ4PSIyIj48L3JlY3Q+PC9zdmc+Cg=="
-      width={36}
-      height={36}
-      sizes="36x36"
-      alt="Loading Light/Dark Toggle"
-      priority={false}
-      title="Loading Light/Dark Toggle"
-    />
+    <></>
   )
 
   return (
@@ -93,5 +84,3 @@ const ThemeSwitch = () => {
     </div>
   )
 }
-
-export default ThemeSwitch;

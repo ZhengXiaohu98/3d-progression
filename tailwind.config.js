@@ -36,6 +36,7 @@ module.exports = {
     },
     colors: {
       transparent: "transparent",
+      inherit: "inherit",
       current: "currentColor",
       white: "#ffffff",
       black: "#000000",
@@ -62,7 +63,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        "petrona": ["petrona"],
+        petrona: ["petrona"],
         "playwrite-gbs": ["playwritegbs"]
       },
       screens: {

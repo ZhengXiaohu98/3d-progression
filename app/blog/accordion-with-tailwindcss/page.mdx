@@ -1,10 +1,23 @@
 import ExampleOne from "./ExampleOne.jsx";
 import ExampleTwo from "./ExampleTwo.jsx";
-import {BlogTip} from "@/components/page/blog";
+import { BlogTip } from "@/components/page/blog";
+import { blogData } from "../data.json";
 
 export const metadata = {
-  title: "Create Accordion with Tailwind css with NO Javascript! | Xiaohu",
-  description: "Learn how to build a fully functional accordion using only Tailwind CSS, with NO JavaScript! This guide will walk you through creating an interactive, responsive accordion component that's lightweight and easy to implement."
+  title: `${blogData[2].title} | Xiaohu`,
+  description: blogData[2].description,
+  openGraph: {
+    title: `${blogData[2].title} | Xiaohu`,
+    description: blogData[2].description,
+    images: [
+      {
+        url: blogData[2].img.src,
+        width: blogData[2].img.width,
+        height: blogData[2].img.height,
+      },
+    ],
+    type: "website",
+  },
 };
 
 `Accordion` components are commonly found on web pages, and a good implementation usually requires the use of JavaScript. This article will demonstrate how to create an accordion component using only CSS with Tailwind's selectors.

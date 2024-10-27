@@ -1,9 +1,22 @@
 import { BlogTip } from "@/components/page/blog";
 import ThemeSwitcher from "./ThemeSwitcher";
+import { blogData } from "../data.json";
 
 export const metadata = {
-  title: "Next.js Create Smooth Theme Transition with Gsap | Xiaohu",
-  description: "This post dives into implementing smooth transitions between light and dark themes using gsap. Learn how to create a seamless, visually appealing experience for users switching between themes on your website."
+  title: `${blogData[1].title} | Xiaohu`,
+  description: blogData[1].description,
+  openGraph: {
+    title: `${blogData[1].title} | Xiaohu`,
+    description: blogData[1].description,
+    images: [
+      {
+        url: blogData[1].img.src,
+        width: blogData[1].img.width,
+        height: blogData[1].img.height,
+      },
+    ],
+    type: "website",
+  },
 };
 
 With more websites offering dark and light mode options, providing a theme transition can significantly enhance the user experience. In this article, I’ll walk you through how to implement smooth transitions when switching themes in Next.js, sharing some tips and approaches I've found effective.

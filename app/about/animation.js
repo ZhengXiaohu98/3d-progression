@@ -2,8 +2,6 @@
 import React from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger, MotionPathPlugin, TextPlugin } from "gsap/all";
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, TextPlugin);
 
 const AboutAnimations = () => {
   useGSAP(() => {

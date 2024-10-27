@@ -101,7 +101,7 @@ export default function Home() {
             <ProjectCard data={projectData[0]} />
             <ProjectCard data={projectData[1]} />
           </div>
-          <Link href="/projects">
+          <Link href="/project">
             <div className="md:mt-10 sm:mt-6 text-sm px-4 py-2 rounded-lg border dark:border-accent-300 border-accent-white transition duration-150 relative overflow-hidden dark:hover:bg-gray-dark/50 hover:bg-accent-white/50">
               Explore more
             </div>
@@ -341,7 +341,7 @@ export default function Home() {
       <section className="enter-sec relative" >
         <div className="container flex flex-col items-center sm:pt-12 md:pt-16 lg:pt-24">
           <h2 className="text-3xl tracking-wider text-center font-bold text-accent-dark dark:text-accent-white">Recent Articles</h2>
-          <div className="lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6 flex lg:flex-row sm:flex-col transition-all justify-between gap-6" style={{ perspective: "1000px" }}>
+          <div className="lg:w-[1024px] md:w-[500px] sm:w-full md:mt-10 sm:mt-6 flex lg:flex-row sm:flex-col transition-all justify-between gap-6">
             <BlogCard data={blogData[NUM_OF_BLOGS - 2]} />
             <BlogCard data={blogData[NUM_OF_BLOGS - 1]} />
           </div>
