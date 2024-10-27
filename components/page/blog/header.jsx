@@ -15,7 +15,7 @@ export const BlogHeader = ({ data }) => {
       <div className="flex items-center sm:mt-1 md:mt-2 md:gap-4 sm:gap-2">
         {
           data.categories.map((category) => (
-            <div className="sm:px-1.5 md:px-3 py-1 bg-orange-base/90 dark:bg-orange-base/70 text-white dark:text-accent-white rounded sm:text-xs md:text-sm tracking-wide italic">
+            <div key={{category}} className="sm:px-1.5 md:px-3 py-1 bg-orange-base/90 dark:bg-orange-base/70 text-white dark:text-accent-white rounded sm:text-xs md:text-sm tracking-wide italic">
               {categoryMap[category]}
             </div>
           ))
