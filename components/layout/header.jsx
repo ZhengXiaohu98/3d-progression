@@ -34,7 +34,7 @@ export const Header = () => {
 
   const navigations = [
     {
-      "nav": "Projects",
+      "nav": "Project",
       "url": "/project"
     },
     {
@@ -44,10 +44,6 @@ export const Header = () => {
     {
       "nav": "About",
       "url": "/about"
-    },
-    {
-      "nav": "Contact",
-      "url": "/contact"
     }
   ];
   return (

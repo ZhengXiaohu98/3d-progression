@@ -22,7 +22,7 @@ const BlogAnimations = () => {
           start: "top 90%"
         }
       })
-    })
+    });
   }, []);
 
   return <></>;

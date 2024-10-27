@@ -196,7 +196,7 @@ export const CTA = () => {
               </svg>
             </div>
             <div className="glow flex flex-col md:items-start sm:items-center sm:gap-3 md:gap-4 lg:gap-6 dark:text-accent-white text-accent-300">
-              <p className="sm:text-lg md:text-2xl lg:text-4xl font-bold font-playwrite-gbs">{"I’m always up for a chat."}</p>
+              <p className="sm:text-lg md:text-2xl lg:text-4xl font-bold font-playwrite-gbs">{"Always up for a chat~"}</p>
               <Link href="mailto:zxh635148320@gmail.com" >
                 <button className="sm:px-3 sm:py-2 md:px-4 md:py-2 bg-gradient-to-b rounded-lg from-orange-base/20 to-transparent dark:from-orange-base/60 dark:to-purple-base/5 w-fit font-bold relative sm:text-sm md:text-base">
                   zxh635148320@gmail.com

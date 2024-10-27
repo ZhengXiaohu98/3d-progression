@@ -72,7 +72,7 @@ const Blog = () => {
       <Link href={bannerBlog.url}>
         <section className="w-full flex lg:flex-row sm:flex-col items-center sm:gap-4 md:gap-6 lg:gap-10 group select-none">
           <div className="lg:w-[500px] lg:h-[250px] md:w-[600px] md:h-[300px] sm:w-[350px] sm:h-[175px] overflow-hidden shrink-0 rounded-lg block float-right">
-            <Image src={bannerBlog.img} width={bannerBlog.width} height={bannerBlog.height} alt={bannerBlog.alt} className="group-hover:scale-105 transition duration-500" />
+            <Image priority src={bannerBlog.img} width={bannerBlog.width} height={bannerBlog.height} alt={bannerBlog.alt} className="group-hover:scale-105 transition duration-500" />
           </div>
           <div>
             <div className="flex items-center gap-1 sm:mb-1.5 md:mb-2">
