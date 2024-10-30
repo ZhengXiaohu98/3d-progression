@@ -2,6 +2,7 @@ import { projectData } from "./data.json";
 import Image from "next/image";
 import { Footer } from "@/components/layout";
 import Link from "next/link.js";
+import { PageTip } from "@/components/general";
 import { ArrowIcon } from "@/components/icon";
 import dynamic from "next/dynamic";
 const CupAnimation = dynamic(() => import("./animations"));
@@ -10,7 +11,7 @@ const Project = () => {
 
   return (
     <section className="relative container lg:max-w-[1092px] sm:w-full sm:pt-28 md:pt-32 lg:pt-40 dark:text-accent-white text-accent-dark">
-      <h1 className="lg:text-3xl md:text-2xl sm:text-xl font-bold font-playwrite-gbs">
+      <h1 className="lg:text-4xl md:text-2xl sm:text-xl font-bold font-playwrite-gbs">
         Projects
       </h1>
       <p className="sm:mt-2 md:mt-3 lg:mt-4 tracking-wide dark:text-accent-900 text-accent-300 md:text-base sm:text-xs font-playwrite-gbs">
@@ -56,7 +57,7 @@ const Project = () => {
         }
       </div>
       <div className="w-full flex justify-end">
-        <svg xmlns="http://www.w3.org/2000/svg" className="lg:w-80 lg:h-80 md:w-60 md:h-60 sm:w-40 sm:h-40" viewBox="60 60 200 200">
+        <svg xmlns="http://www.w3.org/2000/svg" className="lg:w-80 lg:h-80 md:w-60 md:h-60 sm:w-40 sm:h-40 peer" viewBox="60 60 200 200">
           <ellipse rx="33.851713" ry="11.058828" transform="matrix(1.159314 0 0 0.62498 150 229.922716)" className="dark:fill-accent-300 fill-accent-900" strokeWidth="0" />
 
           <g id="feet" className="dark:text-white text-accent-white">
@@ -83,6 +84,7 @@ const Project = () => {
             <path d="M199.849381,194.948222q-2.272517.088501-3.443071,2.124043" transform="translate(0 0.000001)" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
           </g>
         </svg>
+        <PageTip text="First time made an svg :3" />
       </div>
       <Footer />
       <CupAnimation />

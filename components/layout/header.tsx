@@ -79,7 +79,7 @@ export const Header: React.FC = () => {
               priority
             />
           </Link>
-          <div className="sm:hidden md:flex items-center dark:text-[#999] text-[#333] gap-6">
+          <div className="sm:hidden md:flex items-center dark:text-[#cccccc] text-accent-300 gap-6">
             {navigations.map((navigation) => (
               <Link
                 key={navigation.nav}

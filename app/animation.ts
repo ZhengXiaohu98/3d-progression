@@ -2,9 +2,9 @@
 import React from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger, MotionPathPlugin, TextPlugin } from "gsap/all";
+import { MotionPathPlugin } from "gsap/all";
 
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, TextPlugin);
+gsap.registerPlugin(MotionPathPlugin);
 
 const HomeAnimations: React.FC = () => {
   useGSAP(() => {
@@ -60,22 +60,6 @@ const HomeAnimations: React.FC = () => {
       repeat: -1,
     });
 
-    // intro anim
-    gsap.from(".intro-text", {
-      opacity: 0,
-      duration: 0.8,
-      y: 40,
-      ease: "power1.inOut",
-      stagger: 0.2,
-    });
-
-    gsap.from("#logo", {
-      filter: "blur(40px)",
-      scale: 0,
-      duration: 0.8,
-      ease: "back",
-    });
-
     gsap.utils.toArray<HTMLElement>(".info-circle").forEach((circle) => {
       gsap.to(circle, {
         x: gsap.utils.random(-150, 100),
@@ -87,20 +71,6 @@ const HomeAnimations: React.FC = () => {
       });
     });
 
-    // animations when div enter
-    gsap.utils.toArray<HTMLElement>(".enter-sec").forEach((sec) => {
-      gsap.from(sec, {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        ease: "back",
-        scrollTrigger: {
-          trigger: sec,
-          start: "top 90%",
-          toggleActions: "play none none none",
-        },
-      });
-    });
   }, []);
 
   return null;

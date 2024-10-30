@@ -22,7 +22,7 @@ export const PageTip: React.FC<PageTipProps> = ({ text }) => {
   return (
     <div
       className="z-[30] pointer-events-none opacity-0 peer-hover:opacity-100 -translate-y-1.5 peer-hover:translate-y-1 scale-75 peer-hover:scale-100
-      origin-top-left transition duration-200 absolute lg:p-3 sm:p-2 rounded-lg bg-orange-base dark:bg-purple-base dark:text-accent-white text-white hyphens-auto 
+      origin-top-left transition duration-200 fixed lg:p-3 sm:p-2 rounded-lg bg-orange-base dark:bg-purple-base dark:text-accent-white text-white hyphens-auto 
       tracking-wider font-semibold lg:max-w-96 sm:max-w-80 sm:text-xs lg:text-sm font-playwrite-gbs"
       style={{
         top: position.y + 35,
