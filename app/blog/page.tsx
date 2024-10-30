@@ -45,7 +45,7 @@ const Blog = () => {
     }
 
     const filteredBlogs = blogArr.filter(blog =>
-      filterCategoryArr.every(category => blog.categories.includes(category))
+      filterCategoryArr.every(category => blog?.categories?.includes(category))
     );
     setBlogs(filteredBlogs);
 
@@ -80,14 +80,14 @@ const Blog = () => {
 
   return (
     <>
-      <Link href={bannerBlog.url}>
+      <Link href={bannerBlog.url as string}>
         <section className="w-full flex lg:flex-row sm:flex-col items-center sm:gap-4 md:gap-6 lg:gap-10 group select-none">
           <div className="lg:w-[500px] lg:h-[250px] md:w-[600px] md:h-[300px] sm:w-[350px] sm:h-[175px] overflow-hidden shrink-0 rounded-lg block float-right">
-            <Image priority src={bannerBlog.img.src} width={bannerBlog.img.width} height={bannerBlog.img.height} alt={bannerBlog.img.alt} className="group-hover:scale-105 transition duration-500" />
+            <Image priority src={bannerBlog?.img?.src as string} width={bannerBlog?.img?.width as number} height={bannerBlog?.img?.height as number} alt={bannerBlog?.img?.alt as string} className="group-hover:scale-105 transition duration-500" />
           </div>
           <div>
             <div className="flex items-center gap-1 sm:mb-1.5 md:mb-2">
-              {bannerBlog.categories.map((category) => (
+              {bannerBlog?.categories?.map((category) => (
                 <div key={category} className="px-1.5 sm:py-0.5 md:py-1 dark:bg-gray-dark bg-gray-light text-white dark:text-accent-white rounded text-xs tracking-wide italic">
                   {categoryMap[category]}
                 </div>
@@ -109,14 +109,14 @@ const Blog = () => {
       <section className="w-full flex lg:flex-row-reverse sm:flex-col-reverse gap-8 select-none">
         <div className={cn("transition-all md:w-full lg:w-[816px] shrink-0 grid gap-x-4 gap-y-8", curView === "grid" ? "grid-cols-2" : "grid-cols-1")}>
           {blogs.map(blog => (
-            <Link key={blog.title} href={blog.url}>
+            <Link key={blog.title} href={blog.url as string}>
               <div className={cn("blog-div group flex shrink-0", curView === "grid" ? "rounded-xl flex-col w-[400px] h-[430px] shadow-md dark:shadow-accent-white/15 shadow-accent-dark/10" : "sm:flex-col md:flex-row gap-1 items-center w-full border-b dark:border-gray-dark border-gray-light")}>
                 <div className="lg:w-[400px] lg:h-[200px] md:w-[260px] md:h-[130px] sm:w-[340px] sm:h-[170px] overflow-hidden shrink-0 rounded-lg">
-                  <Image src={blog.img} width={blog.img.width} height={blog.img.height} alt={blog.img.alt} className="group-hover:scale-105 transition duration-500" />
+                  <Image src={blog?.img?.src as string} width={blog?.img?.width as number} height={blog?.img?.height as number} alt={blog?.img?.alt as string} className="group-hover:scale-105 transition duration-500" />
                 </div>
                 <div className="px-2 py-4">
                   <div className="flex items-center gap-1 mb-2">
-                    {blog.categories.map((category) => (
+                    {blog?.categories?.map((category) => (
                       <div key={category} className="px-1.5 sm:py-0.5 md:py-1 dark:bg-gray-dark bg-gray-light text-white dark:text-accent-white rounded text-xs tracking-wide italic">
                         {categoryMap[category]}
                       </div>

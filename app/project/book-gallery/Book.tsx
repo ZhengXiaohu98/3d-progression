@@ -94,7 +94,7 @@ const Page: React.FC<PageProps> = ({
   frontPicture.colorSpace = backPicture.colorSpace = THREE.SRGBColorSpace;
 
   const pageRef = useRef<THREE.Group>(null);
-  const skinnedMeshRef = useRef<THREE.SkinnedMesh>(null);
+  const skinnedMeshRef = useRef<any>(null);
   const turnedAt = useRef(0);
   const lastOpened = useRef(opened);
 

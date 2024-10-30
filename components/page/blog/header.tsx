@@ -1,20 +1,10 @@
 import Image from "next/image";
 
 interface BlogHeaderProps {
-  data: {
-    title: string;
-    categories: Array<keyof typeof categoryMap>;
-    date: string;
-    img: {
-      src: string;
-      width: number;
-      height: number;
-      alt: string; 
-    };
-  };
+  data: any;
 }
 
-const categoryMap = {
+const categoryMap: { [key: string]: string } = {
   svg: "Svg",
   gsap: "Gsap",
   tailwind: "Tailwindcss",
@@ -26,7 +16,7 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({ data }) => {
     <section className="w-full flex flex-col items-center">
       <h1 className="font-semibold text-center sm:text-2xl md:text-3xl lg:text-4xl">{data.title}</h1>
       <div className="flex items-center sm:mt-1 md:mt-2 md:gap-4 sm:gap-2">
-        {data.categories.map((category) => (
+        {data.categories.map((category: any) => (
           <div
             key={category}
             className="sm:px-1.5 md:px-3 py-1 bg-orange-base/90 dark:bg-orange-base/70 text-white dark:text-accent-white rounded sm:text-xs md:text-sm tracking-wide italic"
