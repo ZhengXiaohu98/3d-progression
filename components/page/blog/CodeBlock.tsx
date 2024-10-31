@@ -1,6 +1,8 @@
 "use client";
 import { CopyIcon } from "@/components/icon";
-import { useRef, useState, DetailedHTMLProps } from "react";
+import { useRef, DetailedHTMLProps } from "react";
+import { useToast } from "@/utils";
+import { Toast } from "@/components/general";
 
 interface CodeblockProps
   extends DetailedHTMLProps<React.HTMLAttributes<HTMLPreElement>, HTMLPreElement> {
@@ -23,12 +25,15 @@ const determineLanguage = (classname: string) => {
 };
 
 export const Codeblock = ({ children, ...props }: CodeblockProps) => {
+
+  const { toast, showToast } = useToast();
   const language = determineLanguage(props?.className as string);
   const ref = useRef<HTMLPreElement>(null);
 
   const handleCopy = () => {
     if (typeof window === "undefined" || !ref.current) return;
     window.navigator.clipboard.writeText(ref.current.innerText);
+    showToast("Copied Code!")
   };
 
   return (
@@ -68,7 +73,7 @@ export const Codeblock = ({ children, ...props }: CodeblockProps) => {
           }
           <p className="text-sm">{language}</p>
         </div>
-        <div onClick={handleCopy} className="opacity-0 group-hover:opacity-100 cursor-pointer transition duration-150 dark:hover:bg-gray-dark hover:bg-gray-dark/15 p-.5 rounded-md w-7 h-7 flex items-center justify-center">
+        <div onClick={handleCopy} className="lg:opacity-0 group-hover:opacity-100 cursor-pointer transition duration-150 dark:hover:bg-gray-dark hover:bg-gray-dark/15 p-.5 rounded-md w-7 h-7 flex items-center justify-center">
           <CopyIcon />
         </div>
       </div>
@@ -78,6 +83,7 @@ export const Codeblock = ({ children, ...props }: CodeblockProps) => {
       >
         {children}
       </pre>
+      <Toast toast={toast} />
     </figure>
   );
 }
