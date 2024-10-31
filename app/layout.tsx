@@ -1,5 +1,6 @@
 import "./globals.css";
-import "prism-themes/themes/prism-vsc-dark-plus.css";
+import "@/public/css/prism-theme-github-dark.css";
+import "@/public/css/prism-theme-github-light.css";
 import { ThemeProviders } from "./theme-provider";
 import { Header } from "@/components/layout";
 import React from "react";

@@ -1,4 +1,5 @@
 import rehypePrism from "rehype-prism-plus";
+import remarkGfm from "remark-gfm";
 import createMDX from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
