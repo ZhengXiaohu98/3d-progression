@@ -38,9 +38,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ data }) => {
               d="m10.051 8.102-3.778.322-1.994 1.994a.94.94 0 0 0 .533 1.6l2.698.316m8.39 1.617-.322 3.78-1.994 1.994a.94.94 0 0 1-1.595-.533l-.4-2.652m8.166-11.174a1.366 1.366 0 0 0-1.12-1.12c-1.616-.279-4.906-.623-6.38.853-1.671 1.672-5.211 8.015-6.31 10.023a.932.932 0 0 0 .162 1.111l.828.835.833.832a.932.932 0 0 0 1.111.163c2.008-1.102 8.35-4.642 10.021-6.312 1.475-1.478 1.133-4.77.855-6.385Zm-2.961 3.722a1.88 1.88 0 1 1-3.76 0 1.88 1.88 0 0 1 3.76 0Z"
             />
           </svg>
-          <p className="md:text-xl sm:text-lg font-bold italic tracking-wide">{data.name}</p>
+          <p className="md:text-xl sm:text-lg font-bold tracking-wide">{data.name}</p>
         </div>
-        <p className="tracking-wide md:text-base sm:text-sm">{data.description}</p>
+        <p className="tracking-wide md:text-base sm:text-sm dark:text-accent-900">{data.description}</p>
         <div className="absolute inset-0 dark:bg-accent-dark/40 bg-accent-white/25 z-[5] sm:hidden lg:flex items-center justify-center rounded-full scale-0 opacity-0 group-hover:opacity-100 group-hover:scale-100 group-hover:rounded-xl transition backdrop-blur-[2px]">
           <svg
             className="w-6 h-6 text-white"

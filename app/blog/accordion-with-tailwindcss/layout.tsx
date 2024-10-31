@@ -13,7 +13,7 @@ export default function BlogLayout({ children }: BlogLayoutProps) {
     <>
       <BlogHeader data={headerData} />
       <div className="flex flex-col lg:flex-row lg:gap-7">
-        <article className="blog-content flex-1">
+        <article className="blog-item flex-1">
           {children}
         </article>
         <div className="w-full lg:w-auto">

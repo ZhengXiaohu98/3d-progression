@@ -84,7 +84,7 @@ export default function Home() {
                 {"I'm Xiaohu, a Web Developer building "}
                 <span className="dark:from-[#c2410c77] dark:via-[#7e22c755] dark:to-[#c2410c77] from-orange-base via-purple-base to-orange-base bg-clip-text text-transparent bg-gradient-to-l gradient-text bg-[length:200%_100%]">{"creative engaging 3D"}</span> {"websites."}
               </h1>
-              <p className="intro-text text-smoke-base dark:text-accent-900 tracking-wide text-sm font-mono">{"Exploring the ocean of code"}</p>
+              <p className="intro-text text-smoke-base dark:text-accent-900 tracking-widest text-sm">{"Exploring the ocean of code"}</p>
             </div>
             <div className="sm:hidden md:flex flex-col items-center gap-10">
               <div id="logo" className="relative">

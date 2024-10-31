@@ -8,10 +8,10 @@ const AboutAnimations = dynamic(() => import("./animation"));
 const About: React.FC = () => {
   return (
     <div className="container lg:max-w-[1092px] sm:w-full sm:pt-28 md:pt-32 lg:pt-40 dark:text-accent-white text-accent-dark">
-      <h1 className="lg:text-3xl md:text-2xl sm:text-xl font-bold font-playwrite-gbs">
+      <h1 className="lg:text-4xl md:text-2xl sm:text-xl font-bold font-playwrite-gbs">
         A Little About Me
       </h1>
-      <p className="sm:mt-2 md:mt-3 lg:mt-4 tracking-wide dark:text-accent-900 text-accent-300 md:text-base sm:text-sm">
+      <p className="sm:mt-2 md:mt-3 lg:mt-4 tracking-wide dark:text-[#ccc] text-accent-300 md:text-base sm:text-sm">
         {"Hello, visitor! I’m Xiaohu, which stands for 'little tiger.' I’m an enthusiastic web developer with passion!"}
       </p>
       <Link href="/blog/animated-dashed-line-with-gsap" className="peer">
@@ -19,7 +19,7 @@ const About: React.FC = () => {
       </Link>
       <PageTip text={"Curious about how this part is implemented? Check out this article to find out!"} />
       <div className="flex flex-col sm:gap-4 md:gap-6 lg:gap-8">
-        <h2 className="lg:text-2xl md:text-xl sm:text-lg font-bold font-playwrite-gbs">My Journey</h2>
+        <h2 className="lg:text-3xl md:text-xl sm:text-lg font-bold font-playwrite-gbs">My Journey</h2>
         <div className="flex flex-col sm:gap-4 md:gap-6 lg:gap-8 tracking-wider lg:text-lg dark:text-accent-900 text-accent-300 md:text-base sm:text-sm">
           <p>{"I currently work at Fanruan, a software company, focusing on the development of our official website. While I’m the primary developer, I’m still on a long learning journey. I have gained some experience in website internationalization and SEO, but I feel I still need to improve in performance optimization. Right now, I’m diving into Three.js, and I find UI/UX-related topics fascinating, though I sometimes feel I lack an innate sense of aesthetics 😀."}</p>
           <p>{"I graduated with a degree in Computer Science. I wasn't initially sure what type of work I enjoyed. However, I discovered the joy of web development, especially with Next.js, which has made creating websites so much easier."}</p>
