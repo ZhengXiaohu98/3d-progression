@@ -62,9 +62,9 @@ const Blog = () => {
 
     handleResize();
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -110,7 +110,7 @@ const Blog = () => {
         <div className={cn("transition-all md:w-full lg:w-[816px] shrink-0 grid gap-x-4 gap-y-8", curView === "grid" ? "grid-cols-2" : "grid-cols-1")}>
           {blogs.map(blog => (
             <Link key={blog.title} href={blog.url as string}>
-              <div className={cn("blog-div group flex shrink-0", curView === "grid" ? "rounded-xl flex-col w-[400px] h-[430px] shadow-md dark:shadow-accent-white/15 shadow-accent-dark/10" : "sm:flex-col md:flex-row gap-1 items-center w-full border-b dark:border-gray-dark border-gray-light")}>
+              <div className={cn("blog-div group flex shrink-0 relative", curView === "grid" ? "rounded-xl flex-col w-[400px] h-[430px] shadow-md dark:shadow-accent-white/15 shadow-accent-dark/10" : "sm:flex-col md:flex-row gap-1 items-center w-full border-b dark:border-gray-dark border-gray-light")}>
                 <div className="lg:w-[400px] lg:h-[200px] md:w-[260px] md:h-[130px] sm:w-[340px] sm:h-[170px] overflow-hidden shrink-0 rounded-lg">
                   <Image src={blog?.img?.src as string} width={blog?.img?.width as number} height={blog?.img?.height as number} alt={blog?.img?.alt as string} className="group-hover:scale-105 transition duration-500" />
                 </div>
@@ -128,8 +128,8 @@ const Blog = () => {
                     </span>
                   </h2>
                   <p className="sm:text-xs lg:text-sm dark:text-accent-900 text-accent-300 mt-1">{blog.desdescription}</p>
-                  <div className="mt-2 flex items-center w-full justify-between dark:text-accent-white/80 text-accent-dark/80 font-bold">
-                    <p className="md:text-sm sm:text-xs italic w-full text-right pr-2">{blog.date}</p>
+                  <div className={cn("flex items-center w-full dark:text-accent-white/80 text-accent-dark/80 font-bold", curView === "grid" ? "absolute bottom-2 left-0" : "relative mt-2")}>
+                    <p className="md:text-sm sm:text-xs italic w-full text-right pr-4">{blog.date}</p>
                   </div>
                 </div>
               </div>

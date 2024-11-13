@@ -4,6 +4,8 @@ import "@/public/css/prism-theme-github-light.css";
 import { ThemeProviders } from "./theme-provider";
 import { Header } from "@/components/layout";
 import React from "react";
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata = {
   title: "Xiaohu | Explore the World of 3D Graphics",
@@ -34,6 +36,8 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
           <Header />
           {children}
         </ThemeProviders>
+        <Analytics/>
+        <SpeedInsights/>
       </body>
     </html>
   );
