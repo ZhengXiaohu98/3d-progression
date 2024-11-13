@@ -2,6 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/icon";
+import { motion, useScroll, useSpring } from "framer-motion";
 
 const navToAnchor = (nav: string) => {
   return nav.replace(/\s+/g, "-").toLowerCase();
@@ -29,6 +30,13 @@ export const Navigation: React.FC = () => {
 
   const [headings, setHeadings] = useState<Heading[]>([]);
   const checkboxRef = useRef<HTMLInputElement>(null);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 150,
+    damping: 30,
+    restDelta: 0.0001
+  });
 
   const handleClickOutside = (event: MouseEvent) => {
     if (checkboxRef.current && !checkboxRef.current.contains(event.target as Node)) {
@@ -70,6 +78,7 @@ export const Navigation: React.FC = () => {
 
   return (
     <>
+
       {/* large viewport */}
       <div className="sm:hidden lg:block w-[252px] sticky !top-36 shrink-0 pl-4 py-2 select-none">
         <p className="font-semibold text-lg dark:text-accent-white text-accent-dark">Table of Contents</p>
@@ -82,7 +91,8 @@ export const Navigation: React.FC = () => {
             ))
           }
         </ul>
-        <hr className="my-5 rounded-full dark:text-accent-900 text-accent-300" />
+        {/* scroll percentage */}
+        <motion.div className="my-5 rounded-full w-full h-0.5 origin-left bg-gray-light dark:bg-accent-white z-10" style={{ scaleX }} />
         <div className="overflow-hidden group dark:text-accent-900 text-accent-300 dark:hover:text-accent-white hover:text-accent-dark transition duration-150">
           <div className="flex items-center gap-2 -translate-x-8 group-hover:translate-x-0 transition">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24">
