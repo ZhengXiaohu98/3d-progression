@@ -12,7 +12,7 @@ const Project = () => {
   return (
     <section className="relative container lg:max-w-[1092px] sm:w-full sm:pt-28 md:pt-32 lg:pt-40 dark:text-accent-white text-accent-dark">
       <h1 className="lg:text-4xl md:text-2xl sm:text-xl font-bold font-playwrite-gbs">
-        Projects
+        Creation
       </h1>
       <p className="sm:mt-2 md:mt-3 lg:mt-4 tracking-wide dark:text-accent-900 text-accent-300 md:text-base sm:text-xs font-playwrite-gbs">
         {"Just a few small creations made in my spare time."}

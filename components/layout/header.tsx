@@ -33,8 +33,8 @@ export const Header: React.FC = () => {
 
   const navigations = [
     {
-      nav: "Project",
-      url: "/project",
+      nav: "Creation",
+      url: "/creation",
     },
     {
       nav: "Blog",
