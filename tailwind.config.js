@@ -52,7 +52,9 @@ module.exports = {
         "white": "#ededed",
         "300": "#333333",
         "500": "#555555",
-        "900": "#999999"
+        "900": "#999999",
+        "aaa": "#aaaaaa",
+        "ccc": "#cccccc"
       },
       orange: {
         "base": "#c2410c"
@@ -63,8 +65,9 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        petrona: ["petrona"],
-        "playwrite-gbs": ["playwritegbs"]
+        "petrona": ["petrona"],
+        "playwrite-gbs": ["playwritegbs"],
+        "instrument-sans": ["instrumentSans"]
       },
       screens: {
         DEFAULT: "1200px",

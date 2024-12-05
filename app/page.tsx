@@ -7,7 +7,7 @@ import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import dynamic from "next/dynamic";
 import { blogData } from "./blog/data.json";
-import { Footer } from "@/components/layout";
+const Footer = dynamic(() => import("@/components/layout").then((mod) => mod.Footer));
 const HomeAnimations = dynamic(() => import("./animation"));
 
 const NUM_OF_BLOGS = blogData.length;
