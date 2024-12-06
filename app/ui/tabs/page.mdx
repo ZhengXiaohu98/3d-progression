@@ -1,0 +1,187 @@
+import { ExampleBox } from "@/components/page/ui";
+import { ThreeDRotate } from "@/components/ui/3d-effects";
+import { Tabs, Tab } from "@/components/ui/general";
+import Image from "next/image";
+import Link from "next/link";
+
+export const metadata = {
+  title: "Tabs | Easy UI",
+  description: "The `tabs` component is with smooth transition animations. It allows users to effortlessly switch between different content sections.",
+};
+
+# Tabs
+Tabs can be used to switch content. This `tabs` component is added with some smooth transition animations. 
+
+## Example
+
+<ExampleBox className="sm:px-4 md:px-12 lg:px-20">
+  <Tabs tabs={["Fancy Card", "Code Snippets"]}>
+    <Tab title="Fancy Card">
+      <div className="w-full flex justify-center">
+        <ThreeDRotate>
+          <div className="md:w-[450px] sm:w-[320px] sm:p-4 lg:p-6 border border-gray-light dark:border-gray-dark rounded-xl">
+            <Image src="/images/project/3d-book-gallery/img8.jpg" width={1800} height={949} className="w-full h-fit rounded-md"/>
+            <p className="sm:mt-3 md:mt-4 font-bold text-accent-dark dark:text-accent-white sm:text-lg md:text-xl">3D Rotate</p>
+            <p className="sm:mt-1 md:mt-2 font-semibold text-accent-300 dark:text-accent-900 sm:text-xs md:text-sm">Hover over this card to see the 3D effect. Customizable maximum X-Y tilt angles and component content.</p>
+            <Link href="/ui/3d-rotate" className="transition w-fit block mt-4 px-2.5 py-1.5 rounded bg-accent-dark text-accent-white dark:bg-white dark:text-accent-dark sm:text-xs md:text-sm tracking-wider">
+              Learn More
+            </Link>
+          </div>
+        </ThreeDRotate>
+      </div>
+    </Tab>
+<Tab title="Code Snippets">
+  <div>
+    ```js
+  new Promise((resolve, reject) => {
+      resolve();
+      // or
+      reject("failure reason");
+  });
+    ```
+  </div>
+    </Tab>  
+  </Tabs>
+</ExampleBox>
+
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="w-full flex justify-center sm:py-4 md:py-10">
+      <div className="w-3/5">
+        <Tabs tabs={["Basic", "Direction", "Nested"]}>
+          <Tab title="Basic">
+            Simple Html Element is ok.
+          </Tab>
+          <Tab title="Direction">
+            <Tabs tabs={["Horizontal", "Vertical"]} direction="vertical">
+              <Tab title="Horizontal">
+                The default direction is horizontal
+              </Tab>
+              <Tab title="Vertical">
+                Use `direction="vertical"` to change direction.
+              </Tab>
+            </Tabs>
+          </Tab>
+          <Tab title="Nested">
+            Or nested Tabs like the tab2!
+          </Tab>
+        </Tabs>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { Tabs, Tab } from "@/components/ui/general";  // your file path
+
+    <Tabs tabs={["Basic", "Direction", "Nested"]}>
+      <Tab title="Basic">
+        Simple Html Element is ok.
+      </Tab>
+      <Tab title="Direction">
+        <Tabs tabs={["Horizontal", "Vertical"]} direction="vertical">
+          <Tab title="Horizontal">
+            The default direction is horizontal
+          </Tab>
+          <Tab title="Vertical">
+            Use `direction="vertical"` to change direction.
+          </Tab>
+        </Tabs>
+      </Tab>
+      <Tab title="Nested">
+        Or nested Tabs like tab2!
+      </Tab>
+    </Tabs>
+    ```
+  </Tab>
+</Tabs>
+
+
+
+## Source Code
+
+```tsx
+"use client";
+import React, { useState } from "react";
+import { cn } from "@/utils";
+
+interface TabProps {
+  title: string;
+  children: React.ReactNode;
+  isActive?: boolean;
+}
+
+interface TabsProps {
+  tabs: string[];
+  children: React.ReactElement<TabProps>[];
+  direction?: "horizontal" | "vertical";
+}
+
+export const Tab: React.FC<TabProps> = ({ children, isActive }) => {
+  return (
+    <div className={cn("w-full", isActive ? "transition duration-500 ease-in-out" : "opacity-0 translate-y-[10%] scale-95 h-0")}>
+      {children}
+    </div>
+  );
+};
+
+
+export const Tabs: React.FC<TabsProps> = ({ tabs, children, direction = "horizontal" }) => {
+
+  // default first tab
+  const [activeTab, setActiveTab] = useState<string>(tabs[0]);
+
+  const handleTabClick = (value: string) => {
+    if (value !== activeTab) {
+      setActiveTab(value);
+    }
+  };
+
+  return (
+    <div className={cn("not-prose w-full mx-auto flex", direction === "horizontal" ? "flex-col" : "flex-row")}>
+      {/* Tab Navigation */}
+      <div className={cn("flex shrink-0", direction === "horizontal" ? "flex-row" : "flex-col")}>
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            onClick={() => handleTabClick(tab)}
+            className={cn("py-2 px-4 transition rounded", activeTab === tab ? "font-bold bg-accent-ccc/30 dark:bg-accent-300/70" : "")}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+
+      <div className={cn("bg-gray-light dark:bg-gray-dark", direction === "horizontal" ? "sm:my-2 md:my-4 h-px" : "w-px md:mx-5 sm:mx-2.5")} />
+
+      {/* Tab Wrapper */}
+      <div className="w-full">
+        {children.map((child) =>
+          React.cloneElement(child, {
+            isActive: child.props.title === activeTab,
+          })
+        )}
+      </div>
+    </div>
+  );
+};
+```
+
+## Props
+
+### Tabs Props
+| Prop Name | Type            | Required | Default Value | Description                                        |
+|-----------|-----------------|----------|---------------|----------------------------------------------------|
+| `tabs`    | `string[]`      | Yes      | -             | List of tab names.                                |
+| `children`| `Tab[]`         | Yes      | -             | List of `Tab` components as the content for each tab. |
+| `direction`| "horizontal" \| "vertical" | No | "horizontal" | Control the layout of the tab |
+
+
+### Tab Props
+| Prop Name  | Type             | Required | Default Value | Description                                            |
+|------------|------------------|----------|---------------|--------------------------------------------------------|
+| `title`    | `string`         | Yes      | -             | The title of the tab that corresponds to the `tabs`. |
+| `children` | `React.ReactNode`| No      | -             | The content of the tab.                               |
+| `isActive` | `boolean`        | No       | -             | Determines if the tab is active (controlled by `Tabs`). |

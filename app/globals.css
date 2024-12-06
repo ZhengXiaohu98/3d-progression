@@ -19,6 +19,14 @@
     font-display: swap;
     src: url("/fonts/PlaywriteGBS-VariableFont_wght.ttf") format("truetype");
   }
+
+  @font-face {
+    font-family: "instrumentSans";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/InstrumentSans-VariableFont_wdth_wght.ttf") format("truetype");
+  }
 }
 
 @layer utilities {
@@ -55,6 +63,13 @@
 /* blog item */
 .blog-item {
   @apply shrink-0 sm:prose-sm md:prose lg:prose-lg dark:prose-invert sm:max-w-[360px] md:max-w-full lg:w-[712px] prose-p:tracking-[0.1px] prose-p:text-accent-300 dark:prose-p:text-[#cbcbcb] 
-  prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-orange-base/90 prose-ul:tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] prose-img:rounded 
+  prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-[#f472b6] prose-a:underline-offset-2 prose-ul:tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] prose-img:rounded 
+  dark:marker:text-[#cbcbcb] marker:text-accent-300;
+}
+
+/* UI */
+.ui-item {
+  @apply shrink-0 sm:prose-sm md:prose dark:prose-invert sm:max-w-[360px] md:max-w-full lg:w-[712px] prose-p:tracking-[0.1px] prose-p:text-accent-300 dark:prose-p:text-[#cbcbcb] 
+  prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-[#f472b6] prose-a:underline-offset-2 prose-ul:tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] prose-img:rounded 
   dark:marker:text-[#cbcbcb] marker:text-accent-300;
 }

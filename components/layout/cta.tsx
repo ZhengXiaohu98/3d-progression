@@ -43,9 +43,9 @@ export const CTA: React.FC = () => {
 
   return (
     <>
-      <section id="cta" className="enter-sec relative select-none">
+      <section id="cta" className="relative select-none">
         <div className="container flex flex-col items-center sm:py-12 md:py-16 lg:py-24">
-          <div className="md:h-[300px] lg:w-[1024px] md:w-[700px] sm:w-full flex md:flex-row sm:flex-col transition-all items-center lg:gap-24 md:gap-8 sm:gap-6 rounded-xl md:border dark:border-accent-300 border-accent-white md:px-12 lg:px-24 py-6 ">
+          <div className="md:h-[300px] flex md:flex-row sm:flex-col transition-all items-center lg:gap-24 md:gap-8 sm:gap-6">
             <div className="w-[250px] h-fit shrink-0 relative">
               <div className="absolute inset-0 bg-gradient-to-bl from-orange-base to-purple-base opacity-50 blur-3xl" />
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" className="relative z-[1]">

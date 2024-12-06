@@ -4,7 +4,7 @@
       "name": "Book Gallery",
       "description": "A website featuring a 3D book that showcases images in an interactive and immersive way.",
       "img": "/images/home/3d-book-preview.webp",
-      "url": "/project/book-gallery",
+      "url": "/creation/book-gallery",
       "highlights": [
         "Three.js",
         "SkinnedMesh",
@@ -15,7 +15,7 @@
       "name": "Paper Plane",
       "description": "A website featuring a 3D paper airplane that glides along a custom path, and showing a dynamic introduction.",
       "img": "/images/home/3d-plane-preview.webp",
-      "url": "/project/paper-plane",
+      "url": "/creation/paper-plane",
       "highlights": [
         "Three.js",
         "Scroll Effect",

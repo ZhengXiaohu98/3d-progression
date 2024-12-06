@@ -1,0 +1,128 @@
+import { ExampleBox } from "@/components/page/ui";
+import { ThreeDRotate } from "@/components/ui/3d-effects";
+import Image from "next/image";
+import { Tabs, Tab } from "@/components/ui/general";
+
+export const metadata = {
+  title: "3D Rotate | Easy UI",
+  description: "The `3D Rotate` component adds a 3D rotation effect to its child elements when hovered. The rotation dynamically responds to the user's mouse position.",
+};
+
+# 3D Rotate
+
+The `3D Rotate` component adds a 3D rotation effect to its child elements when hovered. The rotation dynamically responds to the user's mouse position.
+
+
+## Example
+
+<ExampleBox>
+  <ThreeDRotate>
+    <div className="md:w-[450px] sm:w-[320px] sm:p-4 lg:p-6 border border-gray-light dark:border-gray-dark rounded-xl">
+      <Image src="/images/project/3d-book-gallery/img8.jpg" width={1800} height={949} className="w-full h-fit rounded-md"/>
+      <p className="sm:mt-3 md:mt-4 font-bold text-accent-dark dark:text-accent-white sm:text-lg md:text-xl">3D Rotate</p>
+      <p className="sm:mt-1 md:mt-2 font-semibold text-accent-300 dark:text-accent-900 sm:text-xs md:text-sm">Hover over this card to see the 3D effect. Customizable maximum X-Y tilt angles and component content.</p>
+    </div>
+  </ThreeDRotate>
+</ExampleBox>
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="w-full flex justify-center sm:py-4 md:py-10">
+      <ThreeDRotate>
+        <div className="flex justify-center items-center sm:w-80 sm:h-80 lg:w-96 lg:h-96 border dark:border-accent-white/50 border-accent-dark/50 rounded">
+          Hover to see the Effect
+        </div>
+      </ThreeDRotate>
+    </div>
+  </Tab>
+<Tab title="Code">
+```tsx
+import { ThreeDRotate } from "@/components/ui/3d-effects"; // your file path
+
+<ThreeDRotate>
+  {/* Wrap your components here */}
+  {children}
+  {/* In the demo case */}
+  {/* 
+    <div className="flex justify-center items-center sm:w-80 sm:h-80 lg:w-96 lg:h-96 border dark:border-accent-white/50 border-accent-dark/50 rounded">
+      Hover to see the Effect
+    </div> 
+  */}
+</ThreeDRotate>
+```
+  </Tab>
+</Tabs>
+
+
+## Source Code
+
+```tsx
+"use client";
+import React, { useRef } from "react";
+
+interface ThreeDRotateProps {
+  children: React.ReactNode;
+  maxXAngle?: number;
+  maxYAngle?: number;
+}
+
+export const ThreeDRotate: React.FC<ThreeDRotateProps> = ({
+  children,
+  maxXAngle = 10,
+  maxYAngle = 10,
+  
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const { left, top, width, height } = container.getBoundingClientRect();
+    const x = (event.clientX - left - width / 2);
+    const y = (event.clientY - top - height / 2);
+
+    const rotateX = (-y / (height / 2)) * maxXAngle;
+    const rotateY = (x / (width / 2)) * maxYAngle;
+
+    container.style.transform = `
+      perspective(1000px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+    `;
+  };
+
+  const handleMouseLeave = () => {
+    const container = containerRef.current;
+    if (!container) return;
+    container.style.transform = "rotateX(0deg) rotateY(0deg) rotateZ(0deg)";
+  };
+
+  return (
+    <div style={{ perspective: "1000px" }} className="w-fit">
+      <div
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="transition-transform duration-200 ease-linear"
+      >
+        {children}
+      </div>
+    </div>
+
+  );
+};
+
+```
+
+## Props
+
+| Prop Name | Type   | Default Value | Description                                                                 |
+|-----------|--------|---------------|-----------------------------------------------------------------------------|
+| `maxXAngle`  | number    | `10`          | Maximum rotation angle along the X-axis (vertical tilt).                    |
+| `maxYAngle`  | number    | `10`          | Maximum rotation angle along the Y-axis (horizontal tilt).                  |
+| `children`   | ReactNode | -             | The content to which the 3D effect will be applied.                         |
+
+
