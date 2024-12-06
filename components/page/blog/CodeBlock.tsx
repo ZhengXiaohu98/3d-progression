@@ -10,6 +10,8 @@ interface CodeblockProps
 }
 
 const determineLanguage = (classname: string) => {
+  if (!classname) return;
+
   if (classname.includes("jsx")) {
     return "jsx";
   } else if (classname.includes("javascript")) {
@@ -33,11 +35,11 @@ export const Codeblock = ({ children, ...props }: CodeblockProps) => {
   const handleCopy = () => {
     if (typeof window === "undefined" || !ref.current) return;
     window.navigator.clipboard.writeText(ref.current.innerText);
-    showToast("Copied Code!")
+    showToast("Code Copied!")
   };
 
   return (
-    <figure className="rounded-md border dark:border-accent-300 border-[#ccc] group">
+    <figure className="relative rounded-md border dark:border-accent-300 border-[#ccc] group">
       <div className="flex items-center w-full justify-between sm:h-10 md:h-12 sm:px-3 md:px-4 dark:bg-[#282828] bg-[#f8f8f8] border-b dark:border-accent-300 border-[#ccc]">
         <div className="flex gap-2 text-sm items-center">
           {

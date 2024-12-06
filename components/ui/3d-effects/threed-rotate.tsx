@@ -3,16 +3,15 @@ import React, { useRef } from "react";
 
 interface ThreeDRotateProps {
   children: React.ReactNode;
-  xAngle?: number;
-  yAngle?: number;
-  zAngle?: number;
+  maxXAngle?: number;
+  maxYAngle?: number;
 }
 
 export const ThreeDRotate: React.FC<ThreeDRotateProps> = ({
   children,
-  xAngle = 15,
-  yAngle = 15,
-  zAngle = 10,
+  maxXAngle = 10,
+  maxYAngle = 10,
+  
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -21,17 +20,16 @@ export const ThreeDRotate: React.FC<ThreeDRotateProps> = ({
     if (!container) return;
 
     const { left, top, width, height } = container.getBoundingClientRect();
-    const x = (event.clientX - left - width / 2) / 20;
-    const y = (event.clientY - top - height / 2) / 20;
+    const x = (event.clientX - left - width / 2);
+    const y = (event.clientY - top - height / 2);
 
-    const rotateX = (-y / (height / 2)) * xAngle;
-    const rotateY = (x / (width / 2)) * yAngle;
+    const rotateX = (-y / (height / 2)) * maxXAngle;
+    const rotateY = (x / (width / 2)) * maxYAngle;
 
     container.style.transform = `
       perspective(1000px)
       rotateX(${rotateX}deg)
       rotateY(${rotateY}deg)
-      rotateZ(${zAngle}deg)
     `;
   };
 
@@ -42,12 +40,12 @@ export const ThreeDRotate: React.FC<ThreeDRotateProps> = ({
   };
 
   return (
-    <div style={{ perspective: "1000px" }}>
+    <div style={{ perspective: "1000px" }} className="w-fit">
       <div
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="inline-block transition-transform duration-200"
+        className="transition-transform duration-200 ease-linear"
       >
         {children}
       </div>

@@ -1,0 +1,142 @@
+import { ExampleBox } from "@/components/page/ui";
+import { Accordion } from "@/components/ui/general";
+import Image from "next/image";
+import { Tabs, Tab } from "@/components/ui/general";
+import { BlogTip } from "@/components/page/blog";
+
+export const metadata = {
+  title: "Accordion | Easy UI",
+  description: "Using only Tailwind CSS, with NO JavaScript! An interactive, lightweight, and responsive accordion component."
+};
+
+# Accordion
+Using only Tailwind CSS, no JavaScript. An interactive, responsive accordion component.
+
+
+## Example
+
+<ExampleBox>
+  <div className="md:w-[500px] sm:w-[300px]">
+    <Accordion accordionClassName="rounded-md overflow-hidden" className="bg-accent-ccc/30 dark:bg-accent-500/30" header="Click to show collapse">
+      <ul className="text-sm bg-accent-ccc/20 dark:bg-accent-500/20">
+        <li className="px-4 py-3">use `group-has-[:checked]` to style when expanded</li>
+        <li className="px-4 py-3">Wrap your children inside `<Accordion></Accordion>`</li>
+        <li className="px-4 py-3">Hide Icon by adding `showIcon = {false}`</li>
+      </ul>
+    </Accordion>
+  </div>
+</ExampleBox>
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="w-full flex justify-center sm:py-4 md:py-10">
+      <div className="w-3/5">
+        <Accordion accordionClassName="rounded-md overflow-hidden" className="bg-accent-ccc/30 dark:bg-accent-500/30" header="Click to show collapse" showIcon = {false}>
+          <ul className="text-sm bg-accent-ccc/20 dark:bg-accent-500/20">
+            <li className="px-4 py-3">`Style the entire div by using |accordionClassName|`</li>
+            <li className="px-4 py-3">Hide Icon by adding `showIcon = {false}`</li>
+            <li className="px-4 py-3 w-full flex justify-center">
+              <Accordion header="Nested Accordion is ok" accordionClassName="group/accordion" className="bg-accent-aaa/30 dark:bg-accent-300/70 group-has-[:checked]/accordion:text-[#e0115f]" >
+                <ul className="text-sm bg-accent-aaa/20 dark:bg-accent-300/40">
+                  <li className="px-4 py-3">`Style the accordion: group-has-[:checked]/accordion:text-[#e0115f]`</li>
+                  <li className="px-4 py-3">`Remember to apply 'group/accordion' to 'accordionClassName'`</li>
+                </ul>
+              </Accordion>
+            </li>
+          </ul>
+        </Accordion>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="Code">
+```tsx
+import { Accordion } from "@/components/ui/general";  // your file path
+
+<Accordion 
+  accordionClassName="rounded-md overflow-hidden" 
+  className="bg-accent-ccc/30 dark:bg-accent-500/30" 
+  header="Click to show collapse" 
+  showIcon = {false}
+>
+  <ul className="text-sm bg-accent-ccc/20 dark:bg-accent-500/20">
+    <li className="px-4 py-3">`Style the entire div by using |accordionClassName|`</li>
+    <li className="px-4 py-3">Hide Icon by adding `showIcon = {false}`</li>
+    <li className="px-4 py-3 w-full flex justify-center">
+      <Accordion 
+        header="Nested Accordion is ok" 
+        accordionClassName="group/accordion" 
+        className="bg-accent-aaa/30 dark:bg-accent-300/70 group-has-[:checked]/accordion:text-[#e0115f]" 
+      >
+        <ul className="text-sm bg-accent-accent/20 dark:bg-accent-300/40">
+          <li className="px-4 py-3">`Style the header container: group-has-[:checked]/accordion:text-[#e0115f]`</li>
+          <li className="px-4 py-3">`Remember to apply 'group/accordion' to 'accordionClassName'`</li>
+        </ul>
+      </Accordion>
+    </li>
+  </ul>
+</Accordion>
+```
+  </Tab>
+</Tabs>
+
+<BlogTip text="In case you want to style the header container you can use - group-has-[:checked]/accordion:text-[#e0115f], but remember to add: accordionClassName='group/accordion'"/>
+
+## Source Code
+
+```tsx
+import { cn } from "@/utils";
+
+interface AccordionProps {
+  header: string;
+  className?: string;
+  accordionClassName?: string;
+  children: React.ReactNode;
+  showIcon?: boolean;
+}
+
+
+
+export const Accordion: React.FC<AccordionProps> = ({ header, className, accordionClassName, children, showIcon = true }) => {
+  return (
+    <div className={cn("w-full", accordionClassName)}>
+      <div className={cn("relative peer px-4 py-2 w-full flex items-center justify-between group/toggle", className)}>
+        {header}
+        {/* Dropdown Icon */}
+        <svg
+          className={cn("w-4 h-4 group-has-[:checked]/toggle:rotate-180 transition ease-in-out duration-[400ms]", showIcon ? "" : "opacity-0")}
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 9-7 7-7-7" />
+        </svg>
+        {/* input to control the open/close state */}
+        <input type="checkbox" className="absolute inset-0 opacity-0 cursor-pointer" />
+      </div>
+      <div className="grid grid-rows-[0fr] peer-has-[:checked]:grid-rows-[1fr] transition-all ease-in-out duration-[400ms]">
+        <div className="overflow-hidden">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
+```
+
+
+## Props
+
+| **Prop Name**       | **Type**          | **Required** | **Default** | **Description**                                                                 |
+|---------------------|-------------------|--------------|-------------|---------------------------------------------------------------------------------|
+| `header`            | `string`         | Yes          | N/A         | The text or content displayed as the header of the accordion.                  |
+| `className`         | `string`         | No           | `undefined` | Additional CSS classes to style the header container.                          |
+| `accordionClassName`| `string`         | No           | `undefined` | Additional CSS classes to style the outer wrapper of the accordion.            |
+| `children`          | `React.ReactNode`| Yes          | N/A         | The content displayed inside the accordion when it is expanded.                |
+| `showIcon`          | `boolean`        | No           | `true`      | Controls whether the dropdown icon is visible.                                 |
+
+## Related
+
+A simple explaination is here:  [Accordion with Tailwind](/blog/accordion-with-tailwindcss)
