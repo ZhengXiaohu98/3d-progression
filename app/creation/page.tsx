@@ -59,7 +59,6 @@ const Project = () => {
         </div>
         <div className="w-full flex justify-end">
           <svg xmlns="http://www.w3.org/2000/svg" className="lg:w-80 lg:h-80 md:w-60 md:h-60 sm:w-40 sm:h-40 peer" viewBox="60 60 200 200">
-            <ellipse rx="33.851713" ry="11.058828" transform="matrix(1.159314 0 0 0.62498 150 229.922716)" className="dark:fill-accent-300 fill-accent-900" strokeWidth="0" />
             <g id="feet" className="dark:text-white text-accent-white">
               <path d="M140.286595,186.54097v43.381745h-11.979768" transform="translate(-1.360917 0.000001)" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
               <path d="M140.286595,186.54097v43.381745h-11.979768" transform="matrix(-1 0 0 1 300.561219 0.000001)" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />

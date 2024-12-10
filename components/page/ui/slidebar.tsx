@@ -13,22 +13,32 @@ const slideBarData = {
       "url": "/ui/accordion",
     },
     {
-      "nav": "Toast",
-      "url": "/ui/toast",
-    },
-    {
       "nav": "Tabs",
       "url": "/ui/tabs",
     }
   ],
-  "3d Effects": [
+  "Effects": [
     {
       "nav": "3D Rotate",
       "url": "/ui/3d-rotate",
     },
     {
       "nav": "3D Globe",
-      "url": " /ui/3d-globe",
+      "url": "/ui/3d-globe",
+    },
+    {
+      "nav": "Float",
+      "url": "/ui/float"
+    },
+    {
+      "nav": "Glow",
+      "url": "/ui/glow"
+    }
+  ],
+  "Utils": [
+    {
+      "nav": "Capture",
+      "url": "/ui/capture"
     }
   ]
 }

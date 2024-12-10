@@ -1,0 +1,154 @@
+import { ExampleBox } from "@/components/page/ui";
+import { Glow, Float } from "@/components/ui/effects";
+import Image from "next/image";
+import { Tabs, Tab } from "@/components/ui/general";
+
+export const metadata = {
+  title: "Glow | Liber UI",
+  description: "Add glowing effects to any element!"
+};
+
+# Glow
+Add Glow effects to almost any element! Dependencies needed:
+
+```bash
+npm install framer-motion
+```
+
+## Example
+
+<ExampleBox>
+  <div className="w-full flex flex-col lg:flex-row gap-10 md:gap-16 items-center justify-around">
+    <Glow className="rounded-xl">
+      <div className="w-[300px] sm:p-4 lg:p-6 rounded-xl">
+        <Image src="/images/project/3d-book-gallery/img2.jpg" width={1800} height={949} className="w-full h-fit rounded-md"/>
+        <p className="sm:mt-3 md:mt-4 font-bold text-accent-dark dark:text-accent-white sm:text-lg md:text-xl">Glow Effect</p>
+        <p className="sm:mt-1 md:mt-2 font-semibold text-accent-300 dark:text-accent-900 sm:text-xs md:text-sm">You can pass an array of colors to animate the glow effect!</p>
+      </div>
+    </Glow>
+    <Glow className="rounded-full" color={["#fb923c", "#22d3ee", "#a78bfa", "#f472b6"]}>
+      <div className="flex flex-col gap-1 items-center">
+        <div className="w-20 h-20 bg-transparent rounded-full"/>
+      </div>
+    </Glow>
+    <Float intensityY={2}>
+      <Glow className="rounded-lg">
+        <div className="flex flex-col gap-1 items-center">
+          <div className="w-20 h-20 bg-transparent rounded-lg"/>
+        </div>
+      </Glow>
+    </Float>
+  </div>
+</ExampleBox>
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="w-full flex justify-center gap-20 items-center py-8">
+      <Float intensityY={5}>
+        <Glow className="rounded-full" color={["#fb923c", "#22d3ee", "#a78bfa", "#f472b6"]}>
+          <div className="w-20 h-20 bg-transparent rounded-full flex justify-center items-center text-xs">
+            With Float
+          </div>
+        </Glow>
+      </Float>
+      <Glow className="rounded-lg">
+        <div className="w-20 h-20 bg-transparent rounded-lg flex justify-center items-center text-xs">
+          Basic Usage
+        </div>
+      </Glow>
+    </div>
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { Glow } from "@/components/ui/effects";  // your file path
+
+    <div className="w-full flex justify-center gap-20 items-center py-8">
+      <Float intensityY={5}>
+        <Glow className="rounded-full" color={["#fb923c", "#22d3ee", "#a78bfa", "#f472b6"]}>
+          <div className="w-20 h-20 bg-transparent rounded-full flex justify-center items-center text-xs">
+            With Float
+          </div>
+        </Glow>
+      </Float>
+      <Glow className="rounded-lg">
+        <div className="w-20 h-20 bg-transparent rounded-lg flex justify-center items-center text-xs">
+          Basic Usage
+        </div>
+      </Glow>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Source Code
+
+```tsx
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { cn } from "@/utils";
+
+interface GlowProps {
+  color?: string | string[];
+  children: React.ReactNode;
+  className?: string;
+  radius?: number;
+  duration?: number;
+}
+
+export const Glow: React.FC<GlowProps> = ({
+  color = "#fbcfe8",
+  children,
+  className,
+  radius = 1,
+  duration = 5
+}) => {
+  const blurValue = radius * 10;
+
+  const generateGlowStyle = (color: string) => ({
+    boxShadow: `0 0 ${blurValue}px ${color}, 0 0 ${blurValue + 10}px ${color}, 0 0 ${blurValue + 20}px ${color}`,
+    WebkitBoxShadow: `0 0 ${blurValue}px ${color}, 0 0 ${blurValue + 10}px ${color}, 0 0 ${blurValue + 20}px ${color}`, // for safari
+  });
+
+  if (Array.isArray(color)) {
+    return (
+      <motion.div
+        className={cn("inline-block", className)}
+        animate={{
+          boxShadow: color.map((col) =>
+            `0 0 ${blurValue}px ${col}, 0 0 ${blurValue + 10}px ${col}, 0 0 ${blurValue + 20}px ${col}`
+          ),
+        }}
+        transition={{
+          repeat: Infinity,
+          repeatType: "mirror",
+          duration: duration,
+        }}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+
+  return (
+    <div style={generateGlowStyle(color)} className={cn("inline-block", className)}>
+      {children}
+    </div>
+  );
+};
+```
+
+
+## Props
+
+| Prop       | Type                  | Default       | Description                                                                                 |
+|------------|-----------------------|---------------|---------------------------------------------------------------------------------------------|
+| `color`    | `string \| string[]`    | `#fbcfe8`     | The color(s) for the glow effect. Can be a single color or an array of colors.             |
+| `children` | `React.ReactNode`      | N/A           | The content inside the component that will have the glow effect applied.                    |
+| `className`| `string`               | N/A           | Additional class names to apply to the component.                                           |
+| `radius`   | `number`               | `1`           | The radius of the glow. Higher values result in a larger blur.                              |
+| `duration` | `number`               | `5`           | The duration of the animation (in seconds). Used when `color` is an array to animate the glow. |
+

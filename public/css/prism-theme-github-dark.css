@@ -1,7 +1,7 @@
 /* General */
 .dark pre[class*="language-"],
 .dark code[class*="language-"] {
-  color: #ffffff;
+  color: #ededed;
   font-size: 13px;
   text-shadow: none;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
