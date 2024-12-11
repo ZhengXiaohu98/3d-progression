@@ -33,6 +33,10 @@ const slideBarData = {
     {
       "nav": "Glow",
       "url": "/ui/glow"
+    },
+    {
+      "nav": "Book",
+      "url": "/ui/book"
     }
   ],
   "Utils": [
