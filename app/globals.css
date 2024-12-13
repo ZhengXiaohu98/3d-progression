@@ -25,7 +25,8 @@
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
-    src: url("/fonts/InstrumentSans-VariableFont_wdth_wght.ttf") format("truetype");
+    src: url("/fonts/InstrumentSans-VariableFont_wdth_wght.ttf")
+      format("truetype");
   }
 }
 
@@ -53,7 +54,6 @@
   background-color: #999;
   border-radius: 10px;
   border: 1px #f1f1f1 solid;
-
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -63,13 +63,21 @@
 /* blog item */
 .blog-item {
   @apply shrink-0 sm:prose-sm md:prose lg:prose-lg dark:prose-invert sm:max-w-[360px] md:max-w-full lg:w-[712px] prose-p:tracking-[0.1px] prose-p:text-accent-300 dark:prose-p:text-[#cbcbcb] 
-  prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-[#f472b6] prose-a:underline-offset-2 prose-ul:tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] prose-img:rounded 
+  prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-pink-base prose-a:underline-offset-2 prose-ul:tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] prose-img:rounded 
   dark:marker:text-[#cbcbcb] marker:text-accent-300;
+
+  code:not(pre code) {
+    @apply after:content-none before:content-none px-1.5 py-1 mx-0.5 rounded bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-white;
+  }
 }
 
 /* UI */
 .ui-item {
   @apply shrink-0 sm:prose-sm md:prose dark:prose-invert sm:max-w-[360px] md:max-w-full lg:w-[712px] prose-p:tracking-[0.1px] prose-p:text-accent-300 dark:prose-p:text-[#cbcbcb] 
-  prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-[#f472b6] prose-a:underline-offset-2 prose-ul:tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] prose-img:rounded 
+  prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-pink-base prose-a:underline-offset-2 prose-ul:tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] prose-img:rounded 
   dark:marker:text-[#cbcbcb] marker:text-accent-300;
+
+  code:not(pre code) {
+    @apply after:content-none before:content-none px-1.5 py-1 mx-0.5 rounded bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-white;
+  }
 }

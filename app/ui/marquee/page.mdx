@@ -1,0 +1,241 @@
+import { ExampleBox } from "@/components/page/ui";
+import { Marquee } from "@/components/ui/general";
+import { Glow } from "@/components/ui/effects";
+import Image from "next/image";
+import { Tabs, Tab } from "@/components/ui/general";
+import { BlogTip } from "@/components/page/blog";
+
+export const metadata = {
+  title: "Marquee | EZ UI",
+  description: "A marquee component for seamless scrolling content.",
+};
+
+# Marquee
+
+A small marquee component for seamless scrolling content. Dependencies needed:
+
+```bash
+npm install gsap
+```
+
+## Example
+
+<ExampleBox>
+  <div className="w-full flex justify-center items-center md:gap-20 sm:gap-4">
+    <Marquee direction="horizontal" pauseOnHover={true} speed={80} className="pt-10 md:w-[500px] sm:w-[320px] h-40">
+      <Glow className="rounded-lg mx-6 hover:-translate-y-1 transition">
+        <div className="w-20 h-20 bg-transparent flex justify-center items-center text-xs">
+          Marquee
+        </div>
+      </Glow>
+      <Glow className="rounded-lg mx-6 hover:-translate-y-1 transition" color="#22d3ee">
+        <div className="w-20 h-20 bg-transparent flex justify-center items-center text-xs">
+          is
+        </div>
+      </Glow>
+      <Glow className="rounded-full mx-6 hover:-translate-y-1 transition" color={["#fb923c", "#22d3ee", "#a78bfa", "#f472b6"]}>
+        <div className="w-20 h-20 bg-transparent flex justify-center items-center text-xs">
+          Cool
+        </div>
+      </Glow>
+    </Marquee>
+    <div className="flex md:gap-6 sm:gap-4">
+      <Marquee direction="vertical" speed={100} className="pl-10 w-40 h-[300px]">
+        <Glow className="rounded-lg my-4">
+          <div className="w-20 h-20 bg-transparent flex justify-center items-center text-xs">
+            Marquee
+          </div>
+        </Glow>
+        <Glow className="rounded-lg my-4 " color="#22d3ee">
+          <div className="w-20 h-20 bg-transparent flex justify-center items-center text-xs">
+            is
+          </div>
+        </Glow>
+        <Glow className="rounded-full my-4" color={["#fb923c", "#22d3ee", "#a78bfa", "#f472b6"]}>
+          <div className="w-20 h-20 bg-transparent flex justify-center items-center text-xs">
+            Cool
+          </div>
+        </Glow>
+      </Marquee>
+      <Marquee direction="vertical" reverse={true} speed={40} className="pl-10 w-40 h-[300px]">
+        <Glow className="rounded-lg my-4">
+          <div className="w-20 h-20 bg-transparent flex justify-center items-center text-xs">
+            Marquee
+          </div>
+        </Glow>
+        <Glow className="rounded-lg my-4 " color="#22d3ee">
+          <div className="w-20 h-20 bg-transparent flex justify-center items-center text-xs">
+            is
+          </div>
+        </Glow>
+        <Glow className="rounded-full my-4" color={["#fb923c", "#22d3ee", "#a78bfa", "#f472b6"]}>
+          <div className="w-20 h-20 bg-transparent flex justify-center items-center text-xs">
+            Cool
+          </div>
+        </Glow>
+      </Marquee>
+    </div>
+
+  </div>
+</ExampleBox>
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="w-full flex justify-center py-8">
+      <Marquee direction="horizontal" pauseOnHover={true} speed={80} className="h-20 w-80">
+        <div className="border rounded-xl w-20 h-20 text-xs mx-10 flex justify-center items-center">Item 1</div>
+        <div className="border rounded-xl w-20 h-20 text-xs mx-10 flex justify-center items-center">Item 2</div>
+        <div className="border rounded-xl w-20 h-20 text-xs mx-10 flex justify-center items-center">Item 3</div>
+      </Marquee>
+    </div>
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { Marquee } from "@/components/ui/general";
+
+    <Marquee direction="horizontal" pauseOnHover={true} speed={80} className="h-20 w-80">
+      <div className="border rounded-xl w-20 h-20 text-xs mx-10 flex justify-center items-center">Item 1</div>
+      <div className="border rounded-xl w-20 h-20 text-xs mx-10 flex justify-center items-center">Item 2</div>
+      <div className="border rounded-xl w-20 h-20 text-xs mx-10 flex justify-center items-center">Item 3</div>
+    </Marquee>
+    ```
+  </Tab>
+</Tabs>
+
+<br />
+
+<BlogTip text="The marquee elements are positioned using absolute position, so make sure you give the marquee a fixed width and height." />
+
+## Source Code
+```tsx
+"use client";
+
+import React, { useEffect, useRef, ReactNode } from "react";
+import gsap from "gsap";
+import { cn } from "@/utils";
+
+type MarqueeProps = {
+  children: ReactNode;
+  speed?: number;
+  reverse?: boolean;
+  className?: string;
+  direction?: "horizontal" | "vertical";
+  pauseOnHover?: boolean;
+};
+
+export const Marquee: React.FC<MarqueeProps> = ({ children, speed = 50, reverse = false, direction = "horizontal", pauseOnHover = false, className }) => {
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const marqueeTweenRef = useRef<GSAPTween | null>(null);
+
+  useEffect(() => {
+    const updateMarquee = () => {
+      if (!marqueeRef.current || !contentRef.current) return;
+
+      const children = contentRef.current.children;
+      let translateAmount = 0;
+      Array.from(children).forEach(child => {
+        gsap.set(child, {
+          x: direction === "horizontal" ? translateAmount : 0,
+          y: direction === "horizontal" ? 0 : translateAmount
+        });
+        translateAmount += (direction === "horizontal" ? child.clientWidth : child.clientHeight);
+      });
+
+      const contentLength = direction === "horizontal" ? contentRef.current.scrollWidth : contentRef.current.scrollHeight;
+      const containerLength = direction === "horizontal" ? marqueeRef.current.clientWidth : marqueeRef.current.clientHeight;
+
+      gsap.set(contentRef.current, {
+        x: direction === "horizontal" ? `-${(contentLength - containerLength) / 2}px` : 0,
+        y: direction === "horizontal" ? 0 : `-${(contentLength - containerLength) / 2}px`,
+      });
+
+      marqueeTweenRef.current = gsap.to(contentRef.current.querySelectorAll(".marquee-element"), {
+        x: direction === "horizontal" ? `+=${contentLength * (reverse ? -1 : 1)}` : 0,
+        y: direction === "horizontal" ? 0 : `+=${contentLength * (reverse ? -1 : 1)}`,
+        duration: contentLength / speed,
+        ease: "none",
+        modifiers: {
+          x: (x) => (direction === "horizontal" ? `${(parseFloat(x) + (reverse ? contentLength : 0)) % contentLength}px` : 0),
+          y: (y) => (direction === "horizontal" ? 0 : `${(parseFloat(y) + (reverse ? contentLength : 0)) % contentLength}px`)
+        },
+        repeat: -1
+      });
+    };
+
+    updateMarquee();
+
+    const handleResize = () => {
+      updateMarquee();
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    const handleMouseEnter = () => {
+      if (marqueeTweenRef.current) {
+        marqueeTweenRef.current.pause();
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (marqueeTweenRef.current) {
+        marqueeTweenRef.current.play();
+      }
+    };
+
+    const marqueeElement = marqueeRef.current;
+
+    if (pauseOnHover) {
+      marqueeElement?.addEventListener("mouseenter", handleMouseEnter);
+      marqueeElement?.addEventListener("mouseleave", handleMouseLeave);
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      marqueeElement?.removeEventListener("mouseenter", handleMouseEnter);
+      marqueeElement?.removeEventListener("mouseleave", handleMouseLeave);
+      gsap.killTweensOf(".marquee-element");
+    };
+  }, [speed, reverse, direction, pauseOnHover]);
+
+  return (
+    <div
+      ref={marqueeRef}
+      className={cn("w-full h-full overflow-hidden whitespace-nowrap", className)}
+    >
+      <div ref={contentRef} className="relative w-full h-full">
+        {Array.from({ length: 2 }, (_, repeatIndex) =>
+          React.Children.map(children, (child, childIndex) => (
+            <div
+              key={`${repeatIndex}-${childIndex}`}
+              className="marquee-element absolute left-0 top-0"
+            >
+              {child}
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+};
+
+```
+
+## Props
+
+| **Prop Name**     | **Type**                      | **Required** | **Default**   | **Description**                                                                 |
+|-------------------|-------------------------------|--------------|---------------|---------------------------------------------------------------------------------|
+| `children`        | `ReactNode`                  | Yes          | N/A           | The content to be displayed inside the marquee.                                |
+| `speed`           | `number`                     | No           | `50`          | The speed of the marquee animation. Higher values make the animation faster.   |
+| `reverse`         | `boolean`                    | No           | `false`       | Whether the marquee animation moves in reverse direction.                      |
+| `className`       | `string`                     | No           | `undefined`   | Additional CSS classes to style the marquee container.                         |
+| `direction`       | `"horizontal" \| "vertical"` | No           | `"horizontal"` | The direction of the marquee animation, either horizontal or vertical.         |
+| `pauseOnHover`    | `boolean`                    | No           | `false`       | Whether the marquee animation pauses when the mouse hovers over it.            |
+
+## Related
+
+### Why use gsap?
+
+Because Framer Motion doesn't seem to allow animations to pause at a specific state and then resume from that state, but it seems like writing this with GSAP isn't particularly simple either. 😂

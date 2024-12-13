@@ -61,6 +61,9 @@ module.exports = {
       },
       purple: {
         "base": "#7e22c7",
+      },
+      pink: {
+        "base": "#f472b6"
       }
     },
     extend: {

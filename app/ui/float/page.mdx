@@ -1,0 +1,145 @@
+import { ExampleBox } from "@/components/page/ui";
+import { Float } from "@/components/ui/effects";
+import Image from "next/image";
+import Link from "next/link";
+import { Tabs, Tab } from "@/components/ui/general";
+import { BlogTip } from "@/components/page/blog";
+
+export const metadata = {
+  title: "Float | EZ UI",
+  description: "The Float component apply a smooth floating animation to its child elements using Framer Motion."
+};
+
+# Float
+The `Float` component apply a smooth floating animation to its child elements using `Framer Motion`. Dependencies needed:
+
+```bash
+npm install framer-motion
+```
+
+## Example
+
+<ExampleBox>
+  <div className="sm:w-11/12 md:w-3/5 flex justify-between items-center">
+    <Float intensityY={5}>
+      Floating Text
+    </Float>
+    <Float direction="horizontal" speed={5}>
+      <div className="w-20 h-20 bg-orange-base rounded-lg"/>
+    </Float>
+    <Float direction="both">
+      <div className="w-20 h-20 bg-purple-base rounded-full"/>
+    </Float>
+  </div>
+</ExampleBox>
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="sm:w-11/12 md:w-3/5 flex justify-between items-center py-4">
+      <Float intensityY={5}>
+        Vertical Float
+      </Float>
+      <Float direction="horizontal" speed={5} pauseOnHover={true}>
+        <div className="flex flex-col gap-1 items-center">
+          <div className="w-20 h-20 bg-orange-base rounded-lg"/>
+          Horizontal Float
+        </div>
+      </Float>
+      <Float direction="both">
+        <div className="flex flex-col gap-1 items-center">
+          <div className="w-20 h-20 bg-purple-base rounded-full"/>
+          Both Direction
+        </div>
+      </Float>
+    </div>
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { Float } from "@/components/ui/effects";  // your file path
+
+    <div className="sm:w-11/12 md:w-3/5 flex justify-between items-center py-4">
+      <Float intensityY={5}>
+        Vertical Float
+      </Float>
+      <Float direction="horizontal" speed={5}>
+        <div className="flex flex-col gap-1 items-center">
+          <div className="w-20 h-20 bg-orange-base rounded-lg"/>
+          Horizontal Float
+        </div>
+      </Float>
+      <Float direction="both">
+        <div className="flex flex-col gap-1 items-center">
+          <div className="w-20 h-20 bg-purple-base rounded-full"/>
+          Both Direction
+        </div>
+      </Float>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Source Code
+
+```tsx
+"use client";
+
+import { ReactNode } from "react";
+import { motion } from "framer-motion";
+
+type FloatProps = {
+  children: ReactNode;
+  intensityY?: number;
+  intensityX?: number;
+  speed?: number;
+  direction?: "vertical" | "horizontal" | "both";
+};
+
+export const Float = ({
+  children,
+  intensityY = 10,
+  intensityX = 5,
+  speed = 2.5,
+  direction = "vertical",
+}: FloatProps) => {
+  const animation = {
+    y:
+      direction === "vertical" || direction === "both"
+        ? Array.from({ length: 101 }, (_, i) =>
+          Math.sin((i / 100) * 2 * Math.PI) * intensityY
+        )
+        : 0,
+    x:
+      direction === "horizontal" || direction === "both"
+        ? Array.from({ length: 101 }, (_, i) =>
+          Math.cos((i / 100) * 2 * Math.PI) * intensityX
+        )
+        : 0,
+  };
+
+  return (
+    <motion.div
+      className="inline-block"
+      animate={animation}
+      transition={{
+        duration: 5 / speed,
+        ease: "linear",
+        repeat: Infinity,
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+```
+
+## Props
+
+| Prop         | Type                                    | Default     | Description                                                                 |
+|--------------|-----------------------------------------|-------------|-----------------------------------------------------------------------------|
+| `children`   | `ReactNode`                             | **Required**| The child component(s) to apply the floating effect to.                     |
+| `intensityY` | `number`                                | `10`        | The intensity of vertical floating, controlling the amplitude in pixels.    |
+| `intensityX` | `number`                                | `5`         | The intensity of horizontal floating, controlling the amplitude in pixels.  |
+| `speed`      | `number`                                | `2.5`       | The speed of the floating animation; higher values result in faster motion. |
+| `direction`  | "vertical" \| "horizontal" \| "both"   | "vertical" | The direction of the floating effect: vertical, horizontal, or both.        |

@@ -3,11 +3,11 @@ const Footer = dynamic(() => import("@/components/layout").then((mod) => mod.Foo
 const SlideBar = dynamic(() => import("@/components/page/ui").then((mod) => mod.SlideBar));
 
 export const metadata = {
-  title: "Easy UI",
-  description: "Easy UI — a space dedicated to showcasing creative UI designs and interactive effects. This page highlights the seamless integration of modern visuals and dynamic interactions, delivering sleek, efficient, and captivating user interfaces.",
+  title: "EZ UI",
+  description: "EZ UI — a space dedicated to showcasing creative UI designs and interactive effects. This page highlights the seamless integration of modern visuals and dynamic interactions, delivering sleek, efficient, and captivating user interfaces.",
   openGraph: {
-    title: "Easy UI",
-    description: "Easy UI — a space dedicated to showcasing creative UI designs and interactive effects. This page highlights the seamless integration of modern visuals and dynamic interactions, delivering sleek, efficient, and captivating user interfaces.",
+    title: "EZ UI",
+    description: "EZ UI — a space dedicated to showcasing creative UI designs and interactive effects. This page highlights the seamless integration of modern visuals and dynamic interactions, delivering sleek, efficient, and captivating user interfaces.",
     images: [
       {
         url: "/logo_original.png",

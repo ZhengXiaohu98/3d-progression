@@ -1,0 +1,167 @@
+import { ExampleBox } from "@/components/page/ui";
+import { ThreeDRotate, Book, Glow, Float } from "@/components/ui/effects";
+import Image from "next/image";
+import { Tabs, Tab } from "@/components/ui/general";
+import { BlogTip } from "@/components/page/blog";
+
+export const metadata = {
+  title: "Book | EZ UI",
+  description: "A simulated book component with four interactive pages."
+};
+
+# Book
+A simulated book component with four interactive pages.
+
+
+## Example
+
+<ExampleBox>
+  <Book className="md:w-[600px] md:h-[400px] sm:w-[320px] sm:h-[200px]" pageColor="transparent">
+    <div className="h-full w-full dark:bg-accent-dark bg-white border rounded-l-lg flex justify-center items-center">
+      <p className="w-4/5 text-sm text-center">Click Next Page →</p>
+    </div>
+    <div className="h-full w-full dark:bg-accent-dark bg-white border-y border-r rounded-r-lg flex justify-center items-center">
+      <Glow className="rounded-lg">
+        <div className="w-20 h-20 bg-transparent rounded-lg" />
+      </Glow>
+    </div>
+    <div className="h-full w-full dark:bg-accent-dark bg-white border-y border-l rounded-l-lg flex justify-center items-center">
+      <Float intensityY={5}>
+        <Glow className="rounded-full" color={["#fb923c", "#22d3ee", "#a78bfa", "#f472b6"]}>
+          <div className="w-20 h-20 bg-transparent rounded-full " />
+        </Glow>
+      </Float>
+    </div>
+    <div className="h-full w-full dark:bg-accent-dark bg-white border rounded-r-lg flex justify-center items-center">
+      <p className="w-4/5 text-sm text-center">Support ONLY 4 div elements!</p>
+    </div>
+  </Book>
+</ExampleBox>
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="w-full flex justify-center gap-20 items-center py-8">
+      <Book className="md:w-[400px] md:h-[300px] sm:w-[300px] sm:h-[160px]" pageColor="transparent">
+        <div className="h-full w-full dark:bg-accent-dark bg-white border rounded-l-lg flex justify-center items-center">
+          Page 1
+        </div>
+        <div className="h-full w-full dark:bg-accent-dark bg-white border-y border-r rounded-r-lg flex justify-center items-center">
+          Page 2
+        </div>
+        <div className="h-full w-full dark:bg-accent-dark bg-white border-y border-l rounded-l-lg flex justify-center items-center">
+          Page 3
+        </div>
+        <div className="h-full w-full dark:bg-accent-dark bg-white border rounded-r-lg flex justify-center items-center">
+          Page 4
+        </div>
+      </Book>
+    </div>
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { Book } from "@/components/ui/effects";  // your file path
+    <div className="w-full flex justify-center gap-20 items-center py-8">
+      <Book className="md:w-[400px] md:h-[300px] sm:w-[300px] sm:h-[160px]" pageColor="transparent">
+        <div className="h-full w-full dark:bg-accent-dark bg-white border rounded-l-lg flex justify-center items-center">
+          Page 1
+        </div>
+        <div className="h-full w-full dark:bg-accent-dark bg-white border-y border-r rounded-r-lg flex justify-center items-center">
+          Page 2
+        </div>
+        <div className="h-full w-full dark:bg-accent-dark bg-white border-y border-l rounded-l-lg flex justify-center items-center">
+          Page 3
+        </div>
+        <div className="h-full w-full dark:bg-accent-dark bg-white border rounded-r-lg flex justify-center items-center">
+          Page 4
+        </div>
+      </Book>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+<br />
+
+<BlogTip text="This component currently support only 4 pages/divs. You can style the width and height of the book container using Tailwind CSS. Each page will occupy half the width of the book container."/>
+<br />
+<BlogTip text="Even though you can style the page color by changing the pageColor prop, you can still style the color of each page by letting it to occupy the full width and height of the page."/>
+
+## Source Code
+
+```tsx
+"use client";
+import React, { useState } from 'react';
+import { cn } from '@/utils';
+interface BookProps {
+  pageColor?: string;
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const Book: React.FC<BookProps> = ({ pageColor = "#ededed", className, children }) => {
+  const childrenArray = React.Children.toArray(children);
+
+  if (childrenArray.length !== 4) {
+    throw new Error('This component requires exactly 4 div elements as children.');
+  }
+
+  const [pageState, setPageState] = useState(0);
+
+  return (
+    <div
+      className={cn("transition-all flex relative group rounded !overflow-visible", className)}
+      style={{ perspective: "1000px" }}
+    >
+      <div className="w-1/2 h-full flex justify-center items-center" style={{ backgroundColor: pageColor }}>{childrenArray[0]}</div>
+      <div className="w-1/2 h-full flex justify-center items-center" style={{ backgroundColor: pageColor }}>{childrenArray[3]}</div>
+      <div
+        className={`w-1/2 h-full flex justify-center items-center absolute left-1/2 z-[1] origin-left transition ease-in-out duration-700`}
+        style={{
+          transform: pageState === 1 ? "rotateY(-180deg)" : "rotateY(0deg)",
+          transformStyle: "preserve-3d",
+          backgroundColor: pageColor
+        }}
+        onClick={() => setPageState(pageState ^ 1)}
+      >
+        {childrenArray[1]}
+        <div
+          className={cn(`w-full h-full flex justify-center items-center absolute left-full top-0 origin-left transition ease-in-out duration-700`, pageState === 1 ? "opacity-100" : "opacity-0")}
+          style={{
+            transform: "rotateY(180deg)",
+            backgroundColor: pageColor
+          }}
+        >
+          {childrenArray[2]}
+        </div>
+      </div>
+    </div>
+  );
+};
+```
+
+
+## Props
+
+| Prop  | Type            | Default   | Description                                                                 |
+|-----------------|---------------------|---------------|---------------------------------------------------------------------------------|
+| `pageColor`     | `string`           | `"#ededed"`   | The background color of the pages in the book. Accepts any valid CSS color.    |
+| `className`     | `string`           | `undefined`   | Additional CSS classes for custom styling of the book container.               |
+| `children`      | `React.ReactNode`  | `undefined`   | Must contain exactly 4 `<div>` elements as children, representing book pages.  |
+
+## Related
+The image transition effect below can be achieved by using this component.
+<br />
+<div className="w-full flex justify-center">
+  <Book className="md:w-[400px] md:h-[270px] sm:w-[320px] sm:h-[200px]" pageColor="transparent">
+    <div className="h-full w-full bg-transparent" />
+    <div className="h-full w-full flex justify-center items-center cursor-pointer">
+      <Image src="/images/project/3d-book-gallery/img4.jpg" width={900} height={1800} className="w-full h-fit rounded-md"/>
+    </div>
+    <div className="h-full w-full flex justify-center items-center cursor-pointer">
+      <Image src="/images/project/3d-book-gallery/img3.jpg" width={900} height={1800} className="w-full h-fit rounded-md"/>
+    </div>
+    <div className="h-full w-full bg-transparent" />
+  </Book>
+</div>
