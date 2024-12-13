@@ -19,7 +19,9 @@ export const Book: React.FC<BookProps> = ({ pageColor = "#ededed", className, ch
   return (
     <div
       className={cn("transition-all flex relative group rounded !overflow-visible", className)}
-      style={{ perspective: "1000px" }}
+      style={{
+        perspective: "1000px",
+      }}
     >
       <div className="w-1/2 h-full flex justify-center items-center" style={{ backgroundColor: pageColor }}>{childrenArray[0]}</div>
       <div className="w-1/2 h-full flex justify-center items-center" style={{ backgroundColor: pageColor }}>{childrenArray[3]}</div>

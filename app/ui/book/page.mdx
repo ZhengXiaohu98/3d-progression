@@ -5,12 +5,12 @@ import { Tabs, Tab } from "@/components/ui/general";
 import { BlogTip } from "@/components/page/blog";
 
 export const metadata = {
-  title: "Book | Liber UI",
-  description: ""
+  title: "Book | EZ UI",
+  description: "A simulated book component with four interactive pages."
 };
 
 # Book
-
+A simulated book component with four interactive pages.
 
 
 ## Example
@@ -149,3 +149,19 @@ export const Book: React.FC<BookProps> = ({ pageColor = "#ededed", className, ch
 | `pageColor`     | `string`           | `"#ededed"`   | The background color of the pages in the book. Accepts any valid CSS color.    |
 | `className`     | `string`           | `undefined`   | Additional CSS classes for custom styling of the book container.               |
 | `children`      | `React.ReactNode`  | `undefined`   | Must contain exactly 4 `<div>` elements as children, representing book pages.  |
+
+## Related
+The image transition effect below can be achieved by using this component.
+<br />
+<div className="w-full flex justify-center">
+  <Book className="md:w-[400px] md:h-[270px] sm:w-[320px] sm:h-[200px]" pageColor="transparent">
+    <div className="h-full w-full bg-transparent" />
+    <div className="h-full w-full flex justify-center items-center cursor-pointer">
+      <Image src="/images/project/3d-book-gallery/img4.jpg" width={900} height={1800} className="w-full h-fit rounded-md"/>
+    </div>
+    <div className="h-full w-full flex justify-center items-center cursor-pointer">
+      <Image src="/images/project/3d-book-gallery/img3.jpg" width={900} height={1800} className="w-full h-fit rounded-md"/>
+    </div>
+    <div className="h-full w-full bg-transparent" />
+  </Book>
+</div>
