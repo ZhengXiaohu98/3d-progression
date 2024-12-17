@@ -134,6 +134,11 @@ export const Marquee: React.FC<MarqueeProps> = ({ children, speed = 50, reverse 
     const updateMarquee = () => {
       if (!marqueeRef.current || !contentRef.current) return;
 
+      // need to kill the last animation
+      if (marqueeTweenRef.current) {
+        marqueeTweenRef.current.kill();
+      }
+
       const children = contentRef.current.children;
       let translateAmount = 0;
       Array.from(children).forEach(child => {

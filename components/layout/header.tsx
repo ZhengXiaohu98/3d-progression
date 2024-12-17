@@ -41,8 +41,8 @@ export const Header: React.FC = () => {
       url: "/blog",
     },
     {
-      nav: "About",
-      url: "/about",
+      nav: "UI",
+      url: "/ui",
     },
   ];
 
@@ -53,16 +53,16 @@ export const Header: React.FC = () => {
         className="absolute left-0 top-0 w-full lg:h-[371px] md:h-[339px] sm:h-[236px] pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 20% 50% at 40% -10%, #c2410c77, transparent), radial-gradient(ellipse 30% 60% at 45% -5%, #7e22c755, transparent)",
+            "radial-gradient(ellipse 20% 50% at 40% -10%, #c2410c77, transparent), radial-gradient(ellipse 30% 60% at 45% -5%, #f472b655, transparent)",
         }}
       />
       <header
         id="header"
-        className="transition-all fixed w-full left-1/2 -translate-x-1/2 z-[50] bg-white/20 dark:bg-black/20 backdrop-blur-md sm:h-12 md:h-16  shadow-md shadow-black/10 dark:shadow-white/10"
+        className="transition-all fixed w-full left-1/2 -translate-x-1/2 z-[50] bg-white/20 dark:bg-black/20 backdrop-blur-md sm:h-12 md:h-16 shadow-md shadow-black/10 dark:shadow-white/10"
       >
         <div className="container relative h-full flex items-center justify-between">
           <div className="flex items-center md:gap-10 lg:gap-20">
-            <Link href="/" className="shadow-[0_7px_6px_-6px] shadow-accent-dark dark:shadow-accent-white ">
+            <Link href="/" className="md:shadow-[0_7px_6px_-6px] shadow-accent-dark dark:shadow-accent-white ">
               <Image
                 src="/logo_white.png"
                 width={48}

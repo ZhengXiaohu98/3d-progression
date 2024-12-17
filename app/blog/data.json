@@ -1,6 +1,5 @@
 {
   "blogData": [
-    {},
     {
       "id": 1,
       "title": "Next.js Create Smooth Theme Transition with Gsap",
@@ -14,8 +13,8 @@
       },
       "url": "/blog/smooth-theme-transition",
       "categories": [
-        "gsap",
-        "tailwind"
+        "Gsap",
+        "Tailwindcss"
       ]
     },
     {
@@ -31,7 +30,7 @@
       },
       "url": "/blog/accordion-with-tailwindcss",
       "categories": [
-        "tailwind"
+        "Tailwindcss"
       ]
     },
     {
@@ -47,8 +46,8 @@
       },
       "url": "/blog/animated-dashed-line-with-gsap",
       "categories": [
-        "gsap",
-        "svg"
+        "Gsap",
+        "Svg"
       ]
     }
   ]
