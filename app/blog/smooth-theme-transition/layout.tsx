@@ -5,7 +5,7 @@ interface BlogLayoutProps {
   children: React.ReactNode;
 }
 
-const headerData = blogData[1];
+const headerData = blogData[0];
 
 const BlogLayout: React.FC<BlogLayoutProps> = ({ children }) => {
   return (
