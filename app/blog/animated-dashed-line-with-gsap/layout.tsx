@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { BlogHeader, Navigation } from "@/components/page/blog";
 import { blogData } from "../data.json";
 
-const headerData = blogData[3];
+const headerData = blogData[2];
 
 interface BlogLayoutProps {
   children: ReactNode;

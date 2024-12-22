@@ -6,7 +6,7 @@ interface BlogLayoutProps {
   children: ReactNode;
 }
 
-const headerData = blogData[2];
+const headerData = blogData[1];
 
 export default function BlogLayout({ children }: BlogLayoutProps) {
   return (
