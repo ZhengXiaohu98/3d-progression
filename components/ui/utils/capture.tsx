@@ -71,10 +71,10 @@ export const Capture: React.FC<CaptureProps> = ({ children }) => {
       <button
         onClick={handleConvert}
         disabled={isConverting}
-        className="p-1 absolute top-1 right-1 rounded-full dark:bg-accent-300/75 bg-accent-aaa/50 transition ease-in-out group-hover:scale-100 group-hover:opacity-100 scale-50 opacity-0"
+        className="p-1 absolute top-1 right-1 rounded-full dark:bg-accent-300/70 bg-accent-aaa/30 transition ease-in-out group-hover:scale-100 group-hover:opacity-100 scale-50 opacity-0"
       >
         <svg
-          className="w-6 h-6 text-accent-300 dark:text-accent-white"
+          className="w-6 h-6 text-black dark:text-white"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -85,13 +85,13 @@ export const Capture: React.FC<CaptureProps> = ({ children }) => {
           <path
             stroke="currentColor"
             strokeLinejoin="round"
-            strokeWidth="1.5"
+            strokeWidth="1"
             d="M4 18V8a1 1 0 0 1 1-1h1.5l1.707-1.707A1 1 0 0 1 8.914 5h6.172a1 1 0 0 1 .707.293L17.5 7H19a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"
           />
           <path
             stroke="currentColor"
             strokeLinejoin="round"
-            strokeWidth="1.5"
+            strokeWidth="1"
             d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
           />
         </svg>
