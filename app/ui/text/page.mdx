@@ -1,0 +1,159 @@
+import { ExampleBox } from "@/components/page/ui";
+import { Text } from "@/components/ui/effects";
+import Image from "next/image";
+import { Tabs, Tab } from "@/components/ui/general";
+
+export const metadata = {
+  title: "Text | EZ UI",
+  description: "A text effect component for dynamic animations.",
+};
+
+# Text
+The `Text` component animates text with customizable effects, breaking the text into segments based on a specified `breakWord` and applying the chosen animation. Dependencies needed:
+
+```bash
+npm install framer-motion
+```
+
+
+## Example
+
+<ExampleBox className="flex flex-col gap-6">
+  <Text text="Blur In: this effect will blur the text." breakWord=" " className="text-sm md:text-lg" effect="blurIn"/>
+  <Text text="Fade In: basic text effect - default" breakWord="" className="text-sm md:text-lg italic" effect="fadeIn" staggerTime={0.05}/>
+  <Text text="Slide In: slide in the text to seek attention." breakWord=" " className="text-sm md:text-lg" effect="slideIn"/>
+  <Text text="Slide In: slide in the text to seek attention." breakWord=" " className="text-sm md:text-lg" effect="bounceIn" staggerTime={0.05}/>
+</ExampleBox>
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="w-full flex justify-center py-10">
+      <Text text="Exploring the ocean of code" breakWord="" className="font-playwrite-gbs" effect="fadeIn" staggerTime={0.05}/>
+    </div>
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { Text } from "@/components/ui/effects"; // your file path
+
+    <Text text="Exploring the ocean of code" breakWord="" className="font-playwrite-gbs" effect="fadeIn" staggerTime={0.05}/>
+    ```
+  </Tab>
+</Tabs>
+
+
+## Source Code
+
+```tsx
+"use client";
+import React from "react";
+import { motion } from "framer-motion";
+
+interface TextProps {
+  className?: string;
+  text?: string;
+  breakWord?: string;
+  effect?: "fadeIn" | "blurIn" | "slideIn" | "bounceIn";
+  staggerTime?: number;
+  duration?: number;
+}
+
+export const Text: React.FC<TextProps> = ({
+  className,
+  text = "",
+  breakWord = "",
+  effect = "fadeIn",
+  staggerTime = 0.1,
+  duration = 1,
+}) => {
+  const splitText = text.split(new RegExp(`(${breakWord})`)).filter(Boolean);
+
+  const variants = {
+    fadeIn: {
+      initial: { opacity: 0 },
+      animate: { opacity: 1, transition: { ease: "easeInOut", duration: duration } },
+    },
+    blurIn: {
+      initial: { opacity: 0, filter: "blur(10px)" },
+      animate: { opacity: 1, filter: "blur(0)", transition: { ease: "easeInOut", duration: duration } },
+    },
+    slideIn: {
+      initial: { opacity: 0, x: 15 },
+      animate: { opacity: 1, x: 0, transition: { ease: "backInOut", duration: duration } },
+    },
+    bounceIn: {
+      initial: { opacity: 0, y: 15 },
+      animate: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          ease: "easeOut",
+          duration: duration,
+          type: "spring",
+          damping: 6,
+          stiffness: 100,
+        },
+      },
+    }
+  };
+
+  const containerVariants = {
+    initial: {},
+    animate: {
+      transition: {
+        staggerChildren: staggerTime,
+      },
+    },
+  };
+
+  const itemVariants = {
+    initial: variants[effect].initial,
+    animate: {
+      ...variants[effect].animate,
+      transition: {
+        ...variants[effect].animate.transition
+      },
+    },
+
+  };
+
+  return (
+    <motion.div
+      className={className}
+      initial="initial"
+      animate="animate"
+      variants={containerVariants}
+    >
+      {splitText.map((word, index) => (
+        <motion.span key={index} variants={itemVariants} className={word == " " ? "" : "inline-block"}>
+          {word}
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+};
+
+```
+
+## Props
+
+
+| **Prop Name** | **Type**                 | **Required** | **Default** | **Description**                                                                 |
+|---------------|--------------------------|--------------|-------------|---------------------------------------------------------------------------------|
+| `className`   | `string`                | No           | `undefined` | Additional classes to apply to the container element.                          |
+| `text`        | `string`                | No           | `""`        | The text to be animated.                                                       |
+| `breakWord`   | `string`                | No           | `""`        | The word or character to use for splitting the text into segments.             |
+| `effect`      | `"fadeIn" \| "blurIn" \| "slideIn" \| "bounceIn"` | No | `"fadeIn"` | The animation effect to apply to each segment.                                 |
+| `staggerTime` | `number`                | No           | `0.1`       | The delay between the animation of each segment (in seconds).                  |
+| `duration`    | `number`                | No           | `1`         | The duration of the animation effect for each segment (in seconds).            |
+
+
+## Effects
+
+The `effect` prop determines the animation applied to each text segment. The following options are available:
+
+- **fadeIn**: Fades in each text segment with a smooth opacity transition.
+- **blurIn**: Fades in each segment while reducing a blur effect.
+- **slideIn**: Slides in each text segment horizontally.
+- **bounceIn**: Animates each segment with a bouncing motion.

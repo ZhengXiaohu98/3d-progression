@@ -1,4 +1,4 @@
-import { Glow, Book, Float, ThreeDRotate } from "@/components/ui/effects";
+import { Glow, Book, Particles, PointLight } from "@/components/ui/effects";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -366,16 +366,14 @@ export default function Home() {
                       Glow
                     </div>
                   </Glow>
-                  <Float intensityY={3}>
-                    <div className="w-20 h-20 border dark:border-accent-white/30 border-accent-dark/30 rounded-t-full flex justify-center items-center text-xs">
-                      Float
-                    </div>
-                  </Float>
-                  <ThreeDRotate>
-                    <div className="flex justify-center items-center w-28 h-28 border dark:border-accent-white/30 border-accent-dark/30 rounded text-sm">
-                      3D rotation
-                    </div>
-                  </ThreeDRotate>
+                  <div className="w-28 h-28 flex justify-center items-center italic relative font-playwrite-gbs">
+                    <Particles count={50} className="absolute w-full h-full" />
+                    particles
+                  </div>
+                  <div className="relative w-28 h-28 overflow-hidden bg-black flex justify-center items-center rounded">
+                    <p className="text-center text-sm text-white italic">point light</p>
+                    <PointLight angle={30} color="#fae8ff" intensity={3} className="origin-top-right left-auto right-0" />
+                  </div>
                   <Link href="/ui" >
                     <div className="whitespace-nowrap mt-4 lg:mt-10 sm:text-sm md:text-base relative flex items-center gap-2 sm:py-1.5 px-4 md:py-2 rounded-md w-fit dark:bg-accent-white bg-none dark:text-accent-dark text-accent-300 font-bold group/btn">
                       See all

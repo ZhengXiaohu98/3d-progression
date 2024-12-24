@@ -19,16 +19,16 @@ const slideBarData = {
     {
       "nav": "Marquee",
       "url": "/ui/marquee"
+    },
+    {
+      "nav": "Tooltip",
+      "url": "/ui/tooltip"
     }
   ],
   "Effects": [
     {
       "nav": "3D Rotate",
       "url": "/ui/3d-rotate",
-    },
-    {
-      "nav": "3D Globe",
-      "url": "/ui/3d-globe",
     },
     {
       "nav": "Float",
@@ -41,6 +41,22 @@ const slideBarData = {
     {
       "nav": "Book",
       "url": "/ui/book"
+    },
+    {
+      "nav": "Point Light",
+      "url": "/ui/point-light"
+    },
+    {
+      "nav": "Particles",
+      "url": "/ui/particles",
+    },
+    {
+      "nav": "Dual Compare",
+      "url": "/ui/dual-compare"
+    },
+    {
+      "nav": "Text",
+      "url": "/ui/text"
     }
   ],
   "Utils": [

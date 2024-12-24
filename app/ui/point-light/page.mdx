@@ -1,0 +1,101 @@
+import { ExampleBox } from "@/components/page/ui";
+import { PointLight } from "@/components/ui/effects";
+import Image from "next/image";
+import { Tabs, Tab } from "@/components/ui/general";
+import { BlogTip } from "@/components/page/blog";
+
+export const metadata = {
+  title: "Point Light | EZ UI",
+  description: "A component creates a rotating light."
+};
+
+# Point Light
+The `PointLight` component creates a rotating light. Dependencies needed:
+
+```bash
+npm install framer-motion
+```
+
+
+## Example
+
+<ExampleBox>
+  <div className="relative md:w-[350px] md:h-[350px] w-[280px] h-[280px] shadow-2xl dark:shadow-gray-dark rounded-lg overflow-hidden bg-accent-dark">
+    <p className="text-center mt-32 md:mt-40 text-3xl font-playwrite-gbs text-white">Light it Up!</p>
+    <PointLight angle={-30} color="#ffffff" intensity={2}/>
+  </div>
+</ExampleBox>
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="flex w-full justify-center py-10">
+      <div className="relative w-[280px] h-[280px] overflow-hidden bg-black">
+        <p className="text-center mt-32 text-3xl text-white italic">easy & cool</p>
+        <PointLight angle={30} color="#fed7aa" intensity={2} className="origin-top-right left-auto right-0"/>
+      </div>
+    </div>
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { PointLight } from "@/components/ui/effects";  // your file path
+
+    <div className="relative w-[280px] h-[280px] overflow-hidden bg-black">
+      <p className="text-center mt-32 text-3xl text-white italic">easy & cool</p>
+      <PointLight angle={30} color="#fed7aa" intensity={2} className="origin-top-right left-auto right-0"/>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+<br />
+
+<BlogTip text="Ensure the parent element's position is set to 'relative'." />
+
+## Source Code
+
+```tsx
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { cn } from "@/utils";
+
+interface PointLightProps {
+  angle?: number;
+  intensity?: number;
+  color?: string;
+  className?: string;
+}
+
+export const PointLight: React.FC<PointLightProps> = ({
+  angle = -30,
+  intensity = 1,
+  color = "white",
+  className,
+}) => {
+  return (
+    <motion.div
+      className={cn(`absolute left-0 top-0 h-[150%] blur-xl origin-top-left ease-in-out duration-[2000ms]`, className)}
+      style={{
+        backgroundImage: `linear-gradient(${color}, transparent)`,
+        width: `${intensity * 8}px`,
+      }}
+      initial={{ rotate: -angle }}
+      animate={{ rotate: angle }}
+    />
+  );
+};
+
+```
+
+
+## Props
+
+| **Prop Name**     | **Type**                      | **Required** | **Default**   | **Description**                                                                 |
+|-------------------|-------------------------------|--------------|---------------|---------------------------------------------------------------------------------|
+| `angle`           | `number`                      | No           | `-30`         | The initial rotation angle of the point light in degrees.                       |
+| `intensity`       | `number`                      | No           | `1`           | The intensity of the light, controlling the size of the light's gradient effect. |
+| `color`           | `string`                      | No           | `"white"`     | The color of the light gradient. Can be any valid CSS color value.              |
+| `className`       | `string`                      | No           | `undefined`   | Additional custom CSS classes to apply to the component.                        |
