@@ -31,10 +31,6 @@ const slideBarData = {
       "url": "/ui/3d-rotate",
     },
     {
-      "nav": "3D Globe",
-      "url": "/ui/3d-globe",
-    },
-    {
       "nav": "Float",
       "url": "/ui/float"
     },
@@ -49,6 +45,10 @@ const slideBarData = {
     {
       "nav": "Point Light",
       "url": "/ui/point-light"
+    },
+    {
+      "nav": "Particles",
+      "url": "/ui/particles",
     }
   ],
   "Utils": [
