@@ -9,7 +9,7 @@ interface BlogTipProps {
 
 export const BlogTip: React.FC<BlogTipProps> = ({ text, className = "" }) => {
   return (
-    <div className={cn("flex sm:p-2 md:p-3 gap-2 rounded-lg dark:bg-[#be185d] bg-[#404040] tracking-wide text-white transition", className)}>
+    <div className={cn("flex sm:p-2 md:p-3 gap-2 rounded-lg dark:bg-[#be185d] bg-[#c2410c] tracking-wide text-white transition", className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="md:w-6 md:h-6 sm:w-5 sm:h-5 shrink-0 mt-0.5 fill-current stroke-none"

@@ -49,6 +49,10 @@ const slideBarData = {
     {
       "nav": "Particles",
       "url": "/ui/particles",
+    },
+    {
+      "nav": "Dual Compare",
+      "url": "/ui/dual-compare"
     }
   ],
   "Utils": [

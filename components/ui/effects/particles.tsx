@@ -11,7 +11,7 @@ interface ParticlesProps {
   className?: string;
 }
 
-export const Particles: React.FC<ParticlesProps> = ({ count = 100, colors = ["#c084fc", "#e879f9", "#f472b6", "#fb7185"], speed = 1, size = [1, 1], className }) => {
+export const Particles: React.FC<ParticlesProps> = ({ count = 100, colors = ["#c084fc", "#e879f9"], speed = 1, size = [1, 1], className }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particles = useRef<{ x: number; y: number; dx: number; dy: number; color: string; radius: number }[]>([]);
 
