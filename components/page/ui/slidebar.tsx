@@ -19,6 +19,10 @@ const slideBarData = {
     {
       "nav": "Marquee",
       "url": "/ui/marquee"
+    },
+    {
+      "nav": "Tooltip",
+      "url": "/ui/tooltip"
     }
   ],
   "Effects": [

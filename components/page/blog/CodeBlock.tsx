@@ -28,10 +28,10 @@ export const Codeblock = ({ children, ...props }: CodeblockProps) => {
   };
 
   return (
-    <figure className="relative rounded-md border dark:border-accent-300 border-[#ccc] group">
+    <figure className="relative rounded-lg border dark:border-accent-300 border-[#ccc] group">
       {
         language &&
-        <div className="flex items-center w-full justify-between sm:h-10 md:h-12 sm:px-3 md:px-4 dark:bg-[#282828] bg-[#f8f8f8] border-b dark:border-accent-300 border-[#ccc]">
+        <div className="flex items-center w-full justify-between sm:h-10 md:h-12 sm:px-3 md:px-4 dark:bg-[#282828] bg-[#f8f8f8] border-b dark:border-accent-300 border-[#ccc] rounded-t-lg">
           <div className="flex gap-2 text-sm items-center">
             {
               language === "jsx" &&
