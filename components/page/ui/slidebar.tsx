@@ -57,6 +57,10 @@ const slideBarData = {
     {
       "nav": "Text",
       "url": "/ui/text"
+    },
+    {
+      "nav": "3D Card",
+      "url": "/ui/3d-card"
     }
   ],
   "Utils": [
