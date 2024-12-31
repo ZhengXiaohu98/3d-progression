@@ -1,0 +1,302 @@
+import { ExampleBox } from "@/components/page/ui";
+import Image from "next/image";
+import { Tabs, Tab, WorldMap } from "@/components/ui/general";
+import { BlogTip } from "@/components/page/blog";
+
+export const metadata = {
+  title: "WorldMap | EZ UI",
+  description: "A 2D world map with customizable geographical data."
+};
+
+# World Map
+A 2D world map(SVG based) with customizable geographical data. Dependencies needed:
+
+```bash
+npm install framer-motion
+```
+
+## Example
+
+<ExampleBox className="justify-evenly md:flex-row flex-col gap-10 ">
+  <WorldMap 
+    className="lg:w-[800px] md:w-[600px] w-[300px] dark:!fill-white !fill-accent-300" 
+    points={[
+      [40.7128, -74.0060],  // New York
+      [51.5074, -0.1278],   // London
+      [39.9042, 116.4074, "#a855f7"], // BeiJing
+    ]}
+    lines={[
+      [[40.7128, -74.0060], [51.5074, -0.1278], "#16a34a"],
+      [[51.5074, -0.1278], [39.9042, 116.4074], "#7c3aed"],
+      [[39.9042, 116.4074], [40.7128, -74.0060]],
+    ]}
+    labels= {[
+      ["New York", [60,40], "#3b82f6"],
+      ["London", [-100,-30], "#a855f7"],
+      ["BeiJing", [65,80], "#ef4444"]
+    ]}
+  />
+</ExampleBox>
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="w-full flex justify-center py-10">
+      <WorldMap 
+        className="lg:w-[800px] md:w-[600px] w-[300px] dark:!fill-[#ecfeff] !fill-[#155e75]" 
+        points={[
+          [40.7128, -74.0060, "#a855f7"],  // New York
+          [51.5074, -0.1278],   // London
+          [39.9042, 116.4074],   // Beijing
+          [48.8566, 2.3522],     // Paris
+          [35.6895, 139.6917],   // Tokyo
+          [55.7558, 37.6173],    // Moscow
+          [41.9028, 12.4964],    // Rome
+        ]}
+        lines={[
+          [[40.7128, -74.0060], [51.5074, -0.1278], "#16a34a"],
+          [[51.5074, -0.1278], [39.9042, 116.4074], "#7c3aed"],
+          [[48.8566, 2.3522], [35.6895, 139.6917], "#9333ea"],
+          [[55.7558, 37.6173], [40.7306, -73.9352], "#ef4444"],
+          [[40.7306, -73.9352], [41.9028, 12.4964], "#10b981"],
+          [[41.9028, 12.4964], [40.7128, -74.0060], "#6366f1"],
+        ]}
+        labels={[
+          ["New York", [60,40]],
+          ["London", [-100,-30], "#a855f7"],
+          ["Beijing", [65,80], "#ef4444"],
+          ["Paris", [-50, 40], "#ff6347"],
+          ["Tokyo", [80, 50], "#008080"],
+          ["Moscow", [-50, -150], "#800080"],
+        ]}
+      />
+    </div>
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { WorldMap } from "@/components/ui/general"; // your file path
+
+    <WorldMap 
+        className="lg:w-[800px] md:w-[600px] w-[300px] dark:!fill-[#ecfeff] !fill-[#155e75]" 
+        points={[
+          [40.7128, -74.0060, "#a855f7"],  // New York
+          [51.5074, -0.1278],   // London
+          [39.9042, 116.4074],   // Beijing
+          [48.8566, 2.3522],     // Paris
+          [35.6895, 139.6917],   // Tokyo
+          [55.7558, 37.6173],    // Moscow
+          [41.9028, 12.4964],    // Rome
+        ]}
+        lines={[
+          [[40.7128, -74.0060], [51.5074, -0.1278], "#16a34a"],
+          [[51.5074, -0.1278], [39.9042, 116.4074], "#7c3aed"],
+          [[48.8566, 2.3522], [35.6895, 139.6917], "#9333ea"],
+          [[55.7558, 37.6173], [40.7306, -73.9352], "#ef4444"],
+          [[40.7306, -73.9352], [41.9028, 12.4964], "#10b981"],
+          [[41.9028, 12.4964], [40.7128, -74.0060], "#6366f1"],
+        ]}
+        labels={[
+          ["New York", [60,40]],
+          ["London", [-100,-30], "#a855f7"],
+          ["Beijing", [65,80], "#ef4444"],
+          ["Paris", [-50, 40], "#ff6347"],
+          ["Tokyo", [80, 50], "#008080"],
+          ["Moscow", [-50, -150], "#800080"],
+        ]}
+      />
+    ```
+  </Tab>
+</Tabs>
+
+## Source Code
+```tsx
+"use client";
+import React from "react";
+import { cn } from "@/utils";
+import { motion } from "framer-motion";
+
+interface WorldMapProps {
+  className?: string;
+  mapColor?: string;
+  points?: Array<[number, number, string?]>;
+  lines?: Array<[[number, number], [number, number], string?]>;
+  labels?: Array<[string?, [number, number]?, string?]>;
+  pinColor?: string;
+  lineColor?: string;
+  labelColor?: string;
+  pinSize?: number;
+  lineWidth?: number;
+  labelSize?: number;
+  animation?: {
+    duration?: number,
+    play?: boolean,
+    repeatDelay?: number
+    random?: boolean
+  }
+}
+
+export const WorldMap: React.FC<WorldMapProps> = ({ mapColor = "currentColor", points = [], lines = [], labels = [], className, pinColor = "#ef4444", lineColor = "#d946ef", labelColor = "#0d9488", pinSize = 6, lineWidth = 2, labelSize = 24, animation = { duration: 2.2, play: true, repeatDelay: 0.5, random: true } }) => {
+
+  const latLongToSVG = (lat: number, long: number, pColor?: string): [number, number, string?] => {
+    const x = (long + 168) * (1920 / 360);
+    const y = (118 - lat) * (1080 / 180);
+    const pointColor = pColor ?? pinColor;
+
+    return [x, y, pointColor];
+  };
+
+  // this function is needed for a more acurate path length
+  const bezierCurveLength = (x1: number, y1: number, cx: number, cy: number, x2: number, y2: number, segments: number = 5): number => {
+    let length = 0;
+    let prevX = x1;
+    let prevY = y1;
+
+    for (let t = 1; t <= segments; t++) {
+      const tNorm = t / segments;
+
+      const x =
+        (1 - tNorm) * (1 - tNorm) * x1 +
+        2 * (1 - tNorm) * tNorm * cx +
+        tNorm * tNorm * x2;
+      const y =
+        (1 - tNorm) * (1 - tNorm) * y1 +
+        2 * (1 - tNorm) * tNorm * cy +
+        tNorm * tNorm * y2;
+
+      const dx = x - prevX;
+      const dy = y - prevY;
+      length += Math.sqrt(dx * dx + dy * dy);
+
+      prevX = x;
+      prevY = y;
+    }
+
+    return length;
+  };
+
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" className={cn("w-full h-full transition", className)} viewBox="0 0 1920 1080" style={{ fill: mapColor }}>
+      {/* Include the map here */}
+      { /* points */ }
+      <g>
+        {points?.map((point, index) => {
+          const [x, y, pointColor] = latLongToSVG(point[0], point[1], point[2]);
+          return (
+            <circle
+              key={"point-" + index}
+              cx={x}
+              cy={y}
+              r={pinSize}
+              fill={pointColor}
+            />
+          );
+        })}
+      </g>;
+      {/* lines */}
+      <g>
+        {lines?.map(([[x1, y1], [x2, y2], color], index) => {
+          const [nx1, ny1] = latLongToSVG(x1, y1);
+          const [nx2, ny2] = latLongToSVG(x2, y2);
+          const midX = (nx1 + nx2) / 2;
+          const midY = (ny1 + ny2) / 2;
+          const controlX = midX;
+          const controlY = midY - 150;
+
+          const lColor = color ?? lineColor;
+
+          // calculate the total length of the path
+          const pathLength = bezierCurveLength(nx1, ny1, controlX, controlY, nx2, ny2);
+
+          return (
+            <motion.path
+              key={`line-${index}`}
+              d={`M ${nx1},${ny1} Q ${controlX},${controlY} ${nx2},${ny2}`}
+              fill="none"
+              stroke={lColor}
+              strokeWidth={lineWidth}
+              strokeDasharray={pathLength}
+              strokeDashoffset={pathLength}
+              initial={{ strokeDashoffset: pathLength }}
+              animate={{
+                strokeDashoffset: [pathLength, 0, animation.play ? -pathLength : 0],
+              }}
+              transition={{
+                duration: animation.duration ?? 3,
+                ease: "easeOut",
+                repeat: animation.play ? Infinity : 0,
+                repeatType: "loop",
+                repeatDelay: animation.repeatDelay ?? 0.5,
+                delay: animation.random ? Math.random() : 0,
+              }}
+              style={{
+                filter: "drop-shadow(0 0 5px rgba(255, 255, 255, 0.8))",
+              }}
+            />
+          );
+        })}
+
+      </g>
+      {/* lables */}
+      <g>
+        {labels?.map((label, i) => {
+          if (label.length === 0 || i >= points.length) {
+            return;
+          }
+          const [x, y] = latLongToSVG(points[i][0], points[i][1]);
+          let dx = 30, dy = -30;
+          if (label[1]) {
+            dx = label[1][0] ?? dx;
+            dy = label[1][1] ?? dy;
+          }
+
+          const p1 = [x + dx * 0.6, y + dy - 5];
+          return (
+            <g key={"label-" + i}>
+              <text
+                x={x + dx}
+                y={y + dy}
+                fill={label[2] ?? labelColor}
+                fontSize={labelSize ?? 16}
+                ref={(el) => {
+                  if (el) {
+                    const textWidth = el.getBBox().width;
+                    el.setAttribute("transform", `translate(${dx < 0 ? -textWidth : 0}, 0)`);
+                  }
+                }}>
+                {label[0]}
+              </text>
+              <line x1={x + (dx > 0 ? 2 : -2)} y1={y + (dy > 0 ? 7 : -7)} x2={p1[0]} y2={p1[1]} stroke={label[2] ?? labelColor} strokeWidth={1} />
+              <line x1={p1[0]} y1={p1[1]} x2={x + dx + (dx > 0 ? -2 : 2)} y2={p1[1]} stroke={label[2] ?? labelColor} strokeWidth={1} />
+            </g>
+          );
+        })}
+      </g>
+    </svg>
+  );
+};
+
+```
+
+<br />
+
+<BlogTip  text="The SVG source for the world map is too large, so I have excluded it from the source code. You can download it below and add it later."/>
+
+[world-map.svg](/files/world-map.svg)
+
+## Props
+
+| **Prop Name**       | **Type**                 | **Required** | **Default**    | **Description**                                                                 |
+|---------------------|--------------------------|--------------|----------------|---------------------------------------------------------------------------------|
+| `className`         | `string`                 | No           | `undefined`    | Additional class name to apply to the map SVG element.                          |
+| `mapColor`          | `string`                 | No           | `"currentColor"` | The color of the map background.                                                |
+| `points`            | `Array<[number, number, string?]>` | No           | `[]`           | An array of points to display on the map. Each point is represented by an array of `[latitude, longitude, optional color]`. |
+| `lines`             | `Array<[[number, number], [number, number], string?]>` | No           | `[]`           | An array of lines between points, defined by two pairs of `[latitude, longitude]` and an optional color. |
+| `labels`            | `Array<[string?, [number, number]?, string?]>` | No           | `[]`           | An array of labels to be placed at specific points. Labels can be customized with optional text, offset, and color. |
+| `pinColor`          | `string`                 | No           | `"#ef4444"`    | The color of the pins that represent points.                                    |
+| `lineColor`         | `string`                 | No           | `"#d946ef"`    | The color of the lines connecting points.                                       |
+| `labelColor`        | `string`                 | No           | `"#0d9488"`    | The color of the labels.                                                        |
+| `pinSize`           | `number`                 | No           | `6`            | The size of the pins displayed for each point.                                  |
+| `lineWidth`         | `number`                 | No           | `2`            | The width of the lines connecting the points.                                   |
+| `labelSize`         | `number`                 | No           | `24`           | The font size of the labels.                                                    |
+| `animation`         | `object`                 | No           | `{ duration: 2.2, play: true, repeatDelay: 0.5, random: true }` | The animation configuration. It supports the following options: <br /> `duration`: The duration of the animation. <br /> `play`: Whether to play the animation. <br /> `repeatDelay`: Delay between repeated animations. <br /> `random`: Whether to apply a random delay to the animation. |
