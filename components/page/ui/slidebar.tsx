@@ -23,6 +23,10 @@ const slideBarData = {
     {
       "nav": "Tooltip",
       "url": "/ui/tooltip"
+    },
+    {
+      "nav": "World Map",
+      "url": "/ui/world-map"
     }
   ],
   "Effects": [
@@ -57,6 +61,10 @@ const slideBarData = {
     {
       "nav": "Text",
       "url": "/ui/text"
+    },
+    {
+      "nav": "3D Card",
+      "url": "/ui/3d-card"
     }
   ],
   "Utils": [

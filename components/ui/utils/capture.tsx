@@ -48,7 +48,7 @@ export const Capture: React.FC<CaptureProps> = ({ children }) => {
 
     const link = document.createElement("a");
     link.href = previewUrl;
-    link.download = "liber-image.png";
+    link.download = "image.png";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

@@ -20,7 +20,8 @@ module.exports = {
         DEFAULT: "1rem",
         sm: "0.5rem",
         md: "2rem",
-        lg: "3rem"
+        lg: "3rem",
+        xl: "4rem",
       },
     },
     transitionDuration: {
