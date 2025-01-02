@@ -359,7 +359,7 @@ export default function Home() {
               </div>
               {/* Page 4 - ez ui */}
               <div className="h-full w-full dark:bg-accent-dark bg-white border rounded-r-lg flex flex-col justify-center items-center dark:border-accent-300  border-accent-ccc px-8 lg:px-10 py-8">
-                <h2 className="text-xl md:text-2xl tracking-wider text-center font-bold text-accent-dark dark:text-accent-white mb-12">My UI</h2>
+                <h2 className="text-xl md:text-2xl tracking-wider text-center font-bold text-accent-dark dark:text-accent-white mb-12">EZ UI</h2>
                 <div className="grid grid-cols-2 place-items-center gap-10 lg:gap-16 ">
                   <Glow className="rounded-full w-fit" color={["#fb923c", "#22d3ee", "#a78bfa", "#f472b6"]}>
                     <div className="w-20 h-20 bg-transparent rounded-full flex justify-center items-center text-xs">
