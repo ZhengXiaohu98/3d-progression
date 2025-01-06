@@ -7,3 +7,5 @@ export * from "./particles";
 export * from "./dual-compare";
 export * from "./text";
 export * from "./threed-card";
+export * from "./view";
+export * from "./window";

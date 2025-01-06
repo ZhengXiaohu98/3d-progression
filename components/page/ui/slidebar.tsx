@@ -65,6 +65,14 @@ const slideBarData = {
     {
       "nav": "3D Card",
       "url": "/ui/3d-card"
+    },
+    {
+      "nav": "View",
+      "url": "/ui/view"
+    },
+    {
+      "nav": "Window",
+      "url": "/ui/window"
     }
   ],
   "Utils": [
@@ -89,7 +97,7 @@ export const SlideBar: React.FC<SlideBarProps> = () => {
               {
                 navs.sort((a, b) => a.nav.localeCompare(b.nav)).map((nav) => (
                   <Link key={nav.nav} href={nav.url}>
-                    <li className={cn("overflow-hidden font-normal text-accent-300 dark:text-accent-aaa hover:font-semibold hover:text-accent-dark dark:hover:text-accent-white transition-all hover:translate-x-0.5 my-1", pathname === nav.url ? "font-medium text-accent-dark dark:text-accent-white" : "text-sm")}>
+                    <li className={cn("overflow-hidden font-normal text-accent-300 dark:text-accent-aaa hover:font-semibold hover:text-accent-dark dark:hover:text-accent-white transition-all duration-75 hover:translate-x-0.5 my-1", pathname === nav.url ? "font-medium text-accent-dark dark:text-accent-white" : "text-sm")}>
                       <div className={cn("flex items-center gap-2 transition", pathname === nav.url ? "" : "-translate-x-8")}>
                         <svg className="w-6 h-6 rotate-180 mt-px" fill="none" viewBox="0 0 24 24" >
                           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12l4-4m-4 4 4 4" />

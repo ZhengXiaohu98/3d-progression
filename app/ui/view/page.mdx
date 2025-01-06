@@ -1,0 +1,113 @@
+import { ExampleBox } from "@/components/page/ui";
+import Image from "next/image";
+import { View, PointLight } from "@/components/ui/effects";
+import { Tabs, Tab } from "@/components/ui/general";
+
+export const metadata = {
+  title: "View | EZ UI",
+  description: "The View component allows content to be globally viewed, providing layout transition effects"
+};
+
+# View
+The `View` component allows content to be globally viewed, providing layout transition effects. Dependencies needed:
+
+```bash
+npm install framer-motion
+```
+
+## Example
+
+<ExampleBox className="justify-evenly md:flex-row flex-col gap-10 md:px-10 px-4">
+  <View>
+    <Image src="/images/project/3d-book-gallery/img6.jpg" width={489} height={430} className="w-fit max-h-screen rounded-md"/>
+  </View>
+</ExampleBox>
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="w-full flex justify-center py-10">
+      <View>
+        <p className="font-playwrite-gbs text-pink-base">The more simple, the better.</p>
+      </View>
+    </div>
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { View } from "@/components/ui/effects";  // your file path
+
+    <View>
+      <p className="font-playwrite-gbs text-pink-base">The more simple, the better.</p>
+    </View>
+    ```
+  </Tab>
+</Tabs>
+
+## Source Code
+
+```tsx
+"use client";
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { cn } from '@/utils';
+
+interface ViewProps {
+  children: React.ReactNode;
+}
+
+export const View: React.FC<ViewProps> = ({ children }) => {
+
+  const divRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
+
+  useEffect(() => {
+    if (divRef.current) {
+      const rect = divRef.current.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+
+      setPosition({
+        left: (viewportWidth / 2) - (rect.width / 2),
+        top: (viewportHeight / 2) - (rect.height / 2),
+      });
+    }
+  }, []);
+
+  return (
+    <>
+      <motion.div
+        ref={divRef}
+        layout
+        className={cn("group/view", isOpen ? "z-[100] fixed top-1/2 left-1/2" : "relative")}
+        style={{
+          left: isOpen ? `${position.left}px` : "",
+          top: isOpen ? `${position.top}px` : "",
+        }}
+      >
+        {children}
+        <div
+          className={cn("absolute inset-0 bg-black/10 dark:bg-black/65 z-[1] transition ease-in-out cursor-pointer", isOpen ? "opacity-0 pointer-events-none" : "pointer-events-auto opacity-0 group-hover/view:opacity-100")}
+          onClick={() => setIsOpen(true)}
+        />
+      </motion.div>
+      <div className={cn("z-[99] fixed left-0 top-0 w-full h-full bg-black/80 ease-in-out duration-500", isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none")} onClick={() => { setIsOpen(false) }} />
+      {
+        isOpen &&
+        <div className="opacity-0 -z-10">
+          {children}
+        </div>
+      }
+    </>
+
+  );
+};
+
+```
+
+## Props
+
+| **Prop Name** | **Type**                 | **Required** | **Default** | **Description**                                                                 |
+|---------------|--------------------------|--------------|-------------|---------------------------------------------------------------------------------|
+| `children`    | `React.ReactNode`         | Yes          | N/A         | The content to be wrapped and rendered within the `View` component.             |
