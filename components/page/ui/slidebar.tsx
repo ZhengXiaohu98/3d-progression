@@ -69,6 +69,10 @@ const slideBarData = {
     {
       "nav": "View",
       "url": "/ui/view"
+    },
+    {
+      "nav": "Window",
+      "url": "/ui/window"
     }
   ],
   "Utils": [
