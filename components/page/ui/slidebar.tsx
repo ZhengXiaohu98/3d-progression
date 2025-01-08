@@ -79,6 +79,10 @@ const slideBarData = {
     {
       "nav": "Capture",
       "url": "/ui/capture"
+    },
+    {
+      "nav": "Navigator",
+      "url": "/ui/navigator"
     }
   ]
 }
@@ -92,7 +96,7 @@ export const SlideBar: React.FC<SlideBarProps> = () => {
       {
         Object.entries(slideBarData).map(([navTitle, navs]) => (
           <div key={navTitle} className="flex flex-col gap-2">
-            <h2 className="text-lg font-semibold text-accent-dark dark:text-accent-white">{navTitle}</h2>
+            <p className="text-lg font-semibold text-accent-dark dark:text-accent-white">{navTitle}</p>
             <ul>
               {
                 navs.sort((a, b) => a.nav.localeCompare(b.nav)).map((nav) => (
