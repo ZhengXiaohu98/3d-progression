@@ -1,0 +1,114 @@
+import { ExampleBox } from "@/components/page/ui";
+import Image from "next/image";
+import { AutoSwitch } from "@/components/ui/effects";
+import { Tabs, Tab } from "@/components/ui/general";
+
+export const metadata = {
+  title: "Auto Switch | EZ UI",
+  description: "Auto Switch is a component that automatically switches between multiple elements.",
+};
+
+# Auto Swtich
+Auto Switch can automatically switch the child elements. Dependencies needed:
+
+```bash
+npm install framer-motion
+```
+
+## Example
+
+<ExampleBox className="justify-evenly md:flex-row flex-col gap-10 md:px-10 px-4">
+  <div className="not-prose flex font-playwrite-gbs font-bold md:text-lg text-sm">
+    EZ UI is 
+    <AutoSwitch className="inline-block ml-1 mr-px">
+      <span className="text-pink-base">easy</span>
+      <span className="text-orange-base">cool</span>
+      <span className="text-purple-base">awesome</span>
+    </AutoSwitch>
+     & always free!
+  </div>
+</ExampleBox>
+
+## Usage
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="w-full flex justify-center py-10 text-xl font-petrona font-semibold">
+      <AutoSwitch duration={3} animationDuration={0.7}>
+        <span>Freedom</span>
+        <span>Equality</span>
+        <span>Justice </span>
+      </AutoSwitch>
+    </div>
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { AutoSwitch } from "@/components/ui/effects";  // your file path
+
+    <AutoSwitch duration={3} animationDuration={0.7}>
+      <span>Freedom</span>
+      <span>Equality</span>
+      <span>Justice </span>
+    </AutoSwitch>
+    ```
+  </Tab>
+</Tabs>
+
+## Source Code
+
+```tsx
+"use client";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+interface AutoSwitchProps {
+  children: React.ReactNode[];
+  animationDuration?: number;
+  duration?: number;
+  className?: string;
+}
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 },
+};
+
+export const AutoSwitch: React.FC<AutoSwitchProps> = ({ children, animationDuration = 0.4, duration = 2, className }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % children.length);
+    }, duration * 1000);
+
+    return () => clearInterval(interval);
+  }, [children.length, duration]);
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={currentIndex}
+        variants={fadeInUp}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={{ duration: animationDuration, ease: "easeOut" }}
+        className={className}
+      >
+        {children[currentIndex]}
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
+```
+
+## Props
+
+| **Prop Name** | **Type**                 | **Required** | **Default** | **Description**                                                                 |
+|---------------|--------------------------|--------------|-------------|---------------------------------------------------------------------------------|
+| children      | React.ReactNode[]        | Yes          | `undefined` | The child elements to switch between.                                           |
+| animationDuration | number               | No           | 0.4         | The duration of the animation.                                                  |
+| duration      | number                   | No           | 2           | The duration between each switch.                                               |
+| className     | string                   | No           | `undefined` | The class name of the component.                                                 |

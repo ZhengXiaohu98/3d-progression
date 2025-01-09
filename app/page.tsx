@@ -1,8 +1,8 @@
-import { Glow, Book, Particles, PointLight } from "@/components/ui/effects";
+import { Glow, Book, Particles, PointLight, Window } from "@/components/ui/effects";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Marquee } from "@/components/ui/general";
+import { Marquee, WorldMap } from "@/components/ui/general";
 import dynamic from "next/dynamic";
 import { blogData } from "./blog/data.json";
 import { ArrowIcon } from "@/components/icon";
@@ -360,28 +360,31 @@ export default function Home() {
               {/* Page 4 - ez ui */}
               <div className="h-full w-full dark:bg-accent-dark bg-white border rounded-r-lg flex flex-col justify-center items-center dark:border-accent-300  border-accent-ccc px-8 lg:px-10 py-8">
                 <h2 className="text-xl md:text-2xl tracking-wider text-center font-bold text-accent-dark dark:text-accent-white mb-12">EZ UI</h2>
-                <div className="grid grid-cols-2 place-items-center gap-10 lg:gap-16 ">
-                  <Glow className="rounded-full w-fit" color={["#fb923c", "#22d3ee", "#a78bfa", "#f472b6"]}>
-                    <div className="w-20 h-20 bg-transparent rounded-full flex justify-center items-center text-xs">
-                      Glow
+                <Window className="border-t border-x dark:border-accent-300 border-accent-ccc">
+                  <div className="grid grid-cols-2 place-items-center gap-10 lg:gap-16 p-4 border-x border-b rounded-b dark:border-accent-300 border-accent-ccc">
+                    <Glow className="rounded-full w-fit" color={["#fb923c", "#22d3ee", "#a78bfa", "#f472b6"]}>
+                      <div className="w-20 h-20 bg-transparent rounded-full flex justify-center items-center text-xs">
+                        Glow
+                      </div>
+                    </Glow>
+                    <div className="w-28 h-28 flex justify-center items-center italic relative font-playwrite-gbs">
+                      <Particles count={50} className="absolute w-full h-full" />
+                      particles
                     </div>
-                  </Glow>
-                  <div className="w-28 h-28 flex justify-center items-center italic relative font-playwrite-gbs">
-                    <Particles count={50} className="absolute w-full h-full" />
-                    particles
-                  </div>
-                  <div className="relative w-28 h-28 overflow-hidden bg-black flex justify-center items-center rounded">
-                    <p className="text-center text-sm text-white italic">point light</p>
-                    <PointLight angle={30} color="#fae8ff" intensity={3} className="origin-top-right left-auto right-0" />
-                  </div>
-                  <Link href="/ui" >
-                    <div className="whitespace-nowrap mt-4 lg:mt-10 sm:text-sm md:text-base relative flex items-center gap-2 sm:py-1.5 px-4 md:py-2 rounded-md w-fit dark:bg-accent-white bg-none dark:text-accent-dark text-accent-300 font-bold group/btn">
-                      See all
-                      <ArrowIcon className="w-6 h-6 group-hover/btn:translate-x-0.5 transition" />
+                    <div className="relative w-28 h-28 overflow-hidden bg-black flex justify-center items-center rounded">
+                      <p className="text-center text-sm text-white italic">point light</p>
+                      <PointLight angle={30} color="#fae8ff" intensity={3} className="origin-top-right left-auto right-0" />
                     </div>
-                  </Link>
-                </div>
-
+                    <div className="w-28 h-28 flex justify-center items-center">
+                      <WorldMap />
+                    </div>
+                  </div>
+                </Window>
+                <Link href="/ui">
+                  <div className="w-fit lg:mt-10 mt-2 text-sm px-4 py-2 rounded-lg border dark:border-accent-300 border-accent-ccc transition duration-150 relative overflow-hidden dark:hover:bg-gray-dark/50 hover:bg-accent-white/50">
+                    See all
+                  </div>
+                </Link>
               </div>
             </Book>
           </div>
@@ -484,9 +487,9 @@ export default function Home() {
           <div className="w-full md:mt-10 sm:mt-6 flex flex-col lg:flex-row transition-all justify-between md:gap-8 gap-6">
             {
               projectData.map((project, idx) => (
-                <div key={idx} className="w-full flex flex-col md:flex-row gap-3 md:gap-6 items-center flex-1 dark:shadow-sm dark:shadow-white/5 shadow-md shadow-black/5 rounded overflow-hidden pb-4 md:pb-0">
+                <div key={idx} className="w-full flex flex-col md:flex-row gap-3 md:gap-6 flex-1 dark:shadow-sm dark:shadow-white/5 shadow-md shadow-black/5 rounded overflow-hidden pb-4 md:pb-0">
                   <Image src={project.img} width={500} height={348} alt={project.name} className="md:h-[240px] w-fit" />
-                  <div className="flex flex-col gap-2 pl-4 md:pl-0">
+                  <div className="relative flex flex-col gap-2 pl-4 md:pl-0 md:pt-4">
                     <div className="flex items-center gap-2 dark:text-accent-white text-accent-300 lg:mt-0 md:mt-4 sm:mt-2">
                       <svg className="w-5 h-5 mt-px" fill="none" viewBox="0 0 24 24">
                         <path
@@ -501,7 +504,7 @@ export default function Home() {
                     </div>
                     <p className="tracking-wide md:text-base sm:text-sm dark:text-accent-900">{project.description}</p>
                     <Link href={project.url} >
-                      <div className="mt-2 md:mt-10 sm:text-sm md:text-base relative flex items-center gap-2 sm:py-1.5 px-4 md:py-2 rounded-md w-fit dark:bg-accent-white bg-none dark:text-accent-dark text-accent-300 font-bold group/btn">
+                      <div className="mt-2 md:mt-0 md:absolute left-0 bottom-6 sm:text-sm md:text-base flex items-center gap-2 sm:py-1.5 px-4 md:py-2 rounded-md w-fit dark:bg-accent-white bg-none dark:text-accent-dark text-accent-300 font-bold group/btn">
                         Visit Site
                         <ArrowIcon className="w-6 h-6 group-hover/btn:translate-x-0.5 transition" />
                       </div>
