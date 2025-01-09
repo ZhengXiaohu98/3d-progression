@@ -60,6 +60,11 @@
   background-color: #888;
 }
 
+.scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 /* blog item */
 .blog-item {
   @apply shrink-0 sm:prose-sm md:prose lg:prose-lg dark:prose-invert sm:max-w-[360px] md:max-w-full lg:w-[712px] prose-p:tracking-[0.1px] prose-p:text-accent-300 dark:prose-p:text-[#cbcbcb] 

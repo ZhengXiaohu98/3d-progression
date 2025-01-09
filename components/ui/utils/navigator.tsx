@@ -122,6 +122,8 @@ export const Navigator: React.FC<NavigatorProps> = ({ className, queryString = "
     );
   };
 
+  if(headings.length === 0) return null;
+
   return (
     <>
       {/* large viewport */}

@@ -9,3 +9,4 @@ export * from "./text";
 export * from "./threed-card";
 export * from "./view";
 export * from "./window";
+export * from "./auto-switch";
