@@ -14,10 +14,10 @@ interface SectionProps {
 const Section: React.FC<SectionProps> = (props) => {
   return (
     <section
-      className={`h-screen flex flex-col justify-center p-10 sm:items-center ${props.right ? "md:items-end" : "md:items-start"}`}
+      className={`h-screen flex flex-col justify-center p-10 items-center ${props.right ? "md:items-end" : "md:items-start"}`}
       style={{ opacity: props.opacity }}
     >
-      <div className="sm:w-[370px] md:w-1/2 flex items-center justify-center">
+      <div className="w-[370px] md:w-1/2 flex items-center justify-center">
         <div className="max-w-[600px] w-full">
           <div className="rounded-lg px-8 py-12">
             {props.children}
@@ -60,9 +60,9 @@ export const Overlay: React.FC = () => {
           </div>
         </Section>
         <Section right opacity={sectionOpacityArr[0]}>
-          <h1 className="intro-text font-semibold md:text-3xl md:leading-relaxed sm:text-2xl sm:leading-normal tracking-wider bg-clip-text text-transparent bg-gradient-to-b dark:from-white dark:to-white/80 from-black to-black/80">
+          <h1 className="intro-text font-semibold md:text-3xl md:leading-relaxed text-2xl leading-normal tracking-wider bg-clip-text text-transparent bg-linear-to-b dark:from-white dark:to-white/80 from-black to-black/80">
             {"I'm Xiaohu, a Web Developer building "}
-            <span className="dark:from-[#c2410c77] dark:via-[#7e22c755] dark:to-[#c2410c77] from-orange-base via-purple-base to-orange-base bg-clip-text text-transparent bg-gradient-to-l gradient-text bg-[length:200%_100%]">{"creative engaging 3D"}</span> {"websites."}
+            <span className="dark:from-[#c2410c77] dark:via-[#7e22c755] dark:to-[#c2410c77] from-orange-base via-purple-base to-orange-base bg-clip-text text-transparent bg-linear-to-l gradient-text bg-[length:200%_100%]">{"creative engaging 3D"}</span> {"websites."}
           </h1>
           <p className="intro-text text-smoke-base dark:text-accent-900 tracking-wide text-sm font-mono">{"Exploring the ocean of code"}</p>
           <p className="animate-bounce mt-6">↓</p>
@@ -305,7 +305,7 @@ export const Overlay: React.FC = () => {
           <Link href="/">
             <div id="logo" className="relative mt-[-120px] w-[120px] h-[120px]">
               <Image src="/logo_original_1024.png" width={100} height={100} alt="logo_xh" className="rounded-3xl w-[120px] h-[120px]" />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-bl from-orange-base to-purple-base opacity-50 blur-xl" />
+              <div className="absolute inset-0 -z-10 bg-linear-to-bl from-orange-base to-purple-base opacity-50 blur-xl" />
             </div>
           </Link>
         </section>

@@ -1,5 +1,5 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 
 interface ToastProps {
   toast: { message: string } | null;
@@ -21,7 +21,7 @@ export const Toast: React.FC<ToastProps> = ({ toast }) => {
           exit="exit"
           variants={variants}
           transition={{ duration: 0.5 }}
-          className="fixed sm:bottom-10 md:bottom-20 right-10 font-semibold md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded dark:bg-white dark:text-accent-300 bg-accent-300 text-accent-white"
+          className="fixed bottom-10 md:bottom-20 right-10 font-semibold md:px-4 md:py-2 px-2 py-1 md:text-base text-sm rounded-sm dark:bg-white dark:text-accent-300 bg-accent-300 text-accent-white"
         >
           {toast.message}
         </motion.div>

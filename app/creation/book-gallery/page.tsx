@@ -108,9 +108,9 @@ const BookGallery: React.FC = () => {
         {/* Background Text END */}
 
         {/* Pagination START */}
-        <div className="absolute z-50 sm:bottom-4 md:bottom-10 lg:bottom-12 xl:bottom-20 w-full flex flex-row justify-center items-center flex-wrap sm:gap-x-2 md:gap-x-4 sm:gap-y-1 md:gap-y-3 lg:px-20 md:px-10 sm:px-4">
+        <div className="absolute z-50 bottom-4 md:bottom-10 lg:bottom-12 xl:bottom-20 w-full flex flex-row justify-center items-center flex-wrap gap-x-2 md:gap-x-4 gap-y-1 md:gap-y-3 lg:px-20 md:px-10 px-4">
           <div
-            className={`hover:cursor-pointer transition md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded-lg ${activePage === 0 ? "bg-accent-300 text-accent-white font-bold" : "bg-transparent text-indigo-100 dark:border-accent-white border-accent-500 hover:border hover:-translate-y-1"} `}
+            className={`hover:cursor-pointer transition md:px-4 md:py-2 px-2 py-1 md:text-base text-sm rounded-lg ${activePage === 0 ? "bg-accent-300 text-accent-white font-bold" : "bg-transparent text-indigo-100 dark:border-accent-white border-accent-500 hover:border hover:-translate-y-1"} `}
             onClick={() => {
               window.scrollTo({
                 top: 0,
@@ -123,7 +123,7 @@ const BookGallery: React.FC = () => {
           {pages.map((cur: Page, i: number) => (
             <div
               key={i}
-              className={`hover:cursor-pointer transition md:px-4 md:py-2 sm:px-2 sm:py-1 md:text-base sm:text-sm rounded-lg ${activePage === i + 1 ? "bg-accent-300 text-accent-white font-bold" : "bg-transparent text-indigo-100 dark:border-accent-900 border-accent-500 hover:border hover:-translate-y-1"} `}
+              className={`hover:cursor-pointer transition md:px-4 md:py-2 px-2 py-1 md:text-base text-sm rounded-lg ${activePage === i + 1 ? "bg-accent-300 text-accent-white font-bold" : "bg-transparent text-indigo-100 dark:border-accent-900 border-accent-500 hover:border hover:-translate-y-1"} `}
               onClick={() => {
                 const scrollPosition = document.documentElement.scrollHeight * (i + 1) / (pages.length + 1);
                 window.scrollTo({
@@ -154,7 +154,7 @@ const ProgressLoader: React.FC = () => {
 
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center bg-black/70">
-      <div className="lg:mt-6 sm:mt-4 font-bold lg:text-3xl md:text-2xl sm:text-xl text-white">
+      <div className="lg:mt-6 mt-4 font-bold lg:text-3xl md:text-2xl text-xl text-white">
         In Progress: {Math.trunc(progress)}%
       </div>
     </div>

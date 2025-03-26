@@ -17,10 +17,10 @@ The `3D Rotate` component adds a 3D rotation effect to its child elements when h
 
 <ExampleBox>
   <ThreeDRotate>
-    <div className="md:w-[450px] sm:w-[320px] sm:p-4 lg:p-6 border border-gray-light dark:border-gray-dark rounded-xl">
+    <div className="md:w-[450px] w-[320px] p-4 lg:p-6 border border-gray-light dark:border-gray-dark rounded-xl">
       <Image src="/images/project/3d-book-gallery/img8.jpg" width={1800} height={949} className="w-full h-fit rounded-md"/>
-      <p className="sm:mt-3 md:mt-4 font-bold text-accent-dark dark:text-accent-white sm:text-lg md:text-xl">3D Rotate</p>
-      <p className="sm:mt-1 md:mt-2 font-semibold text-accent-300 dark:text-accent-900 sm:text-xs md:text-sm">Hover over this card to see the 3D effect. Customizable maximum X-Y tilt angles and component content.</p>
+      <p className="mt-3 md:mt-4 font-bold text-accent-dark dark:text-accent-white text-lg md:text-xl">3D Rotate</p>
+      <p className="mt-1 md:mt-2 font-semibold text-accent-300 dark:text-accent-900 text-xs md:text-sm">Hover over this card to see the 3D effect. Customizable maximum X-Y tilt angles and component content.</p>
     </div>
   </ThreeDRotate>
 </ExampleBox>
@@ -29,9 +29,9 @@ The `3D Rotate` component adds a 3D rotation effect to its child elements when h
 
 <Tabs tabs={["Demo", "Code"]}>
   <Tab title="Demo">
-    <div className="w-full flex justify-center sm:py-4 md:py-10">
+    <div className="w-full flex justify-center py-4 md:py-10">
       <ThreeDRotate>
-        <div className="flex justify-center items-center sm:w-80 sm:h-80 lg:w-96 lg:h-96 border dark:border-accent-white/50 border-accent-dark/50 rounded">
+        <div className="flex justify-center items-center w-80 h-80 lg:w-96 lg:h-96 border dark:border-accent-white/50 border-accent-dark/50 rounded-sm">
           Hover to see the Effect
         </div>
       </ThreeDRotate>
@@ -46,7 +46,7 @@ import { ThreeDRotate } from "@/components/ui/effects"; // your file path
   {children}
   {/* In the demo case */}
   {/* 
-    <div className="flex justify-center items-center sm:w-80 sm:h-80 lg:w-96 lg:h-96 border dark:border-accent-white/50 border-accent-dark/50 rounded">
+    <div className="flex justify-center items-center w-80 h-80 lg:w-96 lg:h-96 border dark:border-accent-white/50 border-accent-dark/50 rounded-sm">
       Hover to see the Effect
     </div> 
   */}

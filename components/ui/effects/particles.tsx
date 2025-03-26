@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { motion, useAnimationFrame } from "framer-motion";
+import { motion, useAnimationFrame } from "motion/react";
 import { cn } from "@/utils";
 
 interface ParticlesProps {

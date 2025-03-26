@@ -78,22 +78,22 @@ export default function Home() {
       <HomeAnimations />
       {/* Home */}
       <section className="relative">
-        <div className="container flex flex-col items-center sm:pt-28 md:pt-32 lg:pt-40" >
+        <div className="container flex flex-col items-center pt-28 md:pt-32 lg:pt-40" >
           <div className="flex justify-between lg:items-center w-full">
-            <div className="flex flex-col sm:gap-3 md:gap-4">
-              <h1 className="text-accent-dark dark:text-accent-white intro-text font-semibold md:max-w-[440px] lg:max-w-[700px] lg:text-4xl md:text-3xl md:leading-relaxed sm:text-2xl sm:leading-normal tracking-wide bg-clip-text text-transparent bg-gradient-to-b dark:from-white dark:to-white/80 from-black to-black/80">
+            <div className="flex flex-col gap-3 md:gap-4">
+              <h1 className="intro-text font-semibold md:max-w-[440px] lg:max-w-[700px] lg:text-4xl md:text-3xl md:leading-relaxed text-2xl leading-normal tracking-wide bg-clip-text text-transparent bg-linear-to-b dark:from-white dark:to-white/80 from-black to-black/80">
                 {"I'm Xiaohu, a Web Developer building "}
-                <span className="from-pink-base via-orange-base to-pink-base dark:from-pink-base/60 dark:via-orange-base/60 dark:to-pink-base/60 bg-clip-text text-transparent bg-gradient-to-l gradient-text bg-[length:200%_100%]">{"creative engaging 3D"}</span> {"websites."}
+                <span className="from-pink-base via-orange-base to-pink-base dark:from-pink-base/60 dark:via-orange-base/60 dark:to-pink-base/60 bg-clip-text text-transparent bg-linear-to-l gradient-text bg-[length:200%_100%]">{"creative engaging 3D"}</span> {"websites."}
               </h1>
               <p className="intro-text text-smoke-base dark:text-accent-900 tracking-widest lg:text-base text-sm">{"Exploring the ocean of code"}</p>
             </div>
-            <div className="sm:hidden md:flex flex-col items-center gap-10">
+            <div className="hidden md:flex flex-col items-center gap-10">
               <Glow color={["#f472b666", "#c2410c66"]} className="rounded-3xl">
                 <div id="logo" className="relative">
                   <Image src="/logo_original_1024.png" width={100} height={100} alt="logo_xh" className="rounded-3xl" />
                 </div>
               </Glow>
-              <div className="md:scale-100 sm:scale-75 text-accent-dark dark:text-accent-white">
+              <div className="md:scale-100 scale-75 text-accent-dark dark:text-accent-white">
                 <p id="focus-text" className="text-2xl font-bold tracking-wider italic h-8">
                   {convertToSpanText("Stay Focus!")}
                 </p>
@@ -110,7 +110,7 @@ export default function Home() {
       </section >
       {/* Info Section */}
       <section>
-        <div className="container flex flex-col items-center sm:pt-16 lg:pt-24">
+        <div className="container flex flex-col items-center pt-16 lg:pt-24">
           <div className="w-full hidden md:flex flex-col justify-center items-center">
             <Book className="lg:w-[1000px] lg:h-[666px] md:w-[680px] md:h-[510px]" pageColor="transparent">
               {/* Page 1 - personal info */}
@@ -371,7 +371,7 @@ export default function Home() {
                       <Particles count={50} className="absolute w-full h-full" />
                       particles
                     </div>
-                    <div className="relative w-28 h-28 overflow-hidden bg-black flex justify-center items-center rounded">
+                    <div className="relative w-28 h-28 overflow-hidden bg-black flex justify-center items-center rounded-sm">
                       <p className="text-center text-sm text-white italic">point light</p>
                       <PointLight angle={30} color="#fae8ff" intensity={3} className="origin-top-right left-auto right-0" />
                     </div>
@@ -482,15 +482,15 @@ export default function Home() {
       </section>
       {/* Project Section*/}
       <section className="relative" >
-        <div className="container flex flex-col items-center sm:py-16 lg:py-24">
+        <div className="container flex flex-col items-center py-16 lg:py-24">
           <h2 className="text-2xl md:text-3xl tracking-wider text-center font-bold text-accent-dark dark:text-accent-white">Creations</h2>
-          <div className="w-full md:mt-10 sm:mt-6 flex flex-col lg:flex-row transition-all justify-between md:gap-8 gap-6">
+          <div className="w-full md:mt-10 mt-6 flex flex-col lg:flex-row transition-all justify-between md:gap-8 gap-6">
             {
               projectData.map((project, idx) => (
-                <div key={idx} className="w-full flex flex-col md:flex-row gap-3 md:gap-6 flex-1 dark:shadow-sm dark:shadow-white/5 shadow-md shadow-black/5 rounded overflow-hidden pb-4 md:pb-0">
+                <div key={idx} className="w-full flex flex-col md:flex-row gap-3 md:gap-6 flex-1 dark:shadow-xs dark:shadow-white/5 shadow-md shadow-black/5 rounded-sm overflow-hidden pb-4 md:pb-0">
                   <Image src={project.img} width={500} height={348} alt={project.name} className="md:h-[240px] w-fit" />
                   <div className="relative flex flex-col gap-2 pl-4 md:pl-0 md:pt-4">
-                    <div className="flex items-center gap-2 dark:text-accent-white text-accent-300 lg:mt-0 md:mt-4 sm:mt-2">
+                    <div className="flex items-center gap-2 dark:text-accent-white text-accent-300 lg:mt-0 md:mt-4 mt-2">
                       <svg className="w-5 h-5 mt-px" fill="none" viewBox="0 0 24 24">
                         <path
                           stroke="currentColor"
@@ -500,11 +500,11 @@ export default function Home() {
                           d="m10.051 8.102-3.778.322-1.994 1.994a.94.94 0 0 0 .533 1.6l2.698.316m8.39 1.617-.322 3.78-1.994 1.994a.94.94 0 0 1-1.595-.533l-.4-2.652m8.166-11.174a1.366 1.366 0 0 0-1.12-1.12c-1.616-.279-4.906-.623-6.38.853-1.671 1.672-5.211 8.015-6.31 10.023a.932.932 0 0 0 .162 1.111l.828.835.833.832a.932.932 0 0 0 1.111.163c2.008-1.102 8.35-4.642 10.021-6.312 1.475-1.478 1.133-4.77.855-6.385Zm-2.961 3.722a1.88 1.88 0 1 1-3.76 0 1.88 1.88 0 0 1 3.76 0Z"
                         />
                       </svg>
-                      <p className="md:text-xl sm:text-lg font-bold tracking-wide">{project.name}</p>
+                      <p className="md:text-xl text-lg font-bold tracking-wide">{project.name}</p>
                     </div>
-                    <p className="tracking-wide md:text-base sm:text-sm dark:text-accent-900">{project.description}</p>
+                    <p className="tracking-wide md:text-base text-sm dark:text-accent-900">{project.description}</p>
                     <Link href={project.url} >
-                      <div className="mt-2 md:mt-0 md:absolute left-0 bottom-6 sm:text-sm md:text-base flex items-center gap-2 sm:py-1.5 px-4 md:py-2 rounded-md w-fit dark:bg-accent-white bg-none dark:text-accent-dark text-accent-300 font-bold group/btn">
+                      <div className="mt-2 md:mt-0 md:absolute left-0 bottom-6 text-sm md:text-base flex items-center gap-2 py-1.5 px-4 md:py-2 rounded-md w-fit dark:bg-accent-white bg-none dark:text-accent-dark text-accent-300 font-bold group/btn">
                         Visit Site
                         <ArrowIcon className="w-6 h-6 group-hover/btn:translate-x-0.5 transition" />
                       </div>
@@ -515,7 +515,7 @@ export default function Home() {
             }
           </div>
           <Link href="/project">
-            <div className="md:mt-10 sm:mt-8 text-sm px-4 py-2 rounded-lg border dark:border-accent-300 border-accent-ccc transition duration-150 relative overflow-hidden dark:hover:bg-gray-dark/50 hover:bg-accent-white/50">
+            <div className="md:mt-10 mt-8 text-sm px-4 py-2 rounded-lg border dark:border-accent-300 border-accent-ccc transition duration-150 relative overflow-hidden dark:hover:bg-gray-dark/50 hover:bg-accent-white/50">
               Explore more
             </div>
           </Link>

@@ -31,7 +31,7 @@ export const ToolTip: React.FC<ToolTipProps> = ({ text, follow = false, children
       <div className={cn("absolute z-50 right-0 -top-16 overflow-hidden text-sm dark:text-accent-300 text-white", className)}>
         <div className="px-2 py-1 whitespace-nowrap opacity-0">{text}</div>
         <div
-          className={cn("px-2 py-1 whitespace-nowrap transition dark:bg-white bg-accent-dark rounded-sm",
+          className={cn("px-2 py-1 whitespace-nowrap transition dark:bg-white bg-accent-dark rounded-xs",
             follow ? cn("opacity-0 group-hover/tooltip:opacity-100 fixed z-50 top-5 left-4 ease-out", className) : "ease-in-out translate-y-full group-hover/tooltip:translate-y-0"
           )}
           style={{ transform: follow ? `translate(${mousePosition?.x || 0}px, ${mousePosition?.y || 0}px)` : "" }}

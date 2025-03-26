@@ -31,7 +31,7 @@ const ThemeSwitcher: React.FC = () => {
   if (!mounted) return null;
 
   return (
-    <div className="flex items-center gap-2 sm:-my-6 md:-my-10">
+    <div className="flex items-center gap-2 -my-6 md:-my-10">
       <p>Click to see the effect:</p>
       <div className="w-8 h-8 relative flex items-center justify-center group transition dark:hover:bg-gray-dark/50 hover:bg-gray-light/20 rounded-lg cursor-pointer">
         <div

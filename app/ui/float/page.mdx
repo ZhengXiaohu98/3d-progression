@@ -14,13 +14,13 @@ export const metadata = {
 The `Float` component apply a smooth floating animation to its child elements using `Framer Motion`. Dependencies needed:
 
 ```bash
-npm install framer-motion
+npm install motion/react
 ```
 
 ## Example
 
 <ExampleBox>
-  <div className="sm:w-11/12 md:w-3/5 flex justify-between items-center">
+  <div className="w-11/12 md:w-3/5 flex justify-between items-center">
     <Float intensityY={5}>
       Floating Text
     </Float>
@@ -37,7 +37,7 @@ npm install framer-motion
 
 <Tabs tabs={["Demo", "Code"]}>
   <Tab title="Demo">
-    <div className="sm:w-11/12 md:w-3/5 flex justify-between items-center py-4">
+    <div className="w-11/12 md:w-3/5 flex justify-between items-center py-4">
       <Float intensityY={5}>
         Vertical Float
       </Float>
@@ -59,7 +59,7 @@ npm install framer-motion
     ```tsx
     import { Float } from "@/components/ui/effects";  // your file path
 
-    <div className="sm:w-11/12 md:w-3/5 flex justify-between items-center py-4">
+    <div className="w-11/12 md:w-3/5 flex justify-between items-center py-4">
       <Float intensityY={5}>
         Vertical Float
       </Float>
@@ -86,7 +86,7 @@ npm install framer-motion
 "use client";
 
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 type FloatProps = {
   children: ReactNode;

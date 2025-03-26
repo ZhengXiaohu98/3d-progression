@@ -26,7 +26,7 @@ interface BlogLayoutProps {
 const BlogLayout: React.FC<BlogLayoutProps> = ({ children }) => {
   return (
     <section className="font-petrona">
-      <div className="container lg:w-[1024px] md:w-[700px] sm:w-full lg:pt-40 lg:pb-28 md:pt-32 md:pb-12 sm:pt-24 sm:pb-7">
+      <div className="container lg:w-[1024px] md:w-[700px] w-full lg:pt-40 lg:pb-28 md:pt-32 md:pb-12 pt-24 pb-7">
         {children}
       </div>
       <Footer />
