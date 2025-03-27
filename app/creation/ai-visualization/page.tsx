@@ -468,46 +468,54 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
   };
 
   return (
-    <div className="container flex justify-between gap-10 min-h-screen py-40">
-      <div className="min-h-full w-[350px] shrink-0">
-        <div className="sticky top-40">
-          <input
-            type="file"
-            accept=".xlsx, .xls"
-            onChange={handleFileUpload}
-            className="text-sm cursor-pointer file:cursor-pointer file:mr-8 file:px-4 file:py-2 file:rounded-lg file:border file:dark:border-accent-300 file:border-accent-ccc w-fit"
-          />
+    <div className="container flex flex-col lg:flex-row justify-between gap-6 lg:gap-10 min-h-screen py-20 lg:py-40">
+      {/* 左侧边栏 */}
+      <div className="w-full lg:w-[350px] lg:shrink-0">
+        <div className="lg:sticky lg:top-40 space-y-6">
+          {/* 文件上传区域 */}
+          <div className="bg-white dark:bg-accent-300 p-6 rounded-lg shadow-lg">
+            <input
+              type="file"
+              accept=".xlsx, .xls"
+              onChange={handleFileUpload}
+              className="text-sm cursor-pointer file:cursor-pointer file:mr-4 file:px-4 file:py-2 file:rounded-lg file:border file:dark:border-accent-300 file:border-accent-ccc w-full lg:w-fit"
+            />
 
-          {excelData.length > 0 && (
-            <button
-              className="w-full mt-10 px-4 py-2 rounded-lg bg-accent-primary text-accent-white cursor-pointer bg-orange-base dark:bg-purple-base disabled:opacity-50 disabled:cursor-not-allowed"
-              onClick={handleStartVisualization}
-              disabled={isLoading || excelData.length === 0}
-            >
-              {isLoading ? <Loading className='fill-white h-6 w-6' /> : 'Start Visualization here'}
-            </button>
-          )}
-          <p className='mt-8 underline underline-offset-4 font-bold text-pink-base/75'>{aiResponse ? "Not satisfied with the results? Click the button above to try again." : "Upload your excel file to get started!"}</p>
+            {excelData.length > 0 && (
+              <button
+                className="w-full mt-6 px-4 py-3 rounded-lg bg-accent-primary text-accent-white cursor-pointer bg-orange-base dark:bg-purple-base disabled:opacity-50 disabled:cursor-not-allowed text-base font-medium"
+                onClick={handleStartVisualization}
+                disabled={isLoading || excelData.length === 0}
+              >
+                {isLoading ? <Loading className='fill-white h-6 w-6' /> : 'Start Visualization'}
+              </button>
+            )}
+          </div>
 
+          <p className='text-center lg:text-left underline underline-offset-4 font-bold text-pink-base/75 text-sm lg:text-base'>
+            {aiResponse ? "Not satisfied with the results? Click the button above to try again." : "Upload your excel file to get started!"}
+          </p>
+
+          {/* 推荐可视化列表 */}
           {aiResponse && (
-            <div className="mt-8">
-              <h2 className="text-xl font-bold mb-4">Recommended Visualizations:</h2>
-              <div className="space-y-4">
+            <div className="bg-white dark:bg-accent-300 p-6 rounded-lg shadow-lg">
+              <h2 className="text-lg lg:text-xl font-bold mb-4">Recommended Visualizations:</h2>
+              <div className="space-y-3">
                 {aiResponse.visualizations.map((viz, index) => (
                   <motion.div
                     key={index}
-                    className="p-4 border dark:border-accent-500 border-accent-ccc rounded-lg cursor-pointer hover:bg-accent-white dark:hover:bg-accent-300 transition-colors"
+                    className="p-3 lg:p-4 border dark:border-accent-500 border-accent-ccc rounded-lg cursor-pointer hover:bg-accent-white dark:hover:bg-accent-300 transition-colors"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.1 }}
                     onClick={() => { setShowAllCharts(false); setSelectedChart(viz) }}
                   >
-                    <h3 className="font-semibold">{viz.title}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{viz.description}</p>
+                    <h3 className="font-semibold text-sm lg:text-base">{viz.title}</h3>
+                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">{viz.description}</p>
                   </motion.div>
                 ))}
                 <div
-                  className="mx-auto text-sm md:text-base py-1.5 px-6 rounded-md w-fit dark:bg-accent-white bg-none dark:text-accent-dark text-accent-300 font-bold cursor-pointer dark:border-none border border-accent-ccc"
+                  className="mx-auto text-sm lg:text-base py-2 px-6 rounded-md w-fit dark:bg-accent-white bg-none dark:text-accent-dark text-accent-300 font-bold cursor-pointer dark:border-none border border-accent-ccc hover:bg-accent-ccc dark:hover:bg-accent-500 transition-colors"
                   onClick={() => setShowAllCharts(true)}
                 >
                   View all
@@ -515,10 +523,11 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
               </div>
             </div>
           )}
-          {/* 推荐数据 */}
-          <div>
-            <p className='text-accent-300 dark:text-accent-white mt-20'>No files? Try our example data:</p>
-            <div className="flex flex-col gap-4 mt-4">
+
+          {/* 示例数据 */}
+          <div className="bg-white dark:bg-accent-300 p-6 rounded-lg shadow-lg">
+            <p className='text-accent-300 dark:text-accent-white text-sm lg:text-base'>No files? Try our example data:</p>
+            <div className="flex flex-col gap-3 mt-4">
               <button
                 onClick={async () => {
                   try {
@@ -536,7 +545,7 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                     console.error('Error loading example file:', error);
                   }
                 }}
-                className="w-fit flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-ccc hover:bg-accent-ccc dark:hover:bg-accent-500 transition-colors cursor-pointer"
+                className="w-full lg:w-fit flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-ccc hover:bg-accent-ccc dark:hover:bg-accent-500 transition-colors cursor-pointer text-sm lg:text-base"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -560,7 +569,7 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                     console.error('Error loading example file:', error);
                   }
                 }}
-                className="w-fit flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-ccc hover:bg-accent-ccc dark:hover:bg-accent-500 transition-colors cursor-pointer"
+                className="w-full lg:w-fit flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-ccc hover:bg-accent-ccc dark:hover:bg-accent-500 transition-colors cursor-pointer text-sm lg:text-base"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -572,7 +581,8 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
         </div>
       </div>
 
-      <div className="w-full max-w-4xl">
+      {/* 右侧内容区 */}
+      <div className="w-full lg:max-w-4xl pb-16">
         {showAllCharts ? (
           <div>
             <button
@@ -580,23 +590,24 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                 setShowAllCharts(false);
                 setSelectedChart(null);
               }}
-              className="mb-4 px-4 py-2 rounded-lg dark:text-accent-ccc text-accent-300 cursor-pointer rotate-180"
+              className="mb-6 px-4 py-2 rounded-lg dark:text-accent-ccc text-accent-300 cursor-pointer rotate-180"
             >
-              <ArrowIcon className='w-10 h-10 stroke-1' />
-
+              <ArrowIcon className='w-8 h-8 lg:w-10 lg:h-10 stroke-1' />
             </button>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               {aiResponse?.visualizations.map((viz, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white dark:bg-accent-300 p-6 rounded-lg shadow-lg"
+                  className="bg-white dark:bg-accent-300 p-4 lg:p-6 rounded-lg shadow-lg"
                 >
-                  <h3 className="text-xl font-bold mb-2">{viz.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">{viz.description}</p>
-                  {renderChart(viz)}
+                  <h3 className="text-lg lg:text-xl font-bold mb-2">{viz.title}</h3>
+                  <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-4">{viz.description}</p>
+                  <div className="h-[300px] lg:h-[400px]">
+                    {renderChart(viz)}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -605,72 +616,76 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
           <div>
             <button
               onClick={() => setSelectedChart(null)}
-              className="mb-4 px-4 py-2 rounded-lg dark:text-accent-ccc text-accent-300 cursor-pointer rotate-180"
+              className="mb-6 px-4 py-2 rounded-lg dark:text-accent-ccc text-accent-300 cursor-pointer rotate-180"
             >
-              <ArrowIcon className='w-10 h-10 stroke-1' />
+              <ArrowIcon className='w-8 h-8 lg:w-10 lg:h-10 stroke-1' />
             </button>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white dark:bg-accent-300 p-6 rounded-lg shadow-lg"
+              className="bg-white dark:bg-accent-300 p-4 lg:p-6 rounded-lg shadow-lg"
             >
-              <h3 className="text-xl font-bold mb-2">{selectedChart.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">{selectedChart.description}</p>
-              {renderChart(selectedChart)}
+              <h3 className="text-lg lg:text-xl font-bold mb-2">{selectedChart.title}</h3>
+              <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-4">{selectedChart.description}</p>
+              <div className="h-[300px] lg:h-[400px]">
+                {renderChart(selectedChart)}
+              </div>
             </motion.div>
           </div>
         ) : (
           excelData.length > 0 && (
-            <div className="overflow-x-auto">
-              <h2 className="text-xl font-bold mb-4">Raw Data</h2>
-              <table className="min-w-full bg-accent-white dark:bg-accent-300 rounded-lg overflow-hidden">
-                <thead>
-                  <tr>
-                    {Object.keys(excelData[0]).map((header) => (
-                      <th key={header} className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                        {header}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-accent-ccc dark:divide-accent-900">
-                  {excelData.map((row, index) => (
-                    <tr key={index}>
-                      {Object.values(row).map((value: any, i) => (
-                        <td key={i} className="px-6 py-4 whitespace-nowrap text-sm">
-                          {value}
-                        </td>
+            <div className="overflow-x-auto bg-white dark:bg-accent-300 p-4 lg:p-6 rounded-lg shadow-lg">
+              <h2 className="text-lg lg:text-xl font-bold mb-4">Raw Data</h2>
+              <div className="overflow-x-auto">
+                <table className="min-w-full">
+                  <thead>
+                    <tr>
+                      {Object.keys(excelData[0]).map((header) => (
+                        <th key={header} className="px-4 lg:px-6 py-3 text-left text-xs lg:text-sm font-medium uppercase tracking-wider">
+                          {header}
+                        </th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-accent-ccc dark:divide-accent-900">
+                    {excelData.map((row, index) => (
+                      <tr key={index}>
+                        {Object.values(row).map((value: any, i) => (
+                          <td key={i} className="px-4 lg:px-6 py-3 lg:py-4 whitespace-nowrap text-xs lg:text-sm">
+                            {value}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )
         )}
         {
           !excelData.length &&
-          <div className='w-full grid grid-cols-2 gap-4'>
-            <h2 className='col-span-2 text-center text-xl font-bold mb-4'>
+          <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6'>
+            <h2 className='col-span-1 md:col-span-2 text-center text-lg lg:text-xl font-bold mb-4'>
               Rich data visualization examples
             </h2>
             <Image src="/images/project/ai-visualization/chart1.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
             <Image src="/images/project/ai-visualization/chart2.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
             <Image src="/images/project/ai-visualization/chart3.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
             <Image src="/images/project/ai-visualization/chart4.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
-            <ul className='col-span-2 grid grid-cols-1 gap-6 mt-8'>
+            <ul className='col-span-1 md:col-span-2 grid grid-cols-1 gap-4 lg:gap-6 mt-6 lg:mt-8'>
               <motion.li
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 className="flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-accent-300 shadow-sm"
               >
-                <div className="w-10 h-10 rounded-full bg-orange-base dark:bg-purple-base flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-orange-base dark:bg-purple-base flex items-center justify-center">
+                  <svg className="w-5 h-5 lg:w-6 lg:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                 </div>
-                <span className="text-accent-300 dark:text-accent-ccc font-medium">Support for multiple chart types</span>
+                <span className="text-sm lg:text-base text-accent-300 dark:text-accent-ccc font-medium">Support for multiple chart types</span>
               </motion.li>
               <motion.li
                 initial={{ opacity: 0, y: 20 }}
@@ -678,12 +693,12 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-accent-300 shadow-sm"
               >
-                <div className="w-10 h-10 rounded-full bg-orange-base dark:bg-purple-base flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-orange-base dark:bg-purple-base flex items-center justify-center">
+                  <svg className="w-5 h-5 lg:w-6 lg:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <span className="text-accent-300 dark:text-accent-ccc font-medium">Fast and accurate data visualization</span>
+                <span className="text-sm lg:text-base text-accent-300 dark:text-accent-ccc font-medium">Fast and accurate data visualization</span>
               </motion.li>
               <motion.li
                 initial={{ opacity: 0, y: 20 }}
@@ -691,12 +706,12 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-accent-300 shadow-sm"
               >
-                <div className="w-10 h-10 rounded-full bg-orange-base dark:bg-purple-base flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-orange-base dark:bg-purple-base flex items-center justify-center">
+                  <svg className="w-5 h-5 lg:w-6 lg:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                   </svg>
                 </div>
-                <span className="text-accent-300 dark:text-accent-ccc font-medium">Support excel file upload and processing</span>
+                <span className="text-sm lg:text-base text-accent-300 dark:text-accent-ccc font-medium">Support excel file upload and processing</span>
               </motion.li>
             </ul>
           </div>
