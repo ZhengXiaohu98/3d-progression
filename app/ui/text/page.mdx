@@ -12,14 +12,14 @@ export const metadata = {
 The `Text` component animates text with customizable effects, breaking the text into segments based on a specified `breakWord` and applying the chosen animation. Dependencies needed:
 
 ```bash
-npm install framer-motion
+npm install motion/react
 ```
 
 
 ## Example
 
 <ExampleBox className="flex flex-col gap-6">
-  <Text text="Blur In: this effect will blur the text." breakWord=" " className="text-sm md:text-lg" effect="blurIn"/>
+  <Text text="Blur In: this effect will blur-sm the text." breakWord=" " className="text-sm md:text-lg" effect="blurIn"/>
   <Text text="Fade In: basic text effect - default" breakWord="" className="text-sm md:text-lg italic" effect="fadeIn" staggerTime={0.05}/>
   <Text text="Slide In: slide in the text to seek attention." breakWord=" " className="text-sm md:text-lg" effect="slideIn"/>
   <Text text="Slide In: slide in the text to seek attention." breakWord=" " className="text-sm md:text-lg" effect="bounceIn" staggerTime={0.05}/>
@@ -48,7 +48,7 @@ npm install framer-motion
 ```tsx
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 interface TextProps {
   className?: string;

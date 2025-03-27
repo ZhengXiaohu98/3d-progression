@@ -1,9 +1,56 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:is(.dark *));
+@theme {
+  --transition-duration-*: initial;
+  --transition-duration-75: 75ms;
+  --transition-duration-100: 100ms;
+  --transition-duration-150: 150ms;
+  --transition-duration-200: 200ms;
+  --transition-duration-300: 300ms;
+  --transition-duration-500: 500ms;
+  --transition-duration-700: 700ms;
+  --transition-duration-1000: 1000ms;
+  --transition-duration: 300ms;
+
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-inherit: inherit;
+  --color-current: currentColor;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-gray-dark: #4d4d4d;
+  --color-gray-light: #aaaaaa;
+
+  --color-smoke-base: #737373;
+
+  --color-accent-300: #333333;
+  --color-accent-500: #555555;
+  --color-accent-900: #999999;
+  --color-accent-dark: #121212;
+  --color-accent-white: #ededed;
+  --color-accent-aaa: #aaaaaa;
+  --color-accent-ccc: #cccccc;
+
+  --color-orange-base: #c2410c;
+
+  --color-purple-base: #7e22c7;
+
+  --color-pink-base: #f472b6;
+  
+  --breakpoint-xl: 1456px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-md: 740px;
+  --breakpoint-sm: 300px;
+
+  --font-petrona: "petrona";
+  --font-playwrite-gbs: "playwritegbs";
+  --font-instrument-sans: "instrumentSans";
+}
 
 @layer base {
-  /* fonts */
   @font-face {
     font-family: "petrona";
     font-style: normal;
@@ -28,61 +75,42 @@
     src: url("/fonts/InstrumentSans-VariableFont_wdth_wght.ttf")
       format("truetype");
   }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  * {
+    scroll-behavior: smooth;
+    scroll-margin-top: 100px;
   }
 }
 
-* {
-  margin: 0;
-  padding: 0;
+@utility scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #999;
-  border-radius: 10px;
-  border: 1px #f1f1f1 solid;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #888;
-}
-
-.scrollbar-hidden {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+@utility container {
+  margin-inline: auto;
+  max-width: 1200px;
+  padding-inline: 15px;
 }
 
 /* blog item */
 .blog-item {
-  @apply shrink-0 sm:prose-sm md:prose lg:prose-lg dark:prose-invert sm:max-w-[360px] md:max-w-full lg:w-[712px] prose-p:tracking-[0.1px] prose-p:text-accent-300 dark:prose-p:text-[#cbcbcb] 
-  prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-pink-base prose-a:underline-offset-2 prose-ul:tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] prose-img:rounded 
+  @apply shrink-0 prose-sm md:prose lg:prose-lg dark:prose-invert max-w-[360px] md:max-w-full lg:w-[712px] prose-p:tracking-[0.1px] prose-p:text-accent-300 dark:prose-p:text-[#cbcbcb] 
+  prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-pink-base prose-a:underline-offset-2 prose-ul:tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] prose-img:rounded-sm 
   dark:marker:text-[#cbcbcb] marker:text-accent-300;
 
   code:not(pre code) {
-    @apply after:content-none before:content-none px-1.5 py-1 mx-0.5 rounded bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-white;
+    @apply after:content-none before:content-none px-1.5 py-1 mx-0.5 rounded-sm bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-white;
   }
 }
 
 /* UI */
 .ui-item {
-  @apply shrink-0 sm:prose-sm md:prose dark:prose-invert sm:max-w-[360px] md:max-w-full lg:w-[712px] prose-p:tracking-[0.1px] prose-p:text-accent-300 dark:prose-p:text-[#cbcbcb] 
-  prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-pink-base prose-a:underline-offset-2 prose-ul:tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] prose-img:rounded 
+  @apply shrink-0 prose-sm md:prose dark:prose-invert max-w-[360px] md:max-w-full lg:w-[712px] prose-p:tracking-[0.1px] prose-p:text-accent-300 dark:prose-p:text-[#cbcbcb] 
+  prose-headings:text-accent-dark dark:prose-headings:text-accent-white prose-a:text-pink-base prose-a:underline-offset-2 prose-ul:tracking-wide prose-ul:text-accent-300 dark:prose-ul:text-[#cbcbcb] prose-img:rounded-sm 
   dark:marker:text-[#cbcbcb] marker:text-accent-300;
 
   code:not(pre code) {
-    @apply after:content-none before:content-none px-1.5 py-1 mx-0.5 rounded bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-white;
+    @apply after:content-none before:content-none px-1.5 py-1 mx-0.5 rounded-sm bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-white;
   }
 }

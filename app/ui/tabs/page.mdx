@@ -14,16 +14,16 @@ Tabs can be used to switch content. This `tabs` component is added with some smo
 
 ## Example
 
-<ExampleBox className="sm:px-4 md:px-12 lg:px-20">
+<ExampleBox className="px-4 md:px-12 lg:px-20">
   <Tabs tabs={["Fancy Card", "Code Snippets"]}>
     <Tab title="Fancy Card">
       <div className="w-full flex justify-center">
         <ThreeDRotate>
-          <div className="md:w-[450px] sm:w-[320px] sm:p-4 lg:p-6 border border-gray-light dark:border-gray-dark rounded-xl">
+          <div className="md:w-[450px] w-[320px] p-4 lg:p-6 border border-gray-light dark:border-gray-dark rounded-xl">
             <Image src="/images/project/3d-book-gallery/img8.jpg" width={1800} height={949} className="w-full h-fit rounded-md"/>
-            <p className="sm:mt-3 md:mt-4 font-bold text-accent-dark dark:text-accent-white sm:text-lg md:text-xl">3D Rotate</p>
-            <p className="sm:mt-1 md:mt-2 font-semibold text-accent-300 dark:text-accent-900 sm:text-xs md:text-sm">Hover over this card to see the 3D effect. Customizable maximum X-Y tilt angles and component content.</p>
-            <Link href="/ui/3d-rotate" className="transition w-fit block mt-4 px-2.5 py-1.5 rounded bg-accent-dark text-accent-white dark:bg-white dark:text-accent-dark sm:text-xs md:text-sm tracking-wider">
+            <p className="mt-3 md:mt-4 font-bold text-accent-dark dark:text-accent-white text-lg md:text-xl">3D Rotate</p>
+            <p className="mt-1 md:mt-2 font-semibold text-accent-300 dark:text-accent-900 text-xs md:text-sm">Hover over this card to see the 3D effect. Customizable maximum X-Y tilt angles and component content.</p>
+            <Link href="/ui/3d-rotate" className="transition w-fit block mt-4 px-2.5 py-1.5 rounded-sm bg-accent-dark text-accent-white dark:bg-white dark:text-accent-dark text-xs md:text-sm tracking-wider">
               Learn More
             </Link>
           </div>
@@ -49,7 +49,7 @@ Tabs can be used to switch content. This `tabs` component is added with some smo
 
 <Tabs tabs={["Demo", "Code"]}>
   <Tab title="Demo">
-    <div className="w-full flex justify-center sm:py-4 md:py-10">
+    <div className="w-full flex justify-center py-4 md:py-10">
       <div className="w-3/5">
         <Tabs tabs={["Basic", "Direction", "Nested"]}>
           <Tab title="Basic">
@@ -147,14 +147,14 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, children, direction = "horizon
           <button
             key={tab}
             onClick={() => handleTabClick(tab)}
-            className={cn("py-2 px-4 transition rounded", activeTab === tab ? "font-bold bg-accent-ccc/30 dark:bg-accent-300/70" : "")}
+            className={cn("py-2 px-4 transition rounded-sm", activeTab === tab ? "font-bold bg-accent-ccc/30 dark:bg-accent-300/70" : "")}
           >
             {tab}
           </button>
         ))}
       </div>
 
-      <div className={cn("bg-gray-light dark:bg-gray-dark", direction === "horizontal" ? "sm:my-2 md:my-4 h-px" : "w-px md:mx-5 sm:mx-2.5")} />
+      <div className={cn("bg-gray-light dark:bg-gray-dark", direction === "horizontal" ? "my-2 md:my-4 h-px" : "w-px md:mx-5 mx-2.5")} />
 
       {/* Tab Wrapper */}
       <div className="w-full">

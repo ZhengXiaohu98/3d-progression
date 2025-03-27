@@ -42,14 +42,14 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, children, direction = "horizon
           <button
             key={tab}
             onClick={() => handleTabClick(tab)}
-            className={cn("py-2 px-4 transition rounded", activeTab === tab ? "font-bold bg-accent-ccc/30 dark:bg-accent-300/70" : "")}
+            className={cn("py-2 px-4 transition rounded-sm", activeTab === tab ? "font-bold bg-accent-ccc/30 dark:bg-accent-300/70" : "")}
           >
             {tab}
           </button>
         ))}
       </div>
 
-      <div className={cn("bg-gray-light dark:bg-gray-dark", direction === "horizontal" ? "sm:my-2 md:my-4 h-px" : "w-px md:mx-5 sm:mx-2.5")} />
+      <div className={cn("bg-gray-light dark:bg-gray-dark", direction === "horizontal" ? "my-2 md:my-4 h-px" : "w-px md:mx-5 mx-2.5")} />
 
       {/* Tab Wrapper */}
       <div className="w-full">

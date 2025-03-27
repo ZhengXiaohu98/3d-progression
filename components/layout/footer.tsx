@@ -4,10 +4,10 @@ export const Footer: React.FC = () => {
   return (
     <footer
       id="footer"
-      className="sm:px-3 md:px-6 container sm:h-12 md:h-16 flex justify-between items-center"
+      className="px-3 md:px-6 container h-12 md:h-16 flex justify-between items-center"
     >
-      <div className="sm:text-xs md:text-sm flex items-center gap-1">
-        <span className="sm:text-sm md:text-base mt-0.5">©</span> 2024 Xiaohu Zheng |{" "}
+      <div className="text-xs md:text-sm flex items-center gap-1">
+        <span className="text-sm md:text-base mt-0.5">©</span> 2024 Xiaohu Zheng |{" "}
         <a
           href="https://creativecommons.org/licenses/by/4.0/"
           target="_blank"
@@ -17,11 +17,11 @@ export const Footer: React.FC = () => {
           CC BY 4.0
         </a>
       </div>
-      <div className="flex items-center sm:gap-0.5 md:gap-1 sm:text-xs md:text-sm font-playwrite-gbs">
+      <div className="flex items-center gap-0.5 md:gap-1 text-xs md:text-sm font-playwrite-gbs">
         Made with
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="md:w-8 md:h-8 sm:w-6 sm:h-6 -mt-1"
+          className="md:w-8 md:h-8 w-6 h-6 -mt-1"
           viewBox="0 0 800 800"
         >
           <defs>

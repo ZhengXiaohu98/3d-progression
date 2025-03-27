@@ -13,7 +13,7 @@ export const metadata = {
 An interactive component for easy side-by-side comparisons. Dependencies needed:
 
 ```bash
-npm install framer-motion
+npm install motion/react
 ```
 
 ## Example
@@ -41,7 +41,7 @@ npm install framer-motion
 
 <Tabs tabs={["Demo", "Code"]}>
   <Tab title="Demo">
-    <div className="w-full flex justify-center lg:flex-row sm:flex-col sm:gap-10 lg:gap-20 items-center py-8">
+    <div className="w-full flex justify-center lg:flex-row flex-col gap-10 lg:gap-20 items-center py-8">
       <DualCompare className="md:w-[400px] md:h-[200px] w-[300px] h-[150px] shadow-2xl dark:shadow-gray-dark">
         <div className="w-full h-full">
           <Image src="/images/ui/assets/tailwind3.jpg" width={1800} height={949} className="w-full h-full rounded-md"/>
@@ -56,7 +56,7 @@ npm install framer-motion
     ```tsx
     import { DualCompare } from "@/components/ui/effects";  // your file path
 
-    <div className="w-full flex justify-center lg:flex-row sm:flex-col sm:gap-10 lg:gap-20 items-center py-8">
+    <div className="w-full flex justify-center lg:flex-row flex-col gap-10 lg:gap-20 items-center py-8">
       <DualCompare className="md:w-[400px] md:h-[200px] w-[300px] h-[150px] shadow-2xl dark:shadow-gray-dark">
         <div className="w-full h-full">
           <Image src="/images/ui/assets/tailwind3.jpg" width={1800} height={949} className="w-full h-full rounded-md"/>
@@ -78,7 +78,7 @@ npm install framer-motion
 ```tsx
 "use client";
 import React, { useState, useEffect } from "react";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate } from "motion/react";
 import { cn } from "@/utils";
 
 interface DualCompareProps {

@@ -12,14 +12,14 @@ export const metadata = {
 A 2D world map(SVG based) with customizable geographical data. Dependencies needed:
 
 ```bash
-npm install framer-motion
+npm install motion/react
 ```
 
 ## Example
 
 <ExampleBox className="justify-evenly md:flex-row flex-col gap-10 ">
   <WorldMap 
-    className="lg:w-[800px] md:w-[600px] w-[300px] dark:!fill-accent-white" 
+    className="lg:w-[800px] md:w-[600px] w-[300px] dark:fill-accent-white!" 
     points={[
       [40.7128, -74.0060],  // New York
       [51.5074, -0.1278],   // London
@@ -44,7 +44,7 @@ npm install framer-motion
   <Tab title="Demo">
     <div className="w-full flex justify-center py-10">
       <WorldMap 
-        className="lg:w-[800px] md:w-[600px] w-[300px] dark:!fill-[#D3D3D3] !fill-[#3b3b3b]" 
+        className="lg:w-[800px] md:w-[600px] w-[300px] dark:fill-[#D3D3D3]! fill-[#3b3b3b]!" 
         points={[
           [40.7128, -74.0060, "#a855f7"],  // New York
           [51.5074, -0.1278],   // London
@@ -78,7 +78,7 @@ npm install framer-motion
     import { WorldMap } from "@/components/ui/general"; // your file path
 
     <WorldMap 
-      className="lg:w-[800px] md:w-[600px] w-[300px] dark:!fill-[#D3D3D3] !fill-[#3b3b3b]" 
+      className="lg:w-[800px] md:w-[600px] w-[300px] dark:fill-[#D3D3D3]! fill-[#3b3b3b]!" 
       points={[
         [40.7128, -74.0060, "#a855f7"],  // New York
         [51.5074, -0.1278],   // London
@@ -114,7 +114,7 @@ npm install framer-motion
 "use client";
 import React from "react";
 import { cn } from "@/utils";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 interface WorldMapProps {
   className?: string;

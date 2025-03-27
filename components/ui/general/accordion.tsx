@@ -17,7 +17,7 @@ export const Accordion: React.FC<AccordionProps> = ({ header, className, accordi
         {header}
         {/* Dropdown Icon */}
         <svg
-          className={cn("w-4 h-4 group-has-[:checked]/toggle:rotate-180 transition ease-in-out duration-[400ms]", showIcon ? "" : "opacity-0")}
+          className={cn("w-4 h-4 group-has-checked/toggle:rotate-180 transition ease-in-out duration-[400ms]", showIcon ? "" : "opacity-0")}
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -28,7 +28,7 @@ export const Accordion: React.FC<AccordionProps> = ({ header, className, accordi
         {/* input to control the open/close state */}
         <input type="checkbox" className="absolute inset-0 opacity-0 cursor-pointer" />
       </div>
-      <div className="grid grid-rows-[0fr] peer-has-[:checked]:grid-rows-[1fr] transition-all ease-in-out duration-[400ms]">
+      <div className="grid grid-rows-[0fr] peer-has-checked:grid-rows-[1fr] transition-all ease-in-out duration-[400ms]">
         <div className="overflow-hidden">
           {children}
         </div>

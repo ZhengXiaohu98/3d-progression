@@ -82,10 +82,6 @@ const slideBarData = {
   ],
   "Utils": [
     {
-      "nav": "Capture",
-      "url": "/ui/capture"
-    },
-    {
       "nav": "Navigator",
       "url": "/ui/navigator"
     }
@@ -113,7 +109,7 @@ export const SlideBar: React.FC<SlideBarProps> = () => {
   return (
     <>
       {/* Large Viewport */}
-      <div className="sm:hidden h-fit w-[252px] sticky top-36 shrink-0 lg:flex flex-col gap-8">
+      <div className="hidden h-fit w-[252px] sticky top-36 shrink-0 lg:flex flex-col gap-8">
         {
           Object.entries(slideBarData).map(([navTitle, navs]) => (
             <div key={navTitle} className="flex flex-col gap-2">
@@ -139,15 +135,15 @@ export const SlideBar: React.FC<SlideBarProps> = () => {
         }
       </div>
       {/* Small ViewPort */}
-      <div className="block lg:hidden fixed bottom-8 left-6 peer group overflow-hidden scale-125 z-[50]">
+      <div className="block lg:hidden fixed bottom-8 left-6 peer group overflow-hidden scale-125 z-50">
         <svg className="block lg:hidden w-6 h-6 text-dark-base" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" strokeLinecap="round" strokeWidth="1.4" d="M0 6h24" className="group-has-[:checked]:translate-x-[-66%] transition" />
-          <path stroke="currentColor" strokeLinecap="round" strokeWidth="1.2" d="M0 12h24" className="group-has-[:checked]:translate-x-[-33%] transition" />
+          <path stroke="currentColor" strokeLinecap="round" strokeWidth="1.4" d="M0 6h24" className="group-has-checked:translate-x-[-66%] transition" />
+          <path stroke="currentColor" strokeLinecap="round" strokeWidth="1.2" d="M0 12h24" className="group-has-checked:translate-x-[-33%] transition" />
           <path stroke="currentColor" strokeLinecap="round" strokeWidth="1.4" d="M0 18h24" />
         </svg>
         <input ref={checkboxRef} type="checkbox" className="w-full h-full absolute left-0 top-0 opacity-0" />
       </div>
-      <div className="max-h-[75vh] overflow-y-scroll scrollbar-hidden duration-200 block lg:hidden fixed bottom-16 left-5 opacity-0 pointer-events-none translate-y-1 peer-has-[:checked]:pointer-events-auto peer-has-[:checked]:translate-y-0 peer-has-[:checked]:opacity-100 transition bg-white dark:bg-accent-dark py-4 px-5 rounded-lg border dark:border-accent-300 border-accent-white dark:shadow-inner dark:shadow-white/[0.05] shadow-md shadow-black/[0.05] z-[50]">
+      <div className="max-h-[75vh] overflow-y-scroll scrollbar-hidden duration-200 block lg:hidden fixed bottom-16 left-5 opacity-0 pointer-events-none translate-y-1 peer-has-checked:pointer-events-auto peer-has-checked:translate-y-0 peer-has-checked:opacity-100 transition bg-white dark:bg-accent-dark py-4 px-5 rounded-lg border dark:border-accent-300 border-accent-white dark:shadow-inner dark:shadow-white/[0.05] shadow-md shadow-black/[0.05] z-50">
         {
           Object.entries(slideBarData).map(([navTitle, navs]) => (
             <div key={navTitle} className="flex flex-col gap-1 mb-2 last:mb-0">

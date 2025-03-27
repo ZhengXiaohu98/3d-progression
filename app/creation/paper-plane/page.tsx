@@ -66,7 +66,7 @@ const PlaneTrip: React.FC = () => {
   });
 
   return (
-    <main className="h-screen w-screen bg-gradient-to-b from-[#97D9E1]/50 to-[#9A9ADC]/70 dark:from-accent-dark dark:to-[#1B263B]/30">
+    <main className="h-screen w-screen bg-linear-to-b from-[#97D9E1]/50 to-[#9A9ADC]/70 dark:from-accent-dark dark:to-[#1B263B]/30">
       <Suspense fallback={<ProgressLoader />}>
         <Canvas>
           <ambientLight intensity={theme === "dark" ? 2 : 3} />
@@ -118,7 +118,7 @@ const ProgressLoader: React.FC = () => {
 
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center dark:bg-black/50 bg-white/50">
-      <div className="lg:mt-6 sm:mt-4 font-bold lg:text-3xl md:text-2xl sm:text-xl dark:text-accent-900 text-accent-300">
+      <div className="lg:mt-6 mt-4 font-bold lg:text-3xl md:text-2xl text-xl dark:text-accent-900 text-accent-300">
         In Progress: {Math.trunc(progress)}%
       </div>
     </div>

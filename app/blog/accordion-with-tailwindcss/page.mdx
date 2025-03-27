@@ -29,7 +29,7 @@ To retrieve the state of the `input`, it is common to use JavaScript. However, w
 
 ```jsx
 <div className="group">
-    <div className="group bg-orange-base group-has-[:checked]:bg-purple-base w-full h-6" />
+    <div className="group bg-orange-base group-has-checked:bg-purple-base w-full h-6" />
     <input type="checkbox" /> Check to see the change
 </div>
 ```
@@ -46,7 +46,7 @@ By using CSS Grid, we can allow the accordion content to expand and collapse nat
         Click to show collapse
         <input type="checkbox" className="absolute inset-0 opacity-0" />
     </div>
-    <div className="grid grid-rows-[0fr] peer-has-[:checked]:grid-rows-[1fr] transition-all">
+    <div className="grid grid-rows-[0fr] peer-has-checked:grid-rows-[1fr] transition-all">
         <ul className="overflow-hidden">
             <li>Item1</li>
             <li>Item2</li>
