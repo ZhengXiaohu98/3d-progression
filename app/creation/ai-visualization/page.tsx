@@ -18,7 +18,9 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  Cell
+  Cell,
+  ScatterChart,
+  Scatter
 } from 'recharts';
 
 interface ChartDataset {
@@ -241,7 +243,12 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                 };
               }
               viz.data.series.forEach((series: string) => {
-                groupedByXAxis[xAxisValue][series] += Number(row[series]) || 0;
+                const value = Number(row[series]) || 0;
+                if (viz.data.aggregation === 'average') {
+                  groupedByXAxis[xAxisValue][series] = (groupedByXAxis[xAxisValue][series] + value) / 2;
+                } else {
+                  groupedByXAxis[xAxisValue][series] += value;
+                }
               });
             });
             processedData = Object.values(groupedByXAxis);
@@ -267,9 +274,18 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
 
           // 提取图表数据
           const xAxisData = processedData.map(row => row[viz.data.xAxis]);
-          const yAxisData = viz.data.series.map((series: string) =>
+          const yAxisData = viz.data.series.map((series: string, index: number) =>
             processedData.map(row => row[series])
           );
+
+          // 验证数据是否有效
+          const isValidData = yAxisData.some((series: number[]) => 
+            series.some((value: number) => value !== undefined && value !== null && value !== 0)
+          );
+
+          if (!isValidData) {
+            return null;
+          }
 
           // 构建图表所需的数据格式
           const chartData = {
@@ -284,14 +300,18 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                     ? 'rgba(255, 127, 80, 0.7)'  // 珊瑚红
                     : index === 2
                       ? 'rgba(152, 251, 152, 0.7)'  // 薄荷绿
-                      : 'rgba(255, 191, 0, 0.7)',  // 琥珀金
+                      : index === 3
+                        ? 'rgba(255, 191, 0, 0.7)'  // 琥珀金
+                        : 'rgba(147, 112, 219, 0.7)',  // 紫色
                 borderColor: index === 0
                   ? 'rgba(79, 70, 229, 0.9)'  // 深靛蓝
                   : index === 1
                     ? 'rgba(255, 127, 80, 0.9)'  // 珊瑚红
                     : index === 2
                       ? 'rgba(152, 251, 152, 0.9)'  // 薄荷绿
-                      : 'rgba(255, 191, 0, 0.9)',  // 琥珀金
+                      : index === 3
+                        ? 'rgba(255, 191, 0, 0.9)'  // 琥珀金
+                        : 'rgba(147, 112, 219, 0.9)',  // 紫色
                 borderWidth: 1
               }),
               ...(viz.type === 'line' && {
@@ -301,7 +321,9 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                     ? 'rgb(255, 127, 80)'  // 珊瑚红
                     : index === 2
                       ? 'rgb(152, 251, 152)'  // 薄荷绿
-                      : 'rgb(255, 191, 0)',  // 琥珀金
+                      : index === 3
+                        ? 'rgb(255, 191, 0)'  // 琥珀金
+                        : 'rgb(147, 112, 219)',  // 紫色
                 tension: 0.4,
                 fill: false
               }),
@@ -324,7 +346,7 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
               processedData: chartData
             }
           };
-        });
+        }).filter((viz: Visualization | null) => viz !== null); // 过滤掉无效的可视化
 
         console.log(processedVisualizations);
 
@@ -379,7 +401,9 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                       ? 'rgba(255, 127, 80, 0.7)'  // 珊瑚红
                       : index === 2
                         ? 'rgba(152, 251, 152, 0.7)'  // 薄荷绿
-                        : 'rgba(255, 191, 0, 0.7)'  // 琥珀金
+                        : index === 3
+                          ? 'rgba(255, 191, 0, 0.7)'  // 琥珀金
+                          : 'rgba(147, 112, 219, 0.7)'  // 紫色
                   }
                 />
               ))}
@@ -419,7 +443,9 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                       ? 'rgb(255, 127, 80)'  // 珊瑚红
                       : index === 2
                         ? 'rgb(152, 251, 152)'  // 薄荷绿
-                        : 'rgb(255, 191, 0)'  // 琥珀金
+                        : index === 3
+                          ? 'rgb(255, 191, 0)'  // 琥珀金
+                          : 'rgb(147, 112, 219)'  // 紫色
                   }
                   strokeWidth={2}
                 />
@@ -453,6 +479,103 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
               <Tooltip />
               <Legend />
             </PieChart>
+          </ResponsiveContainer>
+        );
+      case 'heatmap':
+        // 转换数据为热力图格式
+        const heatmapData = chartData.labels.map((label: string, index: number) => {
+          const row: Record<string, number | string> = { name: label };
+          chartData.datasets.forEach((dataset: ChartDataset) => {
+            row[dataset.label] = dataset.data[index];
+          });
+          return row;
+        });
+
+        return (
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart data={heatmapData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+              <XAxis dataKey="name" stroke="#6B7280" />
+              <YAxis stroke="#6B7280" />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(17, 24, 39, 0.9)',
+                  border: 'none',
+                  borderRadius: '8px',
+                  color: '#F3F4F6'
+                }}
+              />
+              <Legend />
+              {chartData.datasets.map((dataset: ChartDataset, index: number) => (
+                <Bar
+                  key={dataset.label}
+                  dataKey={dataset.label}
+                  fill={index === 0
+                    ? 'rgba(79, 70, 229, 0.7)'  // 深靛蓝
+                    : index === 1
+                      ? 'rgba(255, 127, 80, 0.7)'  // 珊瑚红
+                      : index === 2
+                        ? 'rgba(152, 251, 152, 0.7)'  // 薄荷绿
+                        : index === 3
+                          ? 'rgba(255, 191, 0, 0.7)'  // 琥珀金
+                          : 'rgba(147, 112, 219, 0.7)'  // 紫色
+                  }
+                  stackId="a"
+                />
+              ))}
+            </BarChart>
+          </ResponsiveContainer>
+        );
+      case 'scatter':
+        // 转换数据为散点图格式
+        const scatterData = chartData.labels.map((label: string | number, index: number) => ({
+          x: Number(chartData.datasets[0].data[index]),
+          y: Number(chartData.datasets[1].data[index])
+        }));
+
+        return (
+          <ResponsiveContainer width="100%" height={400}>
+            <ScatterChart>
+              <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+              <XAxis 
+                type="number" 
+                dataKey="x" 
+                name={data.xAxis}
+                stroke="#6B7280"
+                tickFormatter={(value) => `${value}°C`}
+              />
+              <YAxis 
+                type="number" 
+                dataKey="y" 
+                name={data.yAxis}
+                stroke="#6B7280"
+                tickFormatter={(value) => `${value}%`}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(17, 24, 39, 0.9)',
+                  border: 'none',
+                  borderRadius: '8px',
+                  color: '#F3F4F6',
+                  padding: '12px',
+                  fontSize: '14px'
+                }}
+                labelStyle={{
+                  color: '#F3F4F6',
+                  fontWeight: 'bold',
+                  marginBottom: '4px'
+                }}
+                formatter={(value: number, name: string) => [
+                  name === 'x' ? `${value}°C` : `${value}%`,
+                  name === 'x' ? data.xAxis : data.yAxis
+                ]}
+              />
+              <Scatter
+                data={scatterData}
+                fill="rgba(79, 70, 229, 0.7)"
+                line={false}
+              />
+            </ScatterChart>
           </ResponsiveContainer>
         );
       default:
@@ -572,7 +695,7 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                 className="w-full lg:w-fit flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-ccc hover:bg-accent-ccc dark:hover:bg-accent-500 transition-colors cursor-pointer text-sm lg:text-base"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4-4m0 0L8 8m4-4v12" />
                 </svg>
                 Ethnic Distribution Data
               </button>
