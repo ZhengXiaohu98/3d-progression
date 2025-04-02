@@ -12,9 +12,9 @@ export const Window: React.FC<WindowProps> = ({ className, children, type = "mac
 
   return (
     <div
-      className="relative w-fit h-fit"
+      className="relative flex justify-center"
     >
-      <div className={cn("absolute left-0 bottom-full w-full flex justify-between items-center px-2.5 py-2.5 rounded-t",
+      <div className={cn("absolute bottom-full w-full flex justify-between items-center px-2.5 py-2.5 rounded-t",
         type === "none" ? "hidden" : "",
         type.includes("dark") ? "bg-[#1a1a1a]" : "",
         type.includes("light") ? "bg-[#f4f4f4]" : "",

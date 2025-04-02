@@ -31,7 +31,7 @@ export const View: React.FC<ViewProps> = ({ children }) => {
       <motion.div
         ref={divRef}
         layout
-        className={cn("group/view", isOpen ? "z-100 fixed top-1/2 left-1/2" : "relative")}
+        className={cn("group/view", isOpen ? "z-1000 fixed top-1/2 left-1/2" : "relative")}
         style={{
           left: isOpen ? `${position.left}px` : "",
           top: isOpen ? `${position.top}px` : "",
@@ -39,11 +39,11 @@ export const View: React.FC<ViewProps> = ({ children }) => {
       >
         {children}
         <div
-          className={cn("absolute inset-0 bg-black/10 dark:bg-black/65 z-1 transition ease-in-out cursor-pointer", isOpen ? "opacity-0 pointer-events-none" : "pointer-events-auto opacity-0 group-hover/view:opacity-100")}
+          className={cn("absolute z-9999 inset-0 bg-black/10 dark:bg-black/65 transition ease-in-out cursor-pointer", isOpen ? "opacity-0 pointer-events-none" : "pointer-events-auto opacity-0 group-hover/view:opacity-100")}
           onClick={() => setIsOpen(true)}
         />
       </motion.div>
-      <div className={cn("z-99 fixed left-0 top-0 w-full h-full bg-black/80 ease-in-out duration-500", isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none")} onClick={() => { setIsOpen(false) }} />
+      <div className={cn("z-999 fixed left-0 top-0 w-full h-full bg-black/80 ease-in-out duration-500", isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none")} onClick={() => { setIsOpen(false) }} />
       {
         isOpen &&
         <div className="opacity-0 -z-10">

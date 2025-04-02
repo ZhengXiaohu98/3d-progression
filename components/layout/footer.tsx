@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
       className="px-3 md:px-6 container h-12 md:h-16 flex justify-between items-center"
     >
       <div className="text-xs md:text-sm flex items-center gap-1">
-        <span className="text-sm md:text-base mt-0.5">©</span> 2024 Xiaohu Zheng |{" "}
+        <span className="text-sm md:text-base mt-0.5">©</span> 2025 Xiaohu Zheng |{" "}
         <a
           href="https://creativecommons.org/licenses/by/4.0/"
           target="_blank"
