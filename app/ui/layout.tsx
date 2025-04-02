@@ -28,7 +28,7 @@ const BlogLayout: React.FC<UILayoutProps> = ({ children }) => {
     <section className="font-instrument-sans">
       <div className="container flex gap-8 w-full lg:pt-40 lg:pb-28 md:pt-32 pt-24 pb-16">
         <SlideBar />
-        <article className="ui-item grow max-w-full">
+        <article className="ui-item grow max-w-full mx-auto">
           {children}
         </article>
       </div>

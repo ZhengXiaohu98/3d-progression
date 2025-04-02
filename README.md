@@ -1,3 +1,7 @@
+## Version 2.0.1 - 04/02/2025
+- Build: Upgrade to tailwind 4 now 
+- Feature: new AI analytics page
+
 ## Version 2.0.0 - 12/22/2024
 - Feature: change all page style
 - Feature: new UI page

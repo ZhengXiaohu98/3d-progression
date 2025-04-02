@@ -14,7 +14,6 @@
   --transition-duration-1000: 1000ms;
   --transition-duration: 300ms;
 
-  --color-*: initial;
   --color-transparent: transparent;
   --color-inherit: inherit;
   --color-current: currentColor;

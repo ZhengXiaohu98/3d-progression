@@ -1,6 +1,17 @@
 {
   "projectData": [
     {
+      "name": "AI Visualization",
+      "description": "An intelligent data visualization tool that analyzes Excel data and automatically generates appropriate charts and insights.",
+      "img": "/images/project/ai-visualization/chart2.png",
+      "url": "/creation/ai-visualization",
+      "highlights": [
+        "Excel Processing",
+        "AI Analysis",
+        "Multiple Charts"
+      ]
+    },
+    {
       "name": "Book Gallery",
       "description": "A website featuring a 3D book that showcases images in an interactive and immersive way.",
       "img": "/images/home/3d-book-preview.webp",

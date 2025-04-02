@@ -48,7 +48,7 @@ const Project = () => {
                         </div>
                       </Link>
                     </div>
-                    <Image src={project.img} width={300} height={290} alt={project.name} className="h-[160px] md:h-full w-auto float-left transition origin-center rounded-xl" />
+                    <Image src={project.img} width={300} height={290} alt={project.name} className="h-[160px] md:h-full w-auto float-left transition origin-center rounded-xl border border-accent-ccc" />
                   </div>
                 </div>
               </div>

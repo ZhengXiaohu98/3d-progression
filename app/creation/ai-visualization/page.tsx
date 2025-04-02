@@ -59,10 +59,16 @@ interface AIResponse {
 
 const App = () => {
   const [excelData, setExcelData] = useState<any[]>([]);
+  const [displayData, setDisplayData] = useState<any[]>([]);
   const [aiResponse, setAiResponse] = useState<AIResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showAllCharts, setShowAllCharts] = useState(false);
   const [selectedChart, setSelectedChart] = useState<Visualization | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [isSampled, setIsSampled] = useState(false);
+  const ITEMS_PER_PAGE = 1000;
+  const MAX_SAMPLE_SIZE = 10000;
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -75,9 +81,64 @@ const App = () => {
       const sheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[sheetName];
       const jsonData = XLSX.utils.sheet_to_json(worksheet);
-      setExcelData(jsonData);
+      
+      // 如果数据量超过阈值，进行采样
+      if (jsonData.length > MAX_SAMPLE_SIZE) {
+        const sampledData = sampleData(jsonData, MAX_SAMPLE_SIZE);
+        setExcelData(sampledData);
+        setDisplayData(sampledData.slice(0, ITEMS_PER_PAGE));
+        setIsSampled(true);
+      } else {
+        setExcelData(jsonData);
+        setDisplayData(jsonData.slice(0, ITEMS_PER_PAGE));
+        setIsSampled(false);
+      }
+      
+      setTotalPages(Math.ceil(jsonData.length / ITEMS_PER_PAGE));
+      setCurrentPage(1);
     };
     reader.readAsArrayBuffer(file);
+  };
+
+  // 数据采样函数
+  const sampleData = (data: any[], sampleSize: number) => {
+    const step = Math.floor(data.length / sampleSize);
+    return data.filter((_, index) => index % step === 0);
+  };
+
+  // 处理分页
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    setDisplayData(excelData.slice(start, end));
+  };
+
+  // 渲染分页控件
+  const renderPagination = () => {
+    if (totalPages <= 1) return null;
+
+    return (
+      <div className="flex justify-center items-center gap-4 mt-4">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-3 py-1 rounded bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-white disabled:opacity-50 cursor-pointer"
+        >
+          Previous
+        </button>
+        <span className="text-accent-300 dark:text-accent-ccc">
+          Page <span className='font-bold underline'>{currentPage}</span> of {totalPages}
+        </span>
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-3 py-1 rounded bg-accent-white dark:bg-accent-300 text-accent-300 dark:text-accent-white disabled:opacity-50 cursor-pointer"
+        >
+          Next
+        </button>
+      </div>
+    );
   };
 
   async function fetchAIResponse() {
@@ -736,7 +797,7 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
             </div>
           </div>
         ) : selectedChart ? (
-          <div>
+      <div>
             <button
               onClick={() => setSelectedChart(null)}
               className="mb-6 px-4 py-2 rounded-lg dark:text-accent-ccc text-accent-300 cursor-pointer rotate-180"
@@ -758,12 +819,19 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
         ) : (
           excelData.length > 0 && (
             <div className="overflow-x-auto bg-white dark:bg-accent-300 p-4 lg:p-6 rounded-lg shadow-lg">
-              <h2 className="text-lg lg:text-xl font-bold mb-4">Raw Data</h2>
+              <h2 className="text-lg lg:text-xl font-bold mb-4">
+                Raw Data
+                {isSampled && (
+                  <span className="ml-2 text-sm text-orange-base dark:text-purple-base">
+                    (Sampled {MAX_SAMPLE_SIZE} records)
+                  </span>
+                )}
+              </h2>
               <div className="overflow-x-auto">
                 <table className="min-w-full">
                   <thead>
                     <tr>
-                      {Object.keys(excelData[0]).map((header) => (
+                      {Object.keys(displayData[0]).map((header) => (
                         <th key={header} className="px-4 lg:px-6 py-3 text-left text-xs lg:text-sm font-medium uppercase tracking-wider">
                           {header}
                         </th>
@@ -771,7 +839,7 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-accent-ccc dark:divide-accent-900">
-                    {excelData.map((row, index) => (
+                    {displayData.map((row, index) => (
                       <tr key={index}>
                         {Object.values(row).map((value: any, i) => (
                           <td key={i} className="px-4 lg:px-6 py-3 lg:py-4 whitespace-nowrap text-xs lg:text-sm">
@@ -783,6 +851,7 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
                   </tbody>
                 </table>
               </div>
+              {renderPagination()}
             </div>
           )
         )}
