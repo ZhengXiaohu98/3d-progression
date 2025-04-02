@@ -202,7 +202,7 @@ const UI = () => {
 
       {/* Call to Action Section */}
       <div className="relative flex flex-col items-center mt-8 md:mt-16 px-4 md:px-12 py-10 md:py-20 border border-gray-200 dark:border-gray-800 overflow-hidden rounded-xl">
-        <h2 className="relative z-1 text-xl md:text-2xl lg:text-3xl tracking-wider text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-500 dark:from-white dark:via-gray-300 dark:to-gray-400 mb-6 md:mb-10 px-4">
+        <h2 className="text-xl md:text-2xl lg:text-3xl tracking-wider text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-black via-gray-700 to-gray-500 dark:from-white dark:via-gray-300 dark:to-gray-400 mb-6 md:mb-10 px-4">
           Create Amazing Websites with EZ UI
         </h2>
         <div className="relative w-full h-[200px] md:h-[300px]">
