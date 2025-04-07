@@ -37,12 +37,12 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, children, direction = "horizon
   return (
     <div className={cn("not-prose w-full mx-auto flex", direction === "horizontal" ? "flex-col" : "flex-row")}>
       {/* Tab Navigation */}
-      <div className={cn("select-none flex shrink-0", direction === "horizontal" ? "flex-row" : "flex-col")}>
+      <div className={cn("flex shrink-0", direction === "horizontal" ? "flex-row" : "flex-col")}>
         {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => handleTabClick(tab)}
-            className={cn("py-2 px-4 transition rounded-sm", activeTab === tab ? "font-bold bg-accent-ccc/30 dark:bg-accent-300/70" : "")}
+            className={cn("py-2 px-4 transition rounded-sm cursor-pointer", activeTab === tab ? "font-bold bg-accent-ccc/30 dark:bg-accent-300/70" : "")}
           >
             {tab}
           </button>

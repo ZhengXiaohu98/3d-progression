@@ -3,11 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ThemeSwitch } from "../general";
+import { cn } from "@/utils";
 
 export const Header: React.FC = () => {
   const checkboxRef = useRef<HTMLInputElement | null>(null);
+  const [accordionOpen, setAccordionOpen] = useState(false);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (checkboxRef.current && !checkboxRef.current.contains(event.target as Node)) {
@@ -94,7 +96,7 @@ export const Header: React.FC = () => {
           </div>
           <div className="flex items-center gap-2">
             <ThemeSwitch />
-            <div className="block md:hidden peer group overflow-hidden scale-125 mr-4 mt-px">
+            <div className="block md:hidden peer group overflow-hidden scale-125 mr-4 mt-px" onClick={() => { setAccordionOpen(!accordionOpen) }}>
               <svg
                 className="block lg:hidden w-6 h-6 text-dark-base"
                 aria-hidden="true"
@@ -124,7 +126,7 @@ export const Header: React.FC = () => {
                 className="w-full h-full absolute left-0 top-0 opacity-0"
               />
             </div>
-            <div className="duration-200 block lg:hidden absolute top-12 right-4 opacity-0 pointer-events-none -translate-x-1 peer-has-checked:pointer-events-auto peer-has-checked:translate-x-0 peer-has-checked:opacity-100 transition bg-white dark:bg-accent-dark py-1.5 rounded-lg dark:shadow-white/20 shadow-md shadow-black/[0.05]">
+            <div className={cn("duration-200 block lg:hidden absolute top-12 right-4 opacity-0 pointer-events-none -translate-x-1 peer-has-checked:pointer-events-auto peer-has-checked:translate-x-0 peer-has-checked:opacity-100 transition bg-white dark:bg-accent-dark py-1.5 rounded-lg dark:shadow-white/20 shadow-md shadow-black/[0.05]", accordionOpen ? "pointer-events-auto opacity-100 translate-x-0" : "")}>
               <ul className="flex flex-col dark:text-accent-white text-accent-300">
                 {navigations.map((navigation) => (
                   <Link

@@ -14,6 +14,10 @@ const slideBarData = {
       "url": "/ui/accordion",
     },
     {
+      "nav": "Button",
+      "url": "/ui/button",
+    },
+    {
       "nav": "Tabs",
       "url": "/ui/tabs",
     },

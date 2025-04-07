@@ -1,0 +1,238 @@
+import { Button } from '@/components/ui/general';
+import { ExampleBox } from "@/components/page/ui";
+import { Tabs, Tab } from "@/components/ui/general";
+
+export const metadata = {
+  title: 'Button Component | UI Components',
+  description: 'A versatile button component with multiple animation styles and effects',
+};
+
+# Button Component
+
+The Button component is a versatile UI element that supports multiple animation styles and interactive effects. It provides 9 different button styles, from simple hover effects to complex particle animations.
+
+## Basic Usage
+
+<ExampleBox className="flex flex-wrap gap-4 justify-center">
+  <Button buttonStyle={0}>Basic Style</Button>
+  <Button buttonStyle={1}>Underline Effect</Button>
+  <Button buttonStyle={2}>Shadow Spread</Button>
+  <Button buttonStyle={3}>Gradient Background</Button>
+  <Button buttonStyle={4}>Particle Effect</Button>
+</ExampleBox>
+
+## Advanced Effects
+
+<ExampleBox className="flex flex-wrap gap-4 justify-center">
+  <Button buttonStyle={5}>Pulse Effect</Button>
+  <Button buttonStyle={6}>Glow Follow</Button>
+  <Button buttonStyle={7}>Background Spread</Button>
+  <Button buttonStyle={8}>3D Press Effect</Button>
+</ExampleBox>
+
+## Usage Example
+
+<Tabs tabs={["Demo", "Code"]}>
+  <Tab title="Demo">
+    <div className="w-full flex justify-center py-10">
+      <Button buttonStyle={4} className="text-lg">
+        Hover me to see particle effect
+      </Button>
+    </div>
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import Button from '@/components/ui/general/Button';
+
+    <Button buttonStyle={4} className="text-lg">
+      Hover me to see particle effect
+    </Button>
+    ```
+  </Tab>
+</Tabs>
+
+## Source Code
+
+```tsx
+"use client"
+import React, { ButtonHTMLAttributes, FC, useState, useEffect } from 'react';
+import { cn } from '@/utils';
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  buttonStyle?: number;
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const Button: FC<ButtonProps> = ({ 
+  buttonStyle = 0, 
+  children, 
+  className = '', 
+  ...props 
+}) => {
+  const [hoverState, setHoverState] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [particles, setParticles] = useState<Array<{ id: number, x: number, y: number, size: number, opacity: number }>>([]);
+  
+  // Particle effect
+  useEffect(() => {
+    if (buttonStyle === 4 && hoverState) {
+      const interval = setInterval(() => {
+        setParticles(prev => {
+          const newParticles = [...prev];
+          
+          // Add new particles
+          if (newParticles.length < 15) {
+            newParticles.push({
+              id: Date.now(),
+              x: Math.random() * 100,
+              y: Math.random() * 100,
+              size: Math.random() * 2 + 0.5,
+              opacity: 1
+            });
+          }
+          
+          // Update existing particles
+          return newParticles
+            .map(p => ({
+              ...p,
+              y: p.y - 1,
+              opacity: p.opacity - 0.03
+            }))
+            .filter(p => p.opacity > 0);
+        });
+      }, 50);
+      
+      return () => clearInterval(interval);
+    } else if (buttonStyle === 4 && !hoverState) {
+      // Clear all particles when mouse leaves
+      setParticles([]);
+    }
+  }, [buttonStyle, hoverState]);
+
+  // Mouse position tracking for glow effect
+  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (buttonStyle === 6) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setPosition({
+        x: ((e.clientX - rect.left) / rect.width) * 100,
+        y: ((e.clientY - rect.top) / rect.height) * 100
+      });
+    } else if (buttonStyle === 3) {
+      // Track mouse position for gradient border effect
+      const rect = e.currentTarget.getBoundingClientRect();
+      setPosition({
+        x: ((e.clientX - rect.left) / rect.width) * 100,
+        y: ((e.clientY - rect.top) / rect.height) * 100
+      });
+    }
+  };
+
+  const buttonStyles = [
+    // 0: Basic style
+    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 dark:hover:bg-gray-dark/50 hover:bg-accent-white/50",
+    
+    // 1: Underline effect
+    "relative px-4 py-2 rounded-md border-0 overflow-hidden transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:scale-x-0 hover:after:scale-x-100 after:bg-current after:transition-all after:duration-300 after:w-full",
+    
+    // 2: Shadow spread
+    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_0_10px_rgba(255,255,255,0.2)]",
+    
+    // 3: Gradient background with mouse tracking
+    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc border-0 overflow-hidden transition-all duration-300 before:absolute before:inset-0 before:rounded-md before:border before:border-transparent before:content-['']",
+    
+    // 4: Particle effect
+    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 overflow-hidden",
+    
+    // 5: Pulse effect
+    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 hover:animate-pulse",
+    
+    // 6: Glow follow
+    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 overflow-hidden",
+    
+    // 7: Background spread
+    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 before:absolute before:inset-0 before:rounded-md before:bg-current before:opacity-0 before:scale-0 hover:before:scale-100 hover:before:opacity-5 before:transition-all before:duration-300 before:content-['']",
+    
+    // 8: 3D press effect
+    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-100 hover:translate-y-0.5 hover:shadow-inner"
+  ];
+
+  return (
+    <button
+      className={cn(
+        buttonStyles[buttonStyle % buttonStyles.length],
+        className
+      )}
+      onMouseEnter={() => setHoverState(true)}
+      onMouseLeave={() => setHoverState(false)}
+      onMouseMove={handleMouseMove}
+      {...props}
+    >
+      {/* Particle effect */}
+      {buttonStyle === 4 && hoverState && particles.map(p => (
+        <span
+          key={p.id}
+          className="absolute bg-current rounded-full pointer-events-none shadow-[0_0_3px_currentColor]"
+          style={{
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            opacity: p.opacity
+          }}
+        />
+      ))}
+
+      {/* Glow follow effect */}
+      {buttonStyle === 6 && hoverState && (
+        <span
+          className="absolute w-20 h-20 rounded-full bg-current opacity-10 pointer-events-none transition-transform duration-100 -translate-x-1/2 -translate-y-1/2"
+          style={{
+            left: `${position.x}%`,
+            top: `${position.y}%`
+          }}
+        />
+      )}
+
+      {/* Gradient border with mouse tracking */}
+      {buttonStyle === 3 && hoverState && (
+        <span
+          className="absolute inset-0 rounded-md border border-transparent pointer-events-none"
+          style={{
+            background: `radial-gradient(circle at ${position.x}% ${position.y}%, currentColor 0%, transparent 70%)`,
+            opacity: 0.3,
+            mixBlendMode: 'overlay'
+          }}
+        />
+      )}
+
+      {/* Content */}
+      <div className="relative z-10">{children}</div>
+    </button>
+  );
+};
+```
+
+## Properties
+
+| **Property** | **Type** | **Required** | **Default** | **Description** |
+|------------|----------|----------|------------|----------|
+| `buttonStyle` | `number` | No | `0` | Button style index, from 0 to 8, corresponding to 9 different button styles |
+| `children` | `React.ReactNode` | Yes | - | Button content |
+| `className` | `string` | No | `''` | Additional CSS class names |
+
+## Button Style Descriptions
+
+The Button component provides 9 different styles, each with unique interactive effects:
+
+1. **Basic Style** (0): Simple hover background change effect
+2. **Underline Effect** (1): Underline expands from left on hover
+3. **Shadow Spread** (2): Adds shadow effect on hover
+4. **Gradient Background** (3): Displays gradient background that follows mouse position on hover
+5. **Particle Effect** (4): Creates rising particle animation on hover
+6. **Pulse Effect** (5): Button pulses on hover
+7. **Glow Follow** (6): Glow follows mouse position on hover
+8. **Background Spread** (7): Background color spreads on hover
+9. **3D Press Effect** (8): Button appears to be pressed down on hover
+
+
