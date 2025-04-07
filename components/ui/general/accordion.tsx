@@ -1,5 +1,6 @@
+"use client";
 import { cn } from "@/utils";
-
+import { useState } from "react";
 interface AccordionProps {
   header: string;
   className?: string;
@@ -11,9 +12,12 @@ interface AccordionProps {
 
 
 export const Accordion: React.FC<AccordionProps> = ({ header, className, accordionClassName, children, showIcon = true }) => {
+
+  const [accordionOpen, setAccordionOpen] = useState(false);
+
   return (
     <div className={cn("w-full", accordionClassName)}>
-      <div className={cn("relative peer px-4 py-2 w-full flex items-center justify-between group/toggle", className)}>
+      <div className={cn("relative peer px-4 py-2 w-full flex items-center justify-between group/toggle", className)} onClick={() => { setAccordionOpen(!accordionOpen) }}>
         {header}
         {/* Dropdown Icon */}
         <svg
@@ -28,7 +32,7 @@ export const Accordion: React.FC<AccordionProps> = ({ header, className, accordi
         {/* input to control the open/close state */}
         <input type="checkbox" className="absolute inset-0 opacity-0 cursor-pointer" />
       </div>
-      <div className="grid grid-rows-[0fr] peer-has-checked:grid-rows-[1fr] transition-all ease-in-out duration-[400ms]">
+      <div className={cn("grid grid-rows-[0fr] peer-has-checked:grid-rows-[1fr] transition-all ease-in-out duration-[400ms]", accordionOpen ? "grid-rows-[1fr]" : "")}>
         <div className="overflow-hidden">
           {children}
         </div>

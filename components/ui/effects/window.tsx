@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React from "react";
 import { cn } from "@/utils";
 
 interface WindowProps {

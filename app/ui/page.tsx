@@ -9,13 +9,12 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 
 const UI = () => {
-  const { theme } = useTheme();
-
+  const { resolvedTheme } = useTheme();
   return (
     <div className="grow flex flex-col items-center not-prose font-instrument-sans">
       {/* Hero Section */}
-      <Window type={theme === "dark" ? "mac-dark" : "mac-light"} className="w-[350px] md:w-[600px] lg:w-[900px]">
-        <div className="relative overflow-hidden flex flex-col items-center p-4 lg:p-8 w-[350px] md:w-[600px] lg:w-[900px] bg-white dark:bg-accent-dark/20 rounded-b border-x border-b border-accent-white dark:border-accent-500/40">
+      <Window type={resolvedTheme === "dark" ? "mac-dark" : "mac-light"} className="w-[350px] md:w-[600px] lg:w-[900px]">
+        <div className="relative overflow-hidden flex flex-col items-center p-4 lg:p-8 w-[350px] md:w-[600px] lg:w-[900px] bg-white dark:bg-accent-dark/20 rounded-b border border-x border-b border-accent-white dark:border-accent-500/40">
           <div className="relative overflow-hidden">
             <h1 className="text-4xl md:text-6xl font-bold mb-2 md:mb-4 dark:text-white text-accent-dark">
               Easy UI
@@ -107,7 +106,7 @@ const UI = () => {
               />
             </ToolTip>
           </Link>
-          <PointLight angle={65} color={theme === "dark" ? "#ffffff" : "#f472b688"} intensity={2} className="origin-top-right left-auto right-0" />
+          <PointLight angle={65} color={resolvedTheme === "dark" ? "#ffffff" : "#f472b688"} intensity={2} className="origin-top-right left-auto right-0" />
         </div>
       </Window>
 
@@ -197,7 +196,7 @@ const UI = () => {
             </div>
           </DualCompare>
         </div>
-        <Particles count={100} colors={theme === "dark" ? ["#ffffff"] : ["#c2410c99", "#f472b699"]} speed={1} size={[0.1, 1]} className="absolute left-0 top-0 h-full w-full rounded-xl bg-white dark:bg-black" />
+        <Particles count={100} colors={resolvedTheme === "dark" ? ["#ffffff"] : ["#c2410c99", "#f472b699"]} speed={1} size={[0.1, 1]} className="absolute left-0 top-0 h-full w-full rounded-xl bg-white dark:bg-black" />
       </div>
 
       {/* Call to Action Section */}
