@@ -8,21 +8,7 @@ import { ThemeSwitch } from "../general";
 import { cn } from "@/utils";
 
 export const Header: React.FC = () => {
-  const checkboxRef = useRef<HTMLInputElement | null>(null);
   const [accordionOpen, setAccordionOpen] = useState(false);
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (checkboxRef.current && !checkboxRef.current.contains(event.target as Node)) {
-      checkboxRef.current.checked = false;
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
 
   useGSAP(() => {
     gsap.from("#header", {
@@ -110,23 +96,18 @@ export const Header: React.FC = () => {
                   strokeLinecap="round"
                   strokeWidth="1.2"
                   d="M5 12h24"
-                  className="group-has-checked:translate-x-[25%] transition"
+                  className={cn("transition", accordionOpen ? "translate-x-[25%]" : "")}
                 />
                 <path
                   stroke="currentColor"
                   strokeLinecap="round"
                   strokeWidth="1.2"
                   d="M5 18h24"
-                  className="group-has-checked:translate-x-[50%] transition"
+                  className={cn("transition", accordionOpen ? "translate-x-[50%]" : "")}
                 />
               </svg>
-              <input
-                ref={checkboxRef}
-                type="checkbox"
-                className="w-full h-full absolute left-0 top-0 opacity-0"
-              />
             </div>
-            <div className={cn("duration-200 block lg:hidden absolute top-12 right-4 opacity-0 pointer-events-none -translate-x-1 peer-has-checked:pointer-events-auto peer-has-checked:translate-x-0 peer-has-checked:opacity-100 transition bg-white dark:bg-accent-dark py-1.5 rounded-lg dark:shadow-white/20 shadow-md shadow-black/[0.05]", accordionOpen ? "pointer-events-auto opacity-100 translate-x-0" : "")}>
+            <div onClick={() => { setAccordionOpen(false) }} className={cn("duration-200 block lg:hidden absolute top-12 right-4 transition bg-white dark:bg-accent-dark py-1.5 rounded-lg dark:shadow-white/20 shadow-md shadow-black/[0.05]", accordionOpen ? "pointer-events-auto opacity-100 translate-x-0" : "opacity-0 pointer-events-none -translate-x-1")}>
               <ul className="flex flex-col dark:text-accent-white text-accent-300">
                 {navigations.map((navigation) => (
                   <Link

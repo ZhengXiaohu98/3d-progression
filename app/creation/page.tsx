@@ -1,66 +1,83 @@
-import { projectData } from "./data.json";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-const Footer = dynamic(() => import("@/components/layout").then((mod) => mod.Footer));
-import Link from "next/link.js";
+import Link from "next/link";
 import { ArrowIcon } from "@/components/icon";
+import { projectData } from "./data.json";
+import * as motion from "motion/react-client";
 
-const Project = () => {
+interface Project {
+  name: string;
+  description: string;
+  img: string;
+  url: string;
+  highlights: string[];
+}
 
+export default function Creation() {
   return (
-    <>
-      <section className="relative container pt-28 md:pt-32 lg:pt-40 dark:text-accent-white text-accent-dark">
-        <h1 className="lg:text-4xl md:text-2xl text-xl font-bold font-playwrite-gbs">
-          Creation
-        </h1>
-        <p className="mt-2 md:mt-3 lg:mt-4 tracking-wide dark:text-accent-900 text-accent-300 md:text-base text-xs font-playwrite-gbs">
-          {"Just a few small creations made in my spare time."}
-        </p>
-        <div className="py-6 md:py-8 lg:py-12 flex flex-col min-h-[70vh]">
-          {
-            projectData.map(project => (
-              <div key={project.name} className="py-4 md:py-8 border-b dark:border-accent-300 border-accent-ccc">
-                <div className="group peer relative w-full flex flex-row justify-between items-center">
-                  <div className="flex md:flex-row flex-col md:items-center gap-2 md:gap-8">
-                    <h2 className="text-base md:text-xl lg:text-2xl font-bold text-accent-dark dark:text-accent-white">{project.name}</h2>
-                    <div className="flex items-center gap-2">
-                      {project.highlights.map((hightlight) => (
-                        <span key={hightlight} className="md:text-sm text-xs px-2 py-1 border dark:border-accent-300 border-accent-ccc rounded-md md:font-bold text-accent-300 dark:text-accent-ccc">
-                          {hightlight}
+    <div className="grow flex flex-col items-center not-prose font-instrument-sans pt-20">
+      <div className="container flex flex-col">
+        <div className="py-6 md:py-8 lg:py-12">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-accent-dark dark:text-accent-white mb-2 md:mb-4">
+            Creation
+          </h1>
+          <p className="text-sm md:text-base lg:text-lg tracking-wide text-accent-300 dark:text-accent-ccc">
+            A collection of my projects and creations.
+          </p>
+        </div>
+        
+        <div className="py-6 md:py-8 lg:py-12 flex flex-col min-h-[70vh] gap-8 md:gap-12">
+          {projectData.map((project: Project, index: number) => (
+            <motion.div 
+              key={project.name} 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group relative overflow-hidden rounded-xl border dark:border-accent-300 border-accent-ccc/30 bg-white dark:bg-accent-dark/10 hover:shadow-lg dark:hover:shadow-accent-300"
+            >
+              <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8">
+                <div className="flex-1 flex flex-col gap-4">
+                  <div className="flex flex-col gap-2">
+                    <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-accent-dark dark:text-accent-white group-hover:text-purple-base dark:group-hover:text-pink-base transition-colors">
+                      {project.name}
+                    </h2>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {project.highlights.map((highlight: string) => (
+                        <span 
+                          key={highlight} 
+                          className="text-xs md:text-sm px-2 py-1 border dark:border-accent-300/50 border-accent-ccc/50 rounded-md text-accent-300 dark:text-accent-ccc bg-accent-white/50 dark:bg-accent-dark/30"
+                        >
+                          {highlight}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 dark:text-accent-ccc text-accent-300 group-has-checked:rotate-45 origin-center transition" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 4V20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M4 12H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <input type="checkbox" className="absolute inset-0 opacity-0 cursor-pointer" />
-                </div>
-                <div className="grid grid-rows-[0fr] peer-has-checked:grid-rows-[1fr] md:peer-has-checked:pt-8 peer-has-checked:pt-4 transition-all">
-                  <div className="relative overflow-hidden flex flex-col-reverse md:flex-row items-center justify-between gap-6 md:gap-12 lg:gap-24 pr-0 lg:pr-20">
-                    <div className="flex flex-col gap-2 md:gap-8 lg:gap-10 shirnk-0 w-[350px] md:w-[300px] lg:w-[420px]">
-                      <p className="text-sm md:text-base lg:text-lg tracking-wide">{project.description}</p>
-                      <Link href={project.url} >
-                        <div className="text-sm md:text-base relative flex items-center gap-2 py-1.5 px-4 md:py-2 rounded-md w-fit dark:bg-accent-white bg-none dark:text-accent-dark text-accent-300 font-bold group/btn">
-                          Visit Site
-                          <ArrowIcon className="w-6 h-6 group-hover/btn:translate-x-0.5 transition" />
-                        </div>
-                      </Link>
+                  
+                  <p className="text-sm md:text-base lg:text-lg tracking-wide text-accent-300 dark:text-accent-ccc">
+                    {project.description}
+                  </p>
+                  
+                  <Link href={project.url} className="mt-2">
+                    <div className="inline-flex items-center gap-2 py-2 px-4 rounded-md bg-accent-white dark:bg-accent-dark/30 text-accent-300 dark:text-accent-ccc hover:bg-accent-ccc/10 dark:hover:bg-accent-300/10 transition-colors group/btn">
+                      <span className="text-sm md:text-base font-medium">Visit Site</span>
+                      <ArrowIcon className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                     </div>
-                    <Image src={project.img} width={300} height={290} alt={project.name} className="h-[160px] md:h-full w-auto float-left transition origin-center rounded-xl border border-accent-ccc" />
-                  </div>
+                  </Link>
+                </div>
+                
+                <div className="relative w-full md:w-1/3 h-[200px] md:h-[250px] rounded-lg overflow-hidden">
+                  <Image 
+                    src={project.img} 
+                    alt={project.name} 
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
               </div>
-            ))
-          }
+            </motion.div>
+          ))}
         </div>
-
-      </section>
-      <Footer />
-    </>
-
-  )
+      </div>
+    </div>
+  );
 }
-
-export default Project;
