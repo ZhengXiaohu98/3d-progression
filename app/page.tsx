@@ -514,7 +514,7 @@ export default function Home() {
               ))
             }
           </div>
-          <Link href="/project">
+          <Link href="/creation">
             <div className="md:mt-10 mt-8 text-sm px-4 py-2 rounded-lg border dark:border-accent-300 border-accent-ccc transition duration-150 relative overflow-hidden dark:hover:bg-gray-dark/50 hover:bg-accent-white/50">
               Explore more
             </div>
