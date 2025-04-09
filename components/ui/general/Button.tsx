@@ -104,7 +104,7 @@ export const Button: FC<ButtonProps> = ({
   return (
     <button
       className={cn(
-        "cursor-pointer",
+        "cursor-pointer relative z-10",
         buttonStyles[buttonStyle % buttonStyles.length],
         className
       )}
@@ -151,8 +151,7 @@ export const Button: FC<ButtonProps> = ({
         />
       )}
 
-      {/* Content */}
-      <div className="relative z-10">{children}</div>
+      {children}
     </button>
   );
 };
