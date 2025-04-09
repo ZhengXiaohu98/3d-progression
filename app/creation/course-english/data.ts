@@ -195,39 +195,46 @@ export const englishCourseStages = [
     color: 'from-purple-400 to-indigo-500',
     sections: [
       {
-        title: '听说',
+        title: '在线学习平台',
         content: [
-          '专业英语讲座、TED Talk',
-          '讨论课、小组合作、演讲比赛',
-          '模拟会议、面试训练'
+          { name: 'Coursera', url: 'https://www.coursera.org' },
+          { name: 'edX', url: 'https://www.edx.org' },
+          { name: 'Udemy', url: 'https://www.udemy.com' },
+          { name: 'Duolingo', url: 'https://www.duolingo.com' }
         ]
       },
       {
-        title: '阅读',
+        title: '英语学习APP',
         content: [
-          '阅读原版教材、论文、科技类、社科类文本',
-          '阅读策略：略读、扫读、批判性阅读'
+          { name: '扇贝英语', url: 'https://www.shanbay.com' },
+          { name: '每日英语听力', url: 'https://dict.eudic.net' },
+          { name: '英语流利说', url: 'https://www.liulishuo.com' },
+          { name: '多邻国', url: 'https://www.duolingo.com' }
         ]
       },
       {
-        title: '写作',
+        title: '视频学习资源',
         content: [
-          '学术写作训练：论文、报告、摘要、引用格式',
-          '商务写作：邮件、简历、求职信'
+          { name: 'TED Talks', url: 'https://www.ted.com' },
+          { name: 'BBC Learning English', url: 'https://www.bbc.co.uk/learningenglish' },
+          { name: 'VOA Learning English', url: 'https://learningenglish.voanews.com' }
         ]
       },
       {
-        title: '词汇',
+        title: '阅读与写作平台',
         content: [
-          '词汇量6000+，应对CET-6、IELTS 7+、TOEFL 100+',
-          '专业术语引入（计算机、商务、法律等领域）'
+          { name: 'Medium', url: 'https://medium.com' },
+          { name: 'Grammarly', url: 'https://www.grammarly.com' },
+          { name: 'Quora', url: 'https://www.quora.com' }
         ]
       },
       {
-        title: '语法',
+        title: '考试备考资源',
         content: [
-          '完整语法体系复习巩固',
-          '语言风格转变训练（口语vs正式书面语）'
+          { name: 'IELTS Official', url: 'https://www.ielts.org' },
+          { name: 'TOEFL Official', url: 'https://www.ets.org/toefl' },
+          { name: 'GMAT Official', url: 'https://www.mba.com/exams/gmat' },
+          { name: 'GRE Official', url: 'https://www.ets.org/gre' }
         ]
       }
     ]

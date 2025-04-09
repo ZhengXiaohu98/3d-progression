@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/icon";
-import { projectData } from "./data.json";
+import data from "./data.json";
 import * as motion from "motion/react-client";
 
 interface Project {
@@ -13,6 +13,8 @@ interface Project {
 }
 
 export default function Creation() {
+  const projectData = data.projectData;
+
   return (
     <div className="grow flex flex-col items-center not-prose font-instrument-sans pt-20">
       <div className="container flex flex-col">

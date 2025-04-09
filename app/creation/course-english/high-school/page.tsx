@@ -8,22 +8,26 @@ import { Button } from '@/components/ui/general/Button';
 import { TextToSpeech } from '@/components/ui/utils/text-to-speech';
 import { dialogues } from './data/dialogues';
 import { readingMaterials, writingMaterials } from './data/reading-writing';
-import { grammarItems, GrammarItem } from './data/grammar';
-import { phonicsItems, pronunciationItems, PhonicsItem, PronunciationItem } from './data/phonics';
+import { grammarRules as grammarItems} from './data/grammar';
+import { phonicsItems} from './data/phonics';
 
-export default function PrimaryEnglish() {
-  // 获取小学阶段数据
-  const primaryData = englishCourseStages.find(stage => stage.id === '小学阶段');
+export default function HighSchoolEnglish() {
+  // 获取高中阶段数据
+  const highSchoolData = englishCourseStages.find(stage => stage.id === '高中阶段');
+  
   // 添加状态控制学习内容区域的显示
   const [showLearningContent, setShowLearningContent] = useState(false);
-  // 添加状态控制当前显示的学习内容类型
   const [currentContentType, setCurrentContentType] = useState<string | null>(null);
+  
   // 添加分页状态
-  const [currentPage, setCurrentPage] = useState(1);
+  const [dialoguePage, setDialoguePage] = useState(1);
+  const [vocabularyPage, setVocabularyPage] = useState(1);
   const dialoguesPerPage = 10;
-  const totalPages = Math.ceil(dialogues.length / dialoguesPerPage);
+  const totalDialoguePages = Math.ceil(dialogues.length / dialoguesPerPage);
   const vocabularyPerPage = 12;
   const totalVocabularyPages = Math.ceil(vocabulary.length / vocabularyPerPage);
+  
+  // 添加阅读和写作状态
   const [currentReadingItem, setCurrentReadingItem] = useState<number>(0);
   const [currentWritingItem, setCurrentWritingItem] = useState<number>(0);
   const [showTranslation, setShowTranslation] = useState<boolean>(false);
@@ -32,8 +36,8 @@ export default function PrimaryEnglish() {
   
   // 添加语法学习状态
   const [currentGrammarItem, setCurrentGrammarItem] = useState<number>(0);
-  const [selectedGrammarAnswers, setSelectedGrammarAnswers] = useState<{ [key: number]: number }>({});
-  const [isGrammarAnswerCorrect, setIsGrammarAnswerCorrect] = useState<{ [key: number]: boolean }>({});
+  const [selectedGrammarAnswers, setSelectedGrammarAnswers] = useState<number[]>([]);
+  const [isGrammarAnswerCorrect, setIsGrammarAnswerCorrect] = useState<boolean[]>([]);
   
   // 添加语音学习状态
   const [currentPhonicsItem, setCurrentPhonicsItem] = useState<number>(0);
@@ -42,39 +46,130 @@ export default function PrimaryEnglish() {
   const [isPhonicsAnswerCorrect, setIsPhonicsAnswerCorrect] = useState<{ [key: number]: boolean }>({});
   const [selectedPronunciationAnswers, setSelectedPronunciationAnswers] = useState<{ [key: number]: number }>({});
   const [isPronunciationAnswerCorrect, setIsPronunciationAnswerCorrect] = useState<{ [key: number]: boolean }>({});
-
+  
+  // 添加角色扮演和讲座状态
+  const [currentRolePlayItem, setCurrentRolePlayItem] = useState<number>(0);
+  const [currentLectureItem, setCurrentLectureItem] = useState<number>(0);
+  
+  // 模拟角色扮演数据
+  const rolePlayScenarios = [
+    {
+      id: 1,
+      title: "学术讨论",
+      description: "在学术环境中进行讨论和辩论",
+      scenarios: [
+        {
+          title: "研究项目讨论",
+          description: "与同学讨论研究项目的方法和结果",
+          roles: [
+            { name: "你", lines: ["我认为我们应该使用定量研究方法，这样可以获得更客观的数据。", "我们的样本量可能不够大，这会影响结果的可靠性。", "我们可以考虑使用混合研究方法，结合定性和定量分析。"] },
+            { name: "同学", lines: ["定量研究确实有其优势，但定性研究能提供更深入的理解。", "我们可以扩大样本量，或者使用更有效的抽样方法。", "混合研究方法是个好主意，这样我们可以从多个角度分析问题。"] }
+          ]
+        },
+        {
+          title: "学术会议提问",
+          description: "在学术会议上向演讲者提问",
+          roles: [
+            { name: "你", lines: ["您的研究中如何处理了样本偏差问题？", "您认为您的研究结果可以推广到其他文化背景吗？", "您的研究与最近发表的Smith等人的研究有何不同？"] },
+            { name: "演讲者", lines: ["我们使用了分层抽样方法来减少样本偏差。", "我们的研究主要针对西方文化背景，跨文化应用需要进一步验证。", "Smith等人的研究关注短期效果，而我们的研究追踪了长期影响。"] }
+          ]
+        }
+      ]
+    },
+    {
+      id: 2,
+      title: "职场沟通",
+      description: "在职场环境中进行有效沟通",
+      scenarios: [
+        {
+          title: "项目汇报",
+          description: "向团队汇报项目进展",
+          roles: [
+            { name: "你", lines: ["我们已完成项目第一阶段，进度符合预期。", "我们遇到了一些技术挑战，但已找到解决方案。", "下一阶段我们将重点关注用户反馈的整合。"] },
+            { name: "经理", lines: ["很好，第一阶段的结果令人满意。", "技术挑战是难免的，很高兴你们能主动解决。", "用户反馈非常重要，请确保在下一阶段报告中详细说明。"] }
+          ]
+        },
+        {
+          title: "客户会议",
+          description: "与客户讨论项目需求和进展",
+          roles: [
+            { name: "你", lines: ["根据您的需求，我们设计了三种方案，各有特点。", "我们可以在两周内完成初步设计，请您提供反馈。", "考虑到您的预算限制，我们调整了实施计划。"] },
+            { name: "客户", lines: ["这三种方案都很吸引人，我们倾向于第二种。", "两周时间可以接受，我们会尽快提供反馈。", "感谢你们考虑我们的预算限制，这很重要。"] }
+          ]
+        }
+      ]
+    }
+  ];
+  
+  // 模拟讲座数据
+  const lectureTopics = [
+    {
+      id: 1,
+      title: "气候变化与可持续发展",
+      description: "探讨气候变化的原因、影响及可持续发展解决方案",
+      sections: [
+        {
+          title: "气候变化科学基础",
+          content: "Climate change refers to long-term shifts in global weather patterns and average temperatures. The primary driver of recent climate change is the increase in greenhouse gases, particularly carbon dioxide, in the Earth's atmosphere. These gases trap heat, leading to global warming and its various impacts.",
+          keyPoints: ["温室气体增加是气候变化的主要原因", "全球变暖导致极端天气事件增加", "气候变化影响全球生态系统"],
+          vocabulary: ["greenhouse gases", "carbon dioxide", "global warming", "extreme weather", "ecosystem"]
+        },
+        {
+          title: "气候变化的影响",
+          content: "The impacts of climate change are far-reaching and include rising sea levels, more frequent and intense extreme weather events, disruptions to agriculture, and threats to biodiversity. These changes affect human societies, economies, and natural ecosystems around the world.",
+          keyPoints: ["海平面上升威胁沿海地区", "极端天气事件频率和强度增加", "农业系统受到干扰", "生物多样性面临威胁"],
+          vocabulary: ["sea level rise", "extreme weather events", "agriculture", "biodiversity", "ecosystems"]
+        },
+        {
+          title: "可持续发展解决方案",
+          content: "Sustainable development offers pathways to address climate change while meeting human needs. This includes transitioning to renewable energy sources, improving energy efficiency, protecting forests, and developing sustainable agricultural practices. Individual actions, policy changes, and technological innovations all play crucial roles.",
+          keyPoints: ["向可再生能源转型", "提高能源效率", "保护森林资源", "发展可持续农业", "个人行动与政策变革相结合"],
+          vocabulary: ["renewable energy", "energy efficiency", "forest conservation", "sustainable agriculture", "policy changes"]
+        }
+      ]
+    },
+    {
+      id: 2,
+      title: "人工智能与未来工作",
+      description: "探讨人工智能发展对就业市场的影响及未来工作形态",
+      sections: [
+        {
+          title: "人工智能发展现状",
+          content: "Artificial Intelligence (AI) has made significant advances in recent years, with applications in machine learning, natural language processing, computer vision, and robotics. These technologies are transforming industries and creating new possibilities for automation and decision-making.",
+          keyPoints: ["机器学习技术快速发展", "自然语言处理能力提升", "计算机视觉应用广泛", "机器人技术不断进步"],
+          vocabulary: ["artificial intelligence", "machine learning", "natural language processing", "computer vision", "robotics"]
+        },
+        {
+          title: "AI对就业市场的影响",
+          content: "While AI creates new job opportunities in technology and AI development, it also automates certain tasks and potentially displaces workers in some sectors. The impact varies across industries, with some jobs being transformed rather than eliminated entirely.",
+          keyPoints: ["AI创造新的就业机会", "某些工作岗位被自动化取代", "不同行业受影响程度不同", "工作性质而非工作机会发生变化"],
+          vocabulary: ["job opportunities", "automation", "workforce displacement", "industry transformation", "job nature"]
+        },
+        {
+          title: "未来工作技能需求",
+          content: "As AI continues to evolve, the skills required in the workforce are changing. Adaptability, critical thinking, creativity, emotional intelligence, and technical literacy are becoming increasingly important. Continuous learning and reskilling will be essential for career longevity.",
+          keyPoints: ["适应能力成为关键技能", "批判性思维和创造力更加重要", "情商和技术素养同样重要", "持续学习和再培训成为常态"],
+          vocabulary: ["adaptability", "critical thinking", "creativity", "emotional intelligence", "technical literacy"]
+        }
+      ]
+    }
+  ];
+  
   // 获取当前页的对话
   const getCurrentPageDialogues = () => {
-    const startIndex = (currentPage - 1) * dialoguesPerPage;
+    const startIndex = (dialoguePage - 1) * dialoguesPerPage;
     return dialogues.slice(startIndex, startIndex + dialoguesPerPage);
   };
 
   // 获取当前页的词汇
   const getCurrentPageVocabulary = () => {
-    const startIndex = (currentPage - 1) * vocabularyPerPage;
+    const startIndex = (vocabularyPage - 1) * vocabularyPerPage;
     return vocabulary.slice(startIndex, startIndex + vocabularyPerPage);
   };
 
   // 生成随机语速
   const getRandomRate = () => {
     return 0.8 + Math.random() * 0.4; // 0.8 到 1.2 之间的随机值
-  };
-
-  if (!primaryData) {
-    return <div className="min-h-screen flex items-center justify-center">数据加载中...</div>;
-  }
-
-  // 处理开始学习按钮点击
-  const handleStartLearning = (contentType: string) => {
-    setCurrentContentType(contentType);
-    setShowLearningContent(true);
-    setCurrentPage(1);
-  };
-
-  // 返回学习模块区域
-  const handleBackToModules = () => {
-    setShowLearningContent(false);
-    setCurrentContentType(null);
   };
 
   // 根据性别选择语音
@@ -89,6 +184,24 @@ export default function PrimaryEnglish() {
       default:
         return 'female';
     }
+  };
+
+  // 处理开始学习按钮点击
+  const handleStartLearning = (contentType: string) => {
+    setCurrentContentType(contentType);
+    setShowLearningContent(true);
+    // 根据内容类型设置相应的分页
+    if (contentType === '对话练习') {
+      setDialoguePage(1);
+    } else if (contentType === '词汇学习') {
+      setVocabularyPage(1);
+    }
+  };
+
+  // 返回学习模块区域
+  const handleBackToModules = () => {
+    setShowLearningContent(false);
+    setCurrentContentType(null);
   };
 
   // 处理阅读内容切换
@@ -130,18 +243,54 @@ export default function PrimaryEnglish() {
 
   // 处理语法答案选择
   const handleGrammarAnswerSelect = (questionIndex: number, answerIndex: number) => {
-    setSelectedGrammarAnswers(prev => ({
-      ...prev,
-      [questionIndex]: answerIndex
-    }));
-    const currentItem = grammarItems[currentGrammarItem];
-    setIsGrammarAnswerCorrect(prev => ({
-      ...prev,
-      [questionIndex]: answerIndex === currentItem.practice[questionIndex].answer
-    }));
+    const newSelectedAnswers = [...selectedGrammarAnswers];
+    newSelectedAnswers[questionIndex] = answerIndex;
+    setSelectedGrammarAnswers(newSelectedAnswers);
+
+    const newIsCorrect = [...isGrammarAnswerCorrect];
+    const currentExercise = grammarItems[currentGrammarItem].exercises[questionIndex];
+    newIsCorrect[questionIndex] = currentExercise.options[answerIndex] === currentExercise.answer;
+    setIsGrammarAnswerCorrect(newIsCorrect);
   };
 
-  // 处理语音答案选择
+  // 处理语法内容切换
+  const handleNextGrammar = () => {
+    if (currentGrammarItem < grammarItems.length - 1) {
+      setCurrentGrammarItem(currentGrammarItem + 1);
+      // 重置答案状态
+      setSelectedGrammarAnswers([]);
+      setIsGrammarAnswerCorrect([]);
+    }
+  };
+
+  const handlePrevGrammar = () => {
+    if (currentGrammarItem > 0) {
+      setCurrentGrammarItem(currentGrammarItem - 1);
+      // 重置答案状态
+      setSelectedGrammarAnswers([]);
+      setIsGrammarAnswerCorrect([]);
+    }
+  };
+
+  // 处理角色扮演内容切换
+  const handleNextRolePlay = () => {
+    setCurrentRolePlayItem((prev) => (prev + 1) % rolePlayScenarios.length);
+  };
+
+  const handlePrevRolePlay = () => {
+    setCurrentRolePlayItem((prev) => (prev - 1 + rolePlayScenarios.length) % rolePlayScenarios.length);
+  };
+  
+  // 处理讲座内容切换
+  const handleNextLecture = () => {
+    setCurrentLectureItem((prev) => (prev + 1) % lectureTopics.length);
+  };
+
+  const handlePrevLecture = () => {
+    setCurrentLectureItem((prev) => (prev - 1 + lectureTopics.length) % lectureTopics.length);
+  };
+
+  // 处理语音练习答案选择
   const handlePhonicsAnswerSelect = (questionIndex: number, answerIndex: number) => {
     setSelectedPhonicsAnswers(prev => ({
       ...prev,
@@ -154,33 +303,7 @@ export default function PrimaryEnglish() {
     }));
   };
 
-  // 处理发音答案选择
-  const handlePronunciationAnswerSelect = (questionIndex: number, answerIndex: number) => {
-    setSelectedPronunciationAnswers(prev => ({
-      ...prev,
-      [questionIndex]: answerIndex
-    }));
-    const currentItem = pronunciationItems[currentPronunciationItem];
-    setIsPronunciationAnswerCorrect(prev => ({
-      ...prev,
-      [questionIndex]: answerIndex === currentItem.practice[questionIndex].answer
-    }));
-  };
-
-  // 处理语法内容切换
-  const handleNextGrammar = () => {
-    setCurrentGrammarItem((prev) => (prev + 1) % grammarItems.length);
-    setSelectedGrammarAnswers({});
-    setIsGrammarAnswerCorrect({});
-  };
-
-  const handlePrevGrammar = () => {
-    setCurrentGrammarItem((prev) => (prev - 1 + grammarItems.length) % grammarItems.length);
-    setSelectedGrammarAnswers({});
-    setIsGrammarAnswerCorrect({});
-  };
-
-  // 处理语音内容切换
+  // 处理语音练习内容切换
   const handleNextPhonics = () => {
     setCurrentPhonicsItem((prev) => (prev + 1) % phonicsItems.length);
     setSelectedPhonicsAnswers({});
@@ -193,18 +316,9 @@ export default function PrimaryEnglish() {
     setIsPhonicsAnswerCorrect({});
   };
 
-  // 处理发音内容切换
-  const handleNextPronunciation = () => {
-    setCurrentPronunciationItem((prev) => (prev + 1) % pronunciationItems.length);
-    setSelectedPronunciationAnswers({});
-    setIsPronunciationAnswerCorrect({});
-  };
-
-  const handlePrevPronunciation = () => {
-    setCurrentPronunciationItem((prev) => (prev - 1 + pronunciationItems.length) % pronunciationItems.length);
-    setSelectedPronunciationAnswers({});
-    setIsPronunciationAnswerCorrect({});
-  };
+  if (!highSchoolData) {
+    return <div className="min-h-screen flex items-center justify-center">数据加载中...</div>;
+  }
 
   return (
     <div className="min-h-screen pt-32 relative overflow-hidden bg-gradient-to-br from-amber-50 to-orange-100 dark:from-gray-900 dark:to-gray-800">
@@ -237,10 +351,10 @@ export default function PrimaryEnglish() {
           className="text-center"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-orange-600">
-            {primaryData.title}
+            {highSchoolData.title}
           </h1>
           <p className="text-lg text-amber-800/80 dark:text-amber-200/80 max-w-3xl mx-auto">
-            {primaryData.description}
+            {highSchoolData.description}
           </p>
         </motion.div>
       </div>
@@ -249,7 +363,7 @@ export default function PrimaryEnglish() {
       {!showLearningContent && (
         <div className="container mx-auto px-4 py-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {primaryData.sections.map((section, index) => (
+            {highSchoolData.sections.map((section, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -289,7 +403,7 @@ export default function PrimaryEnglish() {
 
       {/* 学习内容展示区域 */}
       {showLearningContent && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -423,19 +537,19 @@ export default function PrimaryEnglish() {
                 <Button
                   buttonStyle={7}
                   className="bg-amber-500 hover:bg-amber-600 text-white"
-                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                  disabled={currentPage === 1}
+                  onClick={() => setDialoguePage(prev => Math.max(1, prev - 1))}
+                  disabled={dialoguePage === 1}
                 >
                   上一页
                 </Button>
                 <span className="text-amber-800 dark:text-amber-200">
-                  第 {currentPage} 页，共 {totalPages} 页
+                  第 {dialoguePage} 页，共 {totalDialoguePages} 页
                 </span>
                 <Button
                   buttonStyle={7}
                   className="bg-amber-500 hover:bg-amber-600 text-white"
-                  onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                  disabled={currentPage === totalPages}
+                  onClick={() => setDialoguePage(prev => Math.min(totalDialoguePages, prev + 1))}
+                  disabled={dialoguePage === totalDialoguePages}
                 >
                   下一页
                 </Button>
@@ -448,10 +562,10 @@ export default function PrimaryEnglish() {
             <div className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {getCurrentPageVocabulary().map((item: VocabularyItem) => (
-          <motion.div
+                  <motion.div
                     key={item.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                     className="bg-gradient-to-br from-amber-50 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-amber-200 dark:border-amber-800/50 cursor-pointer"
                   >
@@ -472,8 +586,8 @@ export default function PrimaryEnglish() {
                             </button>
                           </TextToSpeech>
                         </div>
-                        <p className="text-amber-700 dark:text-amber-300">{item.translation}</p>
-                        <p className="text-sm text-amber-600 dark:text-amber-400 mt-1 bg-white/50 dark:bg-amber-900/30 px-2 py-1 rounded-full inline-block">{item.type}</p>
+                        <p className="text-amber-700 dark:text-amber-300">{item.definition}</p>
+                        <p className="text-sm text-amber-600 dark:text-amber-400 mt-1 bg-white/50 dark:bg-amber-900/30 px-2 py-1 rounded-full inline-block">{item.partOfSpeech}</p>
                       </div>
                     </div>
 
@@ -499,7 +613,22 @@ export default function PrimaryEnglish() {
                         </div>
                       </div>
                     )}
-          </motion.div>
+
+                    <div className="mt-4 space-y-2">
+                      {item.synonyms.length > 0 && (
+                        <div>
+                          <span className="text-sm font-medium text-amber-600 dark:text-amber-400">同义词：</span>
+                          <span className="text-sm text-amber-700 dark:text-amber-300">{item.synonyms.join(', ')}</span>
+                        </div>
+                      )}
+                      {item.antonyms.length > 0 && (
+                        <div>
+                          <span className="text-sm font-medium text-amber-600 dark:text-amber-400">反义词：</span>
+                          <span className="text-sm text-amber-700 dark:text-amber-300">{item.antonyms.join(', ')}</span>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
                 ))}
               </div>
 
@@ -508,19 +637,19 @@ export default function PrimaryEnglish() {
                 <Button
                   buttonStyle={7}
                   className="bg-amber-500 hover:bg-amber-600 text-white"
-                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                  disabled={currentPage === 1}
+                  onClick={() => setVocabularyPage(prev => Math.max(1, prev - 1))}
+                  disabled={vocabularyPage === 1}
                 >
                   上一页
                 </Button>
                 <span className="text-amber-800 dark:text-amber-200">
-                  第 {currentPage} 页，共 {totalVocabularyPages} 页
+                  第 {vocabularyPage} 页，共 {totalVocabularyPages} 页
                 </span>
                 <Button
                   buttonStyle={7}
                   className="bg-amber-500 hover:bg-amber-600 text-white"
-                  onClick={() => setCurrentPage(prev => Math.min(totalVocabularyPages, prev + 1))}
-                  disabled={currentPage === totalVocabularyPages}
+                  onClick={() => setVocabularyPage(prev => Math.min(totalVocabularyPages, prev + 1))}
+                  disabled={vocabularyPage === totalVocabularyPages}
                 >
                   下一页
                 </Button>
@@ -528,7 +657,7 @@ export default function PrimaryEnglish() {
             </div>
           )}
 
-          {/* 阅读内容 */}
+          {/* 阅读与写作内容 */}
           {currentContentType === '阅读与写作' && (
             <div className="space-y-8">
               {/* 阅读部分 */}
@@ -617,13 +746,13 @@ export default function PrimaryEnglish() {
                   <div className="flex justify-between items-center">
                     <Button
                       buttonStyle={7}
-                      className="bg-amber-500 hover:bg-amber-600 text-white"
+                      className="bg-amber-500 hover:bg-amber-600 text-white whitespace-nowrap"
                       onClick={() => setShowTranslation(!showTranslation)}
                     >
                       {showTranslation ? '隐藏翻译' : '显示翻译'}
                     </Button>
                     {readingMaterials[currentReadingItem].writingPrompt && (
-                      <div className="text-lg text-amber-800 dark:text-amber-200">
+                      <div className="text-lg text-amber-800 dark:text-amber-200 ml-4">
                         <p className="font-semibold mb-2">写作提示：</p>
                         <p>{readingMaterials[currentReadingItem].writingPrompt}</p>
                       </div>
@@ -756,65 +885,71 @@ export default function PrimaryEnglish() {
 
                   <div className="mb-8">
                     <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-200 mb-4">
-                      例句
+                      规则
                     </h4>
-                    <div className="space-y-4">
-                      {grammarItems[currentGrammarItem].examples.map((example, index) => (
-                        <div key={index} className="bg-amber-50 dark:bg-amber-900/30 rounded-xl p-4">
-                          <p className="text-lg text-amber-800 dark:text-amber-200">
-                            {example.english}
-                          </p>
-                          <p className="text-amber-600 dark:text-amber-400">
-                            {example.translation}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="mb-8">
-                    <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-200 mb-4">
-                      语法规则
-                    </h4>
-                    <ul className="list-disc list-inside space-y-2">
+                    <ul className="list-disc list-inside space-y-2 text-amber-800 dark:text-amber-200">
                       {grammarItems[currentGrammarItem].rules.map((rule, index) => (
-                        <li
-                          key={index}
-                          className="text-lg text-amber-800 dark:text-amber-200"
-                        >
-                          {rule}
-                        </li>
+                        <li key={index}>{rule}</li>
                       ))}
                     </ul>
                   </div>
 
                   <div className="mb-8">
                     <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-200 mb-4">
-                      练习
+                      例子
                     </h4>
-                    {grammarItems[currentGrammarItem].practice.map((question, index) => (
+                    {grammarItems[currentGrammarItem].examples.map((example, index) => (
+                      <div key={index} className="mb-4">
+                        <p className="text-lg text-amber-800 dark:text-amber-200">{example.sentence}</p>
+                        <p className="text-amber-600 dark:text-amber-400">{example.translation}</p>
+                        <p className="text-sm text-amber-500 dark:text-amber-400 mt-1">{example.explanation}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mb-8">
+                    <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-200 mb-4">
+                      常见错误
+                    </h4>
+                    {grammarItems[currentGrammarItem].commonMistakes.map((mistake, index) => (
+                      <div key={index} className="mb-4 p-4 bg-amber-50 dark:bg-amber-900/30 rounded-xl">
+                        <p className="text-red-600 dark:text-red-400 line-through mb-2">{mistake.mistake}</p>
+                        <p className="text-green-600 dark:text-green-400 mb-2">{mistake.correction}</p>
+                        <p className="text-sm text-amber-600 dark:text-amber-400">{mistake.explanation}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mb-8">
+                    <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-200 mb-4">
+                      语法练习
+                    </h4>
+                    {grammarItems[currentGrammarItem].exercises.map((exercise, index) => (
                       <div key={index} className="mb-6">
-                        <p className="text-lg text-amber-800 dark:text-amber-200 mb-4">
-                          {question.question}
-                        </p>
-                        <div className="space-y-2">
-                          {question.options.map((option, optionIndex) => (
+                        <h4 className="text-lg font-semibold mb-2">{exercise.question}</h4>
+                        <div className="grid grid-cols-2 gap-2">
+                          {exercise.options.map((option, optionIndex) => (
                             <button
                               key={optionIndex}
-                              className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
+                              onClick={() => handleGrammarAnswerSelect(index, optionIndex)}
+                              className={`p-2 rounded font-medium transition-all duration-200 ${
                                 selectedGrammarAnswers[index] === optionIndex
                                   ? isGrammarAnswerCorrect[index]
-                                    ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200'
-                                    : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
-                                  : 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 hover:bg-amber-200 dark:hover:bg-amber-800/30'
+                                    ? 'bg-green-600 text-white shadow-md'
+                                    : 'bg-red-600 text-white shadow-md'
+                                  : 'bg-amber-100 hover:bg-amber-300 text-amber-800 border border-amber-300'
                               }`}
-                              onClick={() => handleGrammarAnswerSelect(index, optionIndex)}
                               disabled={selectedGrammarAnswers[index] !== undefined}
                             >
                               {option}
                             </button>
                           ))}
                         </div>
+                        {selectedGrammarAnswers[index] !== undefined && (
+                          <p className={`mt-2 ${isGrammarAnswerCorrect[index] ? 'text-green-600' : 'text-red-600'}`}>
+                            {exercise.explanation}
+                          </p>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -826,7 +961,6 @@ export default function PrimaryEnglish() {
           {/* 语音学习内容 */}
           {currentContentType === '语音学习' && (
             <div className="space-y-8">
-              {/* Phonics学习部分 */}
               <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-amber-200/50 dark:border-amber-900/50">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-bold text-amber-800 dark:text-amber-200">
@@ -927,118 +1061,6 @@ export default function PrimaryEnglish() {
                               }`}
                               onClick={() => handlePhonicsAnswerSelect(index, optionIndex)}
                               disabled={selectedPhonicsAnswers[index] !== undefined}
-                            >
-                              {option}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* 重音与连读部分 */}
-              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-amber-200/50 dark:border-amber-900/50">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-bold text-amber-800 dark:text-amber-200">
-                    {pronunciationItems[currentPronunciationItem].title}
-                  </h3>
-                  <div className="flex items-center space-x-4">
-                    <Button
-                      buttonStyle={7}
-                      className="bg-amber-500 hover:bg-amber-600 text-white"
-                      onClick={handlePrevPronunciation}
-                    >
-                      上一个
-                    </Button>
-                    <Button
-                      buttonStyle={7}
-                      className="bg-amber-500 hover:bg-amber-600 text-white"
-                      onClick={handleNextPronunciation}
-                    >
-                      下一个
-                    </Button>
-                  </div>
-                </div>
-
-                <div className="prose prose-amber dark:prose-invert max-w-none">
-                  <div className="mb-8">
-                    <p className="text-lg text-amber-800 dark:text-amber-200">
-                      {pronunciationItems[currentPronunciationItem].description}
-                    </p>
-                  </div>
-
-                  <div className="mb-8">
-                    <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-200 mb-4">
-                      示例
-                    </h4>
-                    <div className="space-y-4">
-                      {pronunciationItems[currentPronunciationItem].examples.map((example, index) => (
-                        <div key={index} className="bg-amber-50 dark:bg-amber-900/30 rounded-xl p-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <p className="text-lg text-amber-800 dark:text-amber-200">
-                              {example.phrase}
-                            </p>
-                            <TextToSpeech 
-                              text={example.phrase} 
-                              rate={getRandomRate()}
-                              voice={getVoiceByGender("child")}
-                            >
-                              <button className="bg-gradient-to-r from-amber-200 to-orange-200 dark:from-amber-800/50 dark:to-orange-800/50 p-2 rounded-full hover:from-amber-300 hover:to-orange-300 dark:hover:from-amber-700/50 dark:hover:to-orange-700/50 transition-colors shadow-md cursor-pointer">
-                                <span className="text-lg">🔊</span>
-                              </button>
-                            </TextToSpeech>
-                          </div>
-                          <p className="text-amber-600 dark:text-amber-400">
-                            {example.pronunciation}
-                          </p>
-                          <p className="text-amber-600 dark:text-amber-400">
-                            {example.translation}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="mb-8">
-                    <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-200 mb-4">
-                      发音规则
-                    </h4>
-                    <ul className="list-disc list-inside space-y-2">
-                      {pronunciationItems[currentPronunciationItem].rules.map((rule, index) => (
-                        <li
-                          key={index}
-                          className="text-lg text-amber-800 dark:text-amber-200"
-                        >
-                          {rule}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mb-8">
-                    <h4 className="text-xl font-semibold text-amber-800 dark:text-amber-200 mb-4">
-                      练习
-                    </h4>
-                    {pronunciationItems[currentPronunciationItem].practice.map((question, index) => (
-                      <div key={index} className="mb-6">
-                        <p className="text-lg text-amber-800 dark:text-amber-200 mb-4">
-                          {question.question}
-                        </p>
-                        <div className="space-y-2">
-                          {question.options.map((option, optionIndex) => (
-                            <button
-                              key={optionIndex}
-                              className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
-                                selectedPronunciationAnswers[index] === optionIndex
-                                  ? isPronunciationAnswerCorrect[index]
-                                    ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200'
-                                    : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
-                                  : 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 hover:bg-amber-200 dark:hover:bg-amber-800/30'
-                              }`}
-                              onClick={() => handlePronunciationAnswerSelect(index, optionIndex)}
-                              disabled={selectedPronunciationAnswers[index] !== undefined}
                             >
                               {option}
                             </button>

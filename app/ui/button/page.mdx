@@ -64,45 +64,45 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export const Button: FC<ButtonProps> = ({ 
-  buttonStyle = 0, 
-  children, 
-  className = '', 
-  ...props 
+export const Button: FC<ButtonProps> = ({
+  buttonStyle = 0,
+  children,
+  className = '',
+  ...props
 }) => {
   const [hoverState, setHoverState] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [particles, setParticles] = useState<Array<{ id: number, x: number, y: number, size: number, opacity: number }>>([]);
-  
+
   // Particle effect
   useEffect(() => {
     if (buttonStyle === 4 && hoverState) {
       const interval = setInterval(() => {
         setParticles(prev => {
           const newParticles = [...prev];
-          
+
           // Add new particles
-          if (newParticles.length < 15) {
+          if (newParticles.length < 50) {
             newParticles.push({
               id: Date.now(),
               x: Math.random() * 100,
               y: Math.random() * 100,
-              size: Math.random() * 2 + 0.5,
+              size: Math.random() * 1.5 + 0.5,
               opacity: 1
             });
           }
-          
+
           // Update existing particles
           return newParticles
             .map(p => ({
               ...p,
-              y: p.y - 1,
+              y: p.y - Math.random() * 0.5 - 0.5,
               opacity: p.opacity - 0.03
             }))
             .filter(p => p.opacity > 0);
         });
       }, 50);
-      
+
       return () => clearInterval(interval);
     } else if (buttonStyle === 4 && !hoverState) {
       // Clear all particles when mouse leaves
@@ -131,35 +131,36 @@ export const Button: FC<ButtonProps> = ({
   const buttonStyles = [
     // 0: Basic style
     "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 dark:hover:bg-gray-dark/50 hover:bg-accent-white/50",
-    
+
     // 1: Underline effect
     "relative px-4 py-2 rounded-md border-0 overflow-hidden transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:scale-x-0 hover:after:scale-x-100 after:bg-current after:transition-all after:duration-300 after:w-full",
-    
+
     // 2: Shadow spread
     "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_0_10px_rgba(255,255,255,0.2)]",
-    
+
     // 3: Gradient background with mouse tracking
-    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc border-0 overflow-hidden transition-all duration-300 before:absolute before:inset-0 before:rounded-md before:border before:border-transparent before:content-['']",
-    
+    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc overflow-hidden transition-all duration-300 before:absolute before:inset-0 before:rounded-md before:border before:border-transparent before:content-['']",
+
     // 4: Particle effect
     "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 overflow-hidden",
-    
+
     // 5: Pulse effect
     "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 hover:animate-pulse",
-    
+
     // 6: Glow follow
     "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 overflow-hidden",
-    
+
     // 7: Background spread
     "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 before:absolute before:inset-0 before:rounded-md before:bg-current before:opacity-0 before:scale-0 hover:before:scale-100 hover:before:opacity-5 before:transition-all before:duration-300 before:content-['']",
-    
+
     // 8: 3D press effect
-    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-100 hover:translate-y-0.5 hover:shadow-inner"
+    "relative px-4 py-2 rounded-md border dark:border-accent-300 border-accent-ccc transition-all duration-300 hover:translate-y-0.5 hover:shadow-inner"
   ];
 
   return (
     <button
       className={cn(
+        "cursor-pointer relative z-10",
         buttonStyles[buttonStyle % buttonStyles.length],
         className
       )}
@@ -206,8 +207,7 @@ export const Button: FC<ButtonProps> = ({
         />
       )}
 
-      {/* Content */}
-      <div className="relative z-10">{children}</div>
+      {children}
     </button>
   );
 };

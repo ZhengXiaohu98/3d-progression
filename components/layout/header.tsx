@@ -6,8 +6,13 @@ import { useGSAP } from "@gsap/react";
 import { useEffect, useRef, useState } from "react";
 import { ThemeSwitch } from "../general";
 import { cn } from "@/utils";
+import { usePathname } from "next/navigation";
+
+const excludePaths = ["course-english"];
 
 export const Header: React.FC = () => {
+
+  const path = usePathname();
   const [accordionOpen, setAccordionOpen] = useState(false);
 
   useGSAP(() => {
@@ -33,6 +38,10 @@ export const Header: React.FC = () => {
       url: "/ui",
     },
   ];
+
+  if (excludePaths.some(curPath => path.includes(curPath))) {
+    return null;
+  }
 
   return (
     <>

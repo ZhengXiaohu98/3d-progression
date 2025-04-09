@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { TextToSpeech } from '@/components/ui/utils/text-to-speech';
 import { Button } from '@/components/ui/general/Button';
+import Image from 'next/image';
 
 interface AnimalLearningModalProps {
   isOpen: boolean;
@@ -181,9 +182,11 @@ const AnimalLearningModal: React.FC<AnimalLearningModalProps> = ({ isOpen, onClo
                       {imageError[selectedAnimal.name] ? (
                         <div className="text-9xl mb-4">{selectedAnimal.emoji}</div>
                       ) : (
-                        <img 
+                        <Image 
                           src={selectedAnimal.image} 
                           alt={selectedAnimal.name}
+                          width={400}
+                          height={400}
                           className="max-w-full max-h-[400px] rounded-lg shadow-lg"
                           onError={() => handleImageError(selectedAnimal.name)}
                         />

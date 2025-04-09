@@ -1,13 +1,30 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Button } from '@/components/ui/general/Button';
 import { backgroundWords, englishCourseStages } from './data';
 import Link from 'next/link';
 
-
 export default function EnglishCourse() {
   const [expandedStage, setExpandedStage] = useState<string | null>('启蒙阶段');
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleExpand = (stageId: string) => {
     if (expandedStage === stageId) {
@@ -36,22 +53,22 @@ export default function EnglishCourse() {
             key={index}
             className="absolute text-2xl md:text-3xl font-bold opacity-10 select-none"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * dimensions.width,
+              y: Math.random() * dimensions.height,
               rotate: Math.random() * 180 - 90,
               scale: 0.5 + Math.random() * 1.5,
               opacity: 0.05 + Math.random() * 0.1
             }}
             animate={{
               x: [
-                Math.random() * window.innerWidth,
-                Math.random() * window.innerWidth,
-                Math.random() * window.innerWidth
+                Math.random() * dimensions.width,
+                Math.random() * dimensions.width,
+                Math.random() * dimensions.width
               ],
               y: [
-                Math.random() * window.innerHeight,
-                Math.random() * window.innerHeight,
-                Math.random() * window.innerHeight
+                Math.random() * dimensions.height,
+                Math.random() * dimensions.height,
+                Math.random() * dimensions.height
               ],
               rotate: [
                 Math.random() * 180 - 90,
@@ -326,7 +343,7 @@ export default function EnglishCourse() {
                                 className="text-amber-800/80 dark:text-amber-200/80 flex items-start"
                               >
                                 <span className="text-amber-500 mr-2">✦</span>
-                                <span>{item}</span>
+                                <span>{typeof item === 'string' ? item : item.name}</span>
                               </li>
                             ))}
                           </ul>

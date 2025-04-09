@@ -5,7 +5,7 @@ interface TextToSpeechProps {
   text: string;
   rate?: number; // 语速，范围0.1-10，默认为1
   pitch?: number; // 音高，范围0-2，默认为1
-  voice?: string; // 声音类型，可选值：'male' | 'female'
+  voice?: string; // 声音类型，可选值：'male' | 'female' | 'child'
   children: React.ReactNode;
   className?: string;
 }
@@ -78,6 +78,13 @@ export const TextToSpeech: React.FC<TextToSpeechProps> = ({
           return v.name.toLowerCase().includes('male') || 
                  v.name.toLowerCase().includes('man') || 
                  v.name.toLowerCase().includes('boy');
+        } else if (voice === 'child') {
+          // 为儿童声音设置更高的音调
+          pitch = 1.5;
+          return v.name.toLowerCase().includes('child') || 
+                 v.name.toLowerCase().includes('kid') ||
+                 v.name.toLowerCase().includes('boy') ||
+                 v.name.toLowerCase().includes('girl');
         } else {
           return v.name.toLowerCase().includes('female') || 
                  v.name.toLowerCase().includes('woman') || 

@@ -151,7 +151,7 @@ export default function KindergartenEnglish() {
                     {section.content.map((item, itemIndex) => (
                       <li key={itemIndex} className="text-amber-800/80 dark:text-amber-200/80 flex items-start">
                         <span className="text-amber-500 mr-2">✦</span>
-                        <span>{item}</span>
+                        <span>{typeof item === 'string' ? item : item.name}</span>
                       </li>
                     ))}
                   </ul>
@@ -879,18 +879,6 @@ export default function KindergartenEnglish() {
           )}
         </motion.div>
       )}
-
-      {/* 返回课程概览按钮 */}
-      <div className="container mx-auto px-4 py-8 text-center">
-        <Link href="/creation/course-english">
-          <Button 
-            buttonStyle={7} 
-            className="mt-8 bg-amber-500 hover:bg-amber-600 text-white"
-          >
-            返回课程概览
-          </Button>
-        </Link>
-      </div>
 
       {/* 动物学习弹窗 */}
       {showAnimalModal && (
