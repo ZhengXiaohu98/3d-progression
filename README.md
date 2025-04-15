@@ -1,3 +1,7 @@
+## Version 2.0.3 - 04/15/2025
+
+- <s>Change: new course page(not public to all)</s>
+
 ## Version 2.0.2 - 04/09/2025
 
 - Feature: new Button component

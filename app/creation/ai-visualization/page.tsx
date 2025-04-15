@@ -861,10 +861,10 @@ Return ONLY the JSON object, without any markdown formatting or additional text.
             <h2 className='col-span-1 md:col-span-2 text-center text-lg lg:text-xl font-bold mb-4'>
               Rich data visualization examples
             </h2>
-            <Image src="/images/project/ai-visualization/chart1.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
-            <Image src="/images/project/ai-visualization/chart2.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
-            <Image src="/images/project/ai-visualization/chart3.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
-            <Image src="/images/project/ai-visualization/chart4.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
+            <Image src="/images/creation/ai-visualization/chart1.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
+            <Image src="/images/creation/ai-visualization/chart2.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
+            <Image src="/images/creation/ai-visualization/chart3.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
+            <Image src="/images/creation/ai-visualization/chart4.png" width={713} height={500} alt="ai chart" className='w-full rounded-lg shadow-lg hover:scale-105 transition-all duration-300' />
             <ul className='col-span-1 md:col-span-2 grid grid-cols-1 gap-4 lg:gap-6 mt-6 lg:mt-8'>
               <motion.li
                 initial={{ opacity: 0, y: 20 }}
